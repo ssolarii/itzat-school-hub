@@ -344,3 +344,11 @@ summary { cursor: pointer; min-height: 40px; padding: 10px 0; color: var(--accen
 @media (max-width:900px) { .welcome-shell { padding:28px; } .welcome-split { grid-template-columns:1fr; gap:32px; margin-block:28px; } .welcome-scene h1 { font-size:38px; } .welcome-progress { gap:16px; } }
 @media (prefers-reduced-motion:reduce) { .welcome-shell,.welcome-role { transition:none; } .welcome-scene:not([data-step="welcome"]) { animation:none; } .welcome-role:hover { transform:none; } }
 ::view-transition-old(root),::view-transition-new(root) { animation-duration:280ms; animation-timing-function:ease-out; }
+@media (min-width:901px) and (max-height:760px) {
+  .welcome-shell { padding-top:24px; padding-bottom:20px; }
+  .welcome-progress { margin-top:24px; }
+  .welcome-split { padding-block:24px; margin-bottom:24px; }
+  .welcome-split h1 { font-size:48px; }
+  .welcome-preview { padding:28px; }
+  .welcome-preview-row { padding-block:16px; }
+}
