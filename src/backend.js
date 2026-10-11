@@ -96,7 +96,8 @@ export function createBackend({ url, key }) {
         p_id: id, p_approve: approve, p_groups: groups,
       }), 'Teacher request could not be reviewed.');
     },
-    async listTeacherRequests() {
+    async listTeacherRequests({ leadership = false } = {}) {
+      if(leadership) return checked(await client.rpc('list_teacher_requests_for_review'), 'Verified applicant identities could not be loaded.') || [];
       return checked(await client.from('school_teacher_requests')
         .select('id,user_id,name,requested_groups,note,status,approved_groups,created_at,updated_at,reviewed_at')
         .order('created_at', { ascending: false }), 'Teacher requests could not be loaded.') || [];

@@ -18,5 +18,5 @@ doc = {'settings':{'anchorDate':'2026-10-13','anchorDay':6,'timezone':'America/B
  'groups':json.loads(Path('schoolwide-schedules.json').read_text(encoding='utf-8')),
  'subjects':{k:{'name':n,'icon':i} for k,(n,i) in subjects.items()},
  'bellProfiles':{'regular':profile(regular,'15:15'),'quick':profile(quick,'14:10'),'half':profile(regular[:4],'12:20')},
- 'calendar':{},'overrides':[],'announcements':[],'banners':[],'teacherAssignments':[], 'archivedGroups':[]}
+ 'calendar':json.loads(Path('school-data.json').read_text(encoding='utf-8')).get('calendar',{}) if Path('school-data.json').exists() else {},'overrides':[],'announcements':[],'banners':[],'teacherAssignments':[], 'archivedGroups':[]}
 Path('school-data.json').write_text(json.dumps(doc,ensure_ascii=False,indent=2),encoding='utf-8')

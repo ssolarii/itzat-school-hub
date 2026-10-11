@@ -76,3 +76,5 @@ test('private requests and form values escape all supplied strings and omit arch
   assert.ok(!reviewed.includes('data-staff-review="x" onclick="bad()"'));
   assert.ok(renderTeacherRequests([], doc).includes('No teacher requests awaiting review'));
 });
+
+test("approved request with inactive access reports paused rather than awaiting review",()=>{ const html=loginView({...args,session,mode:"pending",request:{status:"approved"}}); assert.ok(html.includes("staff access is paused")); assert.ok(!html.includes("awaiting review")); });

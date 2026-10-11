@@ -17,7 +17,7 @@ Public configuration in `school-config.json` contains only the publishable key. 
 
 GitHub Pages uses `.github/workflows/pages.yml`. Enable GitHub Actions as the Pages source. Supabase Auth Site URL and redirects must match the actual deployed Pages URL and any explicitly approved local preview URL.
 
-Apply migrations in order, then seed only on a fresh database. The second migration installs private teacher account requests. Bootstrap the first Developer only after verifying their Auth account identity using the reviewed template. SQL authorization tests roll back their fixtures.
+Apply migrations in order, then seed only on a fresh database. Migration 002 installs private teacher account requests; migration 003 adds leadership-only verified applicant emails. Teacher assignments use immutable account IDs in the teacher field. Bootstrap the first Developer only after verifying their Auth account identity using the reviewed template. SQL authorization tests roll back their fixtures.
 
 ## School rules
 
