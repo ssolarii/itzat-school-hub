@@ -1,0 +1,2833 @@
+<!doctype html>
+<html lang="en" data-visualize-standalone>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>School Admin Role Concepts</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe id="codex-visualization" sandbox="allow-scripts" referrerpolicy="no-referrer" title="School Admin Role Concepts" data-srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot; data-visualize-standalone&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;School Admin Role Concepts&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 16px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans:
+    -apple-system-body, ui-sans-serif, -apple-system, system-ui, &quot;Segoe UI&quot;,
+    Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;,
+    &quot;Segoe UI Symbol&quot;;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --icon-size: 16px;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --corner-shape: round;
+  --radius: var(--border-radius-lg, 8px);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: var(--visualize-paint-gutter, 0px);
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  -webkit-font-smoothing: antialiased;
+  font-size: var(--font-size-base);
+  line-height: calc(var(--font-size-base) * 1.625);
+  font-weight: var(--font-weight-normal);
+}
+
+.cursor-interaction {
+  cursor: var(--cursor-interaction, pointer);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: var(--cursor-interaction, pointer);
+  text-decoration: none;
+  text-underline-offset: 2px;
+  font-weight: inherit;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+.table {
+  font-family: var(--font-sans);
+}
+
+h1 {
+  font-size: calc(var(--font-size-base) * 1.5);
+  line-height: 1.3333333333;
+}
+
+h2 {
+  font-size: calc(var(--font-size-base) * 1.25);
+  line-height: 1.4;
+}
+h3 {
+  font-size: calc(var(--font-size-base) * 1.125);
+  line-height: 1.5555555556;
+}
+h4 {
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+}
+h5,
+h6 {
+  font-size: var(--font-size-base);
+  line-height: calc(var(--font-size-base) * 1.625);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong,
+th {
+  font-weight: 600;
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+pre,
+pre code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: calc(var(--font-size-base) * 0.875);
+  line-height: calc(var(--font-size-base) * 1.625);
+  font-family: var(--font-sans);
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 5%, transparent);
+}
+.table :is(th, td):not(:last-child) {
+  padding-inline-end: calc(var(--font-size-base) * 1.5);
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead :is(th, td) {
+  border-bottom-color: var(--border-strong, var(--input));
+  padding-block: calc(var(--font-size-base) / 2);
+  line-height: var(--font-size-base);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+.table tbody :is(th, td) {
+  padding-block: calc(var(--font-size-base) * 0.625);
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 8px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: var(--corner-shape);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+.widget {
+  min-width: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  box-shadow: 0 0 0 0.5px var(--border-strong, var(--border));
+  color: var(--foreground);
+  background: var(--background);
+}
+
+#widget &gt; :not(.card, .widget, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  border: 1px solid var(--border);
+  corner-shape: var(--corner-shape);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-sans);
+  padding: 5px 12px;
+  border-color: color-mix(
+    in oklab,
+    light-dark(var(--primary-foreground), var(--foreground)) 5%,
+    transparent
+  );
+  border-radius: var(--radius-2xl);
+  color: light-dark(var(--primary-foreground), var(--foreground));
+  background: light-dark(var(--foreground), var(--popover));
+  box-shadow: 0 8px 18px rgb(15 23 42 / 20%);
+  letter-spacing: -0.15px;
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  margin-block: 6px;
+  border: 0;
+  background: var(--border);
+}
+
+.nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress {
+  display: flex;
+  height: 8px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 8px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar:only-child {
+  border-radius: var(--radius-full);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  color: color-mix(in srgb, var(--foreground) 40%, var(--muted-foreground));
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  font-family: var(--font-sans);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 1;
+}
+
+small,
+.text-small {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.nav-link,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+/* Match inline alignment without overriding a containing flex or grid layout. */
+.btn,
+.nav-link,
+.form-control,
+.form-select,
+.form-range,
+.form-check {
+  vertical-align: middle;
+}
+
+.btn,
+.nav-link {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  corner-shape: var(--corner-shape);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: inherit;
+  font-family: var(--font-sans);
+  height: fit-content;
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  padding-inline: var(--control-spacing, 12px);
+  border-color: transparent;
+  border-radius: var(--radius-full);
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+}
+
+.btn {
+  border-color: var(--border);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: var(--cursor-interaction, pointer);
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: light-dark(
+    color-mix(in srgb, var(--foreground) 5.5%, transparent),
+    color-mix(in srgb, var(--foreground) 8%, transparent)
+  );
+}
+
+.nav-link:not(:disabled):not([aria-disabled=&quot;true&quot;]):hover {
+  background: color-mix(in srgb, var(--foreground) 10%, transparent);
+}
+
+.btn-primary {
+  border-color: var(--border);
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: border-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: border-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--muted-foreground);
+  background: light-dark(
+    color-mix(in srgb, var(--foreground) 5.5%, transparent),
+    color-mix(in srgb, var(--foreground) 8%, transparent)
+  );
+}
+
+.nav-pills .nav-link {
+  min-width: 0;
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.nav-justified .nav-link {
+  flex: 1 1 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.nav-pills .nav-link.active {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+/* Shared preview chrome; product styles stay inside each variant. */
+.viz-dotted-background {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--foreground) 14%, transparent) 0.8px,
+    transparent 0.8px
+  );
+  background-position: center;
+  background-size: 16px 16px;
+}
+
+.viz-carousel {
+  position: relative;
+  min-width: 0;
+}
+
+.viz-carousel:has(&gt; .viz-carousel-controls) {
+  min-height: calc(60px + var(--viz-carousel-picker-height, 0px));
+  padding-bottom: 60px;
+}
+
+.viz-carousel &gt; [data-variant][hidden] {
+  display: none !important;
+}
+
+.viz-carousel &gt; [data-variant] {
+  isolation: isolate;
+}
+
+.viz-carousel-controls {
+  --viz-carousel-hover: light-dark(
+    color-mix(in srgb, var(--foreground) 5.4%, transparent),
+    color-mix(in srgb, var(--foreground) 7.8%, transparent)
+  );
+  position: absolute;
+  z-index: 2;
+  bottom: 8px;
+  left: 50%;
+  display: flex;
+  width: max-content;
+  /* Leave room for the host&#x27;s design-controls launcher at the trailing edge. */
+  max-width: calc(100% - 96px);
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+  /* Match the settings dropdown chrome independently of the content font size. */
+  font-size: 13px;
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+  transform: translateX(-50%);
+  user-select: none;
+}
+
+/* Keep authored mockup button styles out of the shared carousel chrome. */
+.viz-carousel-controls button,
+.viz-carousel-picker &gt; summary {
+  display: flex !important;
+  height: auto !important;
+  min-height: 30px;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px;
+  padding: 0 6px !important;
+  -webkit-app-region: no-drag;
+  border: 0 !important;
+  border-radius: 14px !important;
+  color: inherit !important;
+  background: transparent !important;
+  font: inherit !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.viz-carousel-controls &gt; button,
+.viz-carousel-picker &gt; summary {
+  position: relative;
+  isolation: isolate;
+}
+
+.viz-carousel-controls &gt; button {
+  --icon-size: 16px;
+  width: 30px !important;
+  padding: 0 !important;
+}
+
+.viz-carousel-picker &gt; summary {
+  padding-inline: 12px !important;
+}
+
+.viz-carousel-controls .viz-carousel-caret {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  margin: 0;
+  color: inherit;
+  transform: rotate(180deg);
+}
+
+.viz-carousel-controls &gt; button &gt; svg,
+.viz-carousel-controls .viz-carousel-caret,
+.viz-carousel-count {
+  opacity: 0.5;
+}
+
+.viz-carousel-controls &gt; button::before,
+.viz-carousel-picker &gt; summary::before {
+  position: absolute;
+  z-index: -1;
+  inset: 3px;
+  border-radius: 12px;
+  content: &quot;&quot;;
+  pointer-events: none;
+}
+
+.viz-carousel-controls &gt; button:hover::before,
+.viz-carousel-picker &gt; summary:hover::before {
+  background: var(--viz-carousel-hover);
+}
+
+.viz-carousel-controls &gt; button,
+.viz-carousel-controls [data-lucide],
+.viz-carousel-controls .lucide {
+  flex-shrink: 0;
+}
+
+.viz-carousel-picker {
+  min-width: 0;
+}
+
+.viz-carousel-picker &gt; summary {
+  min-width: 0;
+  list-style: none;
+}
+
+.viz-carousel-picker &gt; summary::-webkit-details-marker {
+  display: none;
+}
+
+.viz-carousel-count {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.viz-carousel-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.viz-carousel-options {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  max-height: 240px;
+  flex-direction: column;
+  gap: 2px;
+  overflow: auto;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--background);
+  box-shadow: 0 4px 12px light-dark(rgb(0 0 0 / 6%), rgb(0 0 0 / 25%));
+}
+
+.viz-carousel-options &gt; button {
+  border-radius: max(0px, calc(var(--radius-lg) - 5px)) !important;
+  width: 100% !important;
+  min-height: 28px;
+  justify-content: flex-start !important;
+  padding: 4px 8px !important;
+  font-size: var(--font-size-small) !important;
+  text-align: start;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.viz-carousel-options &gt; [aria-current=&quot;true&quot;],
+.viz-carousel-options &gt; button:hover {
+  background: var(--viz-carousel-hover) !important;
+}
+
+.btn:disabled,
+.nav-link:disabled,
+.nav-link[aria-disabled=&quot;true&quot;] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  padding-inline: calc(4px + var(--control-spacing, 12px) / 2);
+  border-color: var(--input);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--popover) 96%, transparent);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.4285714286;
+}
+.form-control:is(
+  [type=&quot;file&quot;],
+  [type=&quot;date&quot;],
+  [type=&quot;datetime-local&quot;],
+  [type=&quot;month&quot;],
+  [type=&quot;week&quot;],
+  [type=&quot;color&quot;]
+) {
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  line-height: 18px;
+}
+.form-control:is(
+  [type=&quot;date&quot;],
+  [type=&quot;datetime-local&quot;],
+  [type=&quot;month&quot;],
+  [type=&quot;week&quot;]
+) {
+  padding-inline: var(--control-spacing, 12px);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+  padding: 0;
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+  min-height: calc(10px + 2 * var(--control-spacing, 12px));
+  padding-inline: var(--control-spacing, 12px);
+  margin-inline-end: var(--control-spacing, 12px);
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: var(--corner-shape);
+}
+
+textarea.form-control {
+  height: auto;
+  resize: vertical;
+  min-height: 96px;
+  padding: 8px 10px;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: none;
+}
+.form-control:disabled {
+  color: var(--muted-foreground);
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  opacity: 1;
+}
+.form-control[aria-invalid=&quot;true&quot;] {
+  border-color: var(--red);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--red) 20%, transparent);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: fit-content;
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  margin: 0;
+  /* The secondary icon role is 14px at compact density and 16px at web density. */
+  --icon-size: calc(10px + var(--control-spacing, 12px) / 2);
+  /* Settings dropdowns retain a 12px inset and a 4px text-to-chevron gap. */
+  padding: 0 calc(16px + var(--icon-size)) 0 12px;
+  outline: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent calc(50% - 0.6px),
+      var(--muted-foreground) calc(50% - 0.6px) calc(50% + 0.6px),
+      transparent calc(50% + 0.6px)
+    ),
+    linear-gradient(
+      135deg,
+      transparent calc(50% - 0.6px),
+      var(--muted-foreground) calc(50% - 0.6px) calc(50% + 0.6px),
+      transparent calc(50% + 0.6px)
+    );
+  background-position:
+    calc(100% - 12px - var(--icon-size) / 2) 50%,
+    calc(100% - 12px - var(--icon-size) * 0.18) 50%;
+  background-repeat: no-repeat;
+  background-size: calc(var(--icon-size) * 0.32) calc(var(--icon-size) * 0.32);
+  cursor: var(--cursor-interaction, default);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+}
+
+.form-select:not(:disabled):hover {
+  background-color: light-dark(
+    color-mix(in srgb, var(--foreground) 5.5%, transparent),
+    color-mix(in srgb, var(--foreground) 8%, transparent)
+  );
+}
+
+.form-select:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+.form-select:disabled {
+  opacity: 0.4;
+}
+
+.form-check {
+  display: flex;
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  corner-shape: round;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  width: calc(10px + var(--control-spacing, 12px) / 2);
+  height: calc(10px + var(--control-spacing, 12px) / 2);
+  border-color: var(--border-strong, var(--input));
+  border-radius: calc(var(--radius-sm) / 2);
+  background-color: transparent;
+  color: var(--foreground);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:is(:checked, :indeterminate) {
+  border-color: var(--border-strong, var(--input));
+  background-color: color-mix(in srgb, var(--popover) 96%, transparent);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+  background-color: var(--foreground);
+}
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:indeterminate::before {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 65%;
+  height: 6.65%;
+  margin: auto;
+  border-radius: var(--radius-full);
+  background: var(--foreground);
+  mask: none;
+  content: &quot;&quot;;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  border-radius: var(--radius-full);
+  width: 16px;
+  height: 16px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--input);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 0;
+  background: radial-gradient(
+    circle,
+    var(--primary-foreground) 0 3px,
+    var(--foreground) 3px
+  );
+  box-shadow: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:focus-visible {
+  border-color: var(--ring);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+.form-check:not(.form-switch) .form-check-input[type=&quot;radio&quot;]:disabled,
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;radio&quot;]:disabled
+  + .form-check-label {
+  opacity: 0.5;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+  border-color: #fff;
+  background: #fff;
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--blue);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+  outline: none;
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  accent-color: var(--primary);
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  outline: none;
+  border-radius: var(--radius-full);
+  color: var(--foreground);
+  background: transparent;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  background: var(--form-range-track, var(--border));
+  height: 2px;
+  border-radius: var(--radius-full);
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  margin-top: -9px;
+  border-color: transparent;
+  background: currentColor;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Outline the native track and thumb, preserving the larger input hit area. */
+.form-range:focus-visible::-webkit-slider-runnable-track {
+  outline: 2px auto Highlight;
+  outline-color: -webkit-focus-ring-color;
+}
+
+.form-range::-moz-range-track {
+  background: var(--form-range-track, var(--border));
+  height: 2px;
+  border-radius: var(--radius-full);
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  border-color: transparent;
+  background: currentColor;
+  box-shadow: var(--shadow-sm);
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  outline: 2px solid Highlight;
+  outline-offset: 2px;
+}
+
+.form-range:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--blue);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible {
+  outline-offset: 2px;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.viz-carousel-controls :is(button, summary):focus-visible {
+  outline: 2px solid var(--ring) !important;
+  outline-offset: 2px !important;
+}
+
+/* Web recipes are the default, including on renderers without inline style queries. */
+@supports (border-radius: if(style(--corner-shape: round): 1px; else: 2px)) {
+  /* Match the host&#x27;s proportional text-sm scale at every text preference. */
+  .tooltip,
+  .viz-badge,
+  .btn,
+  .nav-link,
+  .form-control,
+  .form-select {
+    font-size: if(
+      style(--corner-shape: round): round(
+          nearest,
+          calc(var(--font-size-base) * 14 / 16),
+          1px
+        );
+        else: round(nearest, calc(var(--font-size-base) * 13 / 14), 1px)
+    );
+  }
+
+  .btn,
+  .nav-link,
+  .form-select {
+    border-radius: if(
+      style(--corner-shape: round): var(--radius-full); else: var(--radius-lg)
+    );
+  }
+
+  .form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+    border-radius: if(
+      style(--corner-shape: round): calc(var(--radius-sm) / 2);
+        else: calc(var(--radius-lg) * 0.4)
+    );
+  }
+
+  .tooltip {
+    font-weight: if(
+      style(--corner-shape: round): 600; else: var(--font-weight-normal)
+    );
+  }
+}
+
+@media (pointer: coarse) {
+  .viz-carousel:has(&gt; .viz-carousel-controls) {
+    min-height: calc(76px + var(--viz-carousel-picker-height, 0px));
+    padding-bottom: 76px;
+  }
+
+  .btn,
+  .nav-link,
+  .viz-carousel-controls button,
+  .viz-carousel-picker &gt; summary,
+  .form-control,
+  .form-select {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Keep small-screen WebKit from zooming when a text field receives focus. */
+  .form-control,
+  .form-select {
+    font-size: max(16px, calc(var(--font-size-base) * 14 / 16));
+    font-size: max(
+      16px,
+      round(nearest, calc(var(--font-size-base) * 14 / 16), 1px)
+    );
+  }
+  .form-control:is(
+    [type=&quot;file&quot;],
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;week&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;color&quot;]
+  ) {
+    height: 44px;
+    min-height: 44px;
+    font-size: max(16px, calc(var(--font-size-base) * 14 / 16));
+    font-size: max(
+      16px,
+      round(nearest, calc(var(--font-size-base) * 14 / 16), 1px)
+    );
+  }
+
+  .form-control[type=&quot;file&quot;]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type=&quot;color&quot;] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;week&quot;]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: &quot;&quot;;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: var(--icon-size) !important;
+  height: var(--icon-size) !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;codex-visualization-widget-state&quot;&gt;__CODEX_VISUALIZATION_WIDGET_STATE__&lt;/script&gt;
+&lt;script&gt;(() =&gt; {
+  const root = document.documentElement;
+  const mediaQuery = globalThis.matchMedia(&quot;(prefers-color-scheme: dark)&quot;);
+  const apply = Reflect.apply;
+  const isArray = Array.isArray;
+  const hasOwn = Object.hasOwn;
+  const parentWindow = globalThis.parent;
+  const stringify = JSON.stringify;
+  const parse = JSON.parse;
+  const encode = TextEncoder.prototype.encode.bind(new TextEncoder());
+  const initialStateElement = document.getElementById(
+    &quot;codex-visualization-widget-state&quot;,
+  );
+  const initialGlobals = parse(initialStateElement?.textContent ?? &quot;{}&quot;);
+  initialStateElement?.remove();
+  /** @type {Record&lt;string, unknown&gt; | null} */
+  let state = initialGlobals.widgetState ?? null;
+  const statePersistence = initialGlobals.statePersistence ?? &quot;none&quot;;
+  let nextStateRequestId = 0;
+  /** @type {Map&lt;number, { resolve: () =&gt; void; reject: (error: Error) =&gt; void; timeout: ReturnType&lt;typeof globalThis.setTimeout&gt;; serializedState: string }&gt;} */
+  const pendingStateWrites = new Map();
+  const persistenceError = () =&gt;
+    Object.assign(
+      new Error(&quot;The host could not persist the widget state update&quot;),
+      {
+        code: -32000,
+        data: { code: &quot;widget_state_persistence_failed&quot;, retryable: false },
+      },
+    );
+  /**
+   * @param {object} prototype
+   * @param {string} property
+   */
+  const getPrototypeGetter = (prototype, property) =&gt; {
+    // oxlint-disable-next-line typescript/unbound-method -- invoked through captured Reflect.apply
+    const getter = Object.getOwnPropertyDescriptor(prototype, property)?.get;
+    if (getter == null) {
+      throw new Error(`Missing ${property} getter`);
+    }
+    return getter;
+  };
+  const getMessageData = getPrototypeGetter(MessageEvent.prototype, &quot;data&quot;);
+  const getMessagePorts = getPrototypeGetter(MessageEvent.prototype, &quot;ports&quot;);
+  const getMessageSource = getPrototypeGetter(MessageEvent.prototype, &quot;source&quot;);
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const addHostMessageListener = MessagePort.prototype.addEventListener;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const postHostMessage = MessagePort.prototype.postMessage;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const startHostPort = MessagePort.prototype.start;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const stopMessagePropagation = Event.prototype.stopImmediatePropagation;
+  /** @type {MessagePort | null} */
+  let hostPort = null;
+  const postToHost = (type, payload) =&gt; {
+    if (hostPort != null) {
+      apply(postHostMessage, hostPort, [{ type, ...payload }]);
+    }
+  };
+  const openExternal = ({ href }) =&gt; {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost(&quot;open-external&quot;, { href });
+    }
+  };
+  const sendFollowUpMessage = ({ context, prompt, title }) =&gt; {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost(&quot;follow-up&quot;, { context, prompt, title });
+    }
+    return Promise.resolve();
+  };
+  /**
+   * @param {Record&lt;string, unknown&gt; | ((previous: Record&lt;string, unknown&gt; | null) =&gt; Record&lt;string, unknown&gt;)} next
+   * @returns {Promise&lt;void&gt;}
+   */
+  const setWidgetState = async (next) =&gt; {
+    const nextState = typeof next === &quot;function&quot; ? next(state) : next;
+    if (
+      nextState == null ||
+      typeof nextState !== &quot;object&quot; ||
+      isArray(nextState)
+    ) {
+      throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+    }
+    const inputState = stringify(
+      nextState,
+      (_key, /** @type {unknown} */ value) =&gt; {
+        if (
+          typeof value === &quot;undefined&quot; ||
+          typeof value === &quot;function&quot; ||
+          typeof value === &quot;symbol&quot; ||
+          (typeof value === &quot;number&quot; &amp;&amp; !Number.isFinite(value))
+        ) {
+          throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+        }
+        return value;
+      },
+    );
+    const parsedState = parse(inputState);
+    if (
+      parsedState == null ||
+      typeof parsedState !== &quot;object&quot; ||
+      isArray(parsedState)
+    ) {
+      throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+    }
+    const storedState = {
+      modelContent: null,
+      privateContent: null,
+      ...parsedState,
+    };
+    const serializedState = stringify(storedState);
+    if (encode(serializedState).length &gt; 16 * 1024) {
+      throw new TypeError(
+        &quot;Widget state must be a JSON object of at most 16 KiB&quot;,
+      );
+    }
+    if (
+      hasOwn(storedState, &quot;imageIds&quot;) &amp;&amp;
+      (!isArray(storedState.imageIds) ||
+        storedState.imageIds.some(
+          (/** @type {unknown} */ id) =&gt; typeof id !== &quot;string&quot;,
+        ))
+    ) {
+      throw new TypeError(&quot;Widget state imageIds must be an array of strings&quot;);
+    }
+    if (storedState.imageIds?.length &gt; 0) {
+      throw Object.assign(
+        new TypeError(&quot;Visualization state does not support image attachments&quot;),
+        { code: -32602, data: { code: &quot;images_unsupported&quot; } },
+      );
+    }
+    state = storedState;
+    globalThis.openai.widgetState = state;
+    globalThis.dispatchEvent(
+      new CustomEvent(&quot;openai:set_globals&quot;, {
+        detail: { globals: { widgetState: state } },
+      }),
+    );
+    if (statePersistence === &quot;none&quot;) {
+      throw persistenceError();
+    }
+    const id = ++nextStateRequestId;
+    return new Promise((resolve, reject) =&gt; {
+      const timeout = globalThis.setTimeout(() =&gt; {
+        pendingStateWrites.delete(id);
+        reject(persistenceError());
+      }, 30_000);
+      pendingStateWrites.set(id, { resolve, reject, timeout, serializedState });
+      postToHost(&quot;widget-state-write&quot;, { id, state: serializedState });
+    });
+  };
+  const syncTheme = () =&gt; {
+    const theme = mediaQuery.matches ? &quot;dark&quot; : &quot;light&quot;;
+    root.dataset.theme = theme;
+    globalThis.openai = {
+      ...globalThis.openai,
+      openExternal,
+      sendFollowUpMessage,
+      setWidgetState,
+      theme,
+      visualizationStyleVariables: {},
+      visualizationTheme: theme,
+      widgetState: state,
+      statePersistence,
+      stateModelContext: &quot;none&quot;,
+    };
+    globalThis.dispatchEvent(
+      new CustomEvent(&quot;openai:set_globals&quot;, {
+        detail: { globals: globalThis.openai },
+      }),
+    );
+  };
+  const sendHeight = () =&gt; {
+    postToHost(&quot;height&quot;, {
+      height: Math.ceil(
+        Math.max(
+          document.body.scrollHeight,
+          document.body.getBoundingClientRect().height,
+        ),
+      ),
+    });
+  };
+
+  globalThis.addEventListener(
+    &quot;message&quot;,
+    (event) =&gt; {
+      const data = apply(getMessageData, event, []);
+      const ports = apply(getMessagePorts, event, []);
+      const source = apply(getMessageSource, event, []);
+      if (
+        hostPort != null ||
+        source !== parentWindow ||
+        typeof data !== &quot;object&quot; ||
+        data?.type !== &quot;codex-visualization-initialize&quot; ||
+        !isArray(ports) ||
+        ports.length !== 1
+      ) {
+        return;
+      }
+      apply(stopMessagePropagation, event, []);
+      const nextHostPort = ports[0];
+      try {
+        apply(addHostMessageListener, nextHostPort, [
+          &quot;message&quot;,
+          (event) =&gt; {
+            const data = apply(getMessageData, event, []);
+            if (typeof data === &quot;object&quot; &amp;&amp; data?.type === &quot;measure&quot;) {
+              sendHeight();
+            } else if (
+              typeof data === &quot;object&quot; &amp;&amp;
+              data?.type === &quot;widget-state-result&quot;
+            ) {
+              /** @type {unknown} */
+              const id = data.id;
+              if (typeof id !== &quot;number&quot;) {
+                return;
+              }
+              const pending = pendingStateWrites.get(id);
+              if (pending != null) {
+                pendingStateWrites.delete(id);
+                globalThis.clearTimeout(pending.timeout);
+                if (data.ok === true) {
+                  pending.resolve();
+                } else {
+                  pending.reject(persistenceError());
+                }
+              }
+            }
+          },
+        ]);
+        apply(startHostPort, nextHostPort, []);
+      } catch {
+        return;
+      }
+      hostPort = nextHostPort;
+      for (const [id, { serializedState }] of pendingStateWrites) {
+        postToHost(&quot;widget-state-write&quot;, { id, state: serializedState });
+      }
+      sendHeight();
+    },
+    { capture: true },
+  );
+  document.currentScript?.remove();
+  mediaQuery.addEventListener(&quot;change&quot;, syncTheme);
+  globalThis.addEventListener(&quot;click&quot;, (event) =&gt; {
+    if (event.defaultPrevented) {
+      return;
+    }
+    let element = null;
+    if (event.target instanceof globalThis.Element) {
+      element = event.target;
+    } else if (event.target instanceof globalThis.Node) {
+      element = event.target.parentElement;
+    }
+    const link = element?.closest(&quot;a[href]&quot;);
+    const href = link?.getAttribute(&quot;href&quot;);
+    if (href == null) {
+      return;
+    }
+    if (href.startsWith(&quot;#&quot;)) {
+      let id;
+      try {
+        id = decodeURIComponent(href.slice(1));
+      } catch {
+        return;
+      }
+      const target = id.length === 0 ? root : document.getElementById(id);
+      if (
+        target == null ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      event.preventDefault();
+      postToHost(&quot;scroll-to&quot;, {
+        top: target.getBoundingClientRect().top + globalThis.scrollY,
+      });
+      return;
+    }
+    event.preventDefault();
+    openExternal({ href });
+  });
+  new ResizeObserver(sendHeight).observe(document.body);
+  syncTheme();
+})();
+&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap&quot;&gt;
+&lt;div id=&quot;isa-role-planning&quot;&gt;
+  &lt;div class=&quot;viz-controls&quot;&gt;
+    &lt;label class=&quot;form-label&quot;&gt;Explore view &lt;select class=&quot;form-select&quot; id=&quot;isa-view&quot;&gt;&lt;option value=&quot;admin&quot;&gt;Admin workspace&lt;/option&gt;&lt;option value=&quot;teacher&quot;&gt;Teacher day&lt;/option&gt;&lt;option value=&quot;parent&quot;&gt;Parent updates&lt;/option&gt;&lt;option value=&quot;landing&quot;&gt;Role landing&lt;/option&gt;&lt;option value=&quot;student&quot;&gt;Student preview&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+    &lt;label class=&quot;form-label&quot; id=&quot;isa-role-label&quot;&gt;Preview permissions &lt;select class=&quot;form-select&quot; id=&quot;isa-role&quot;&gt;&lt;option value=&quot;developer&quot;&gt;Developer&lt;/option&gt;&lt;option value=&quot;principal&quot;&gt;Principal / Vice Principal&lt;/option&gt;&lt;option value=&quot;teacher&quot;&gt;Teacher&lt;/option&gt;&lt;option value=&quot;codeveloper&quot;&gt;Admin / Codeveloper&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;isa-window&quot; data-view=&quot;admin&quot;&gt;
+    &lt;header class=&quot;isa-header&quot;&gt;&lt;div class=&quot;isa-brand&quot;&gt;&lt;span class=&quot;isa-wordmark&quot;&gt;Itz’at&lt;small&gt;STEAM Academy&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;isa-header-content&quot;&gt;&lt;b id=&quot;isa-title&quot;&gt;Workspace&lt;/b&gt;&lt;span class=&quot;isa-context&quot; id=&quot;isa-context&quot;&gt;Developer · Planning preview&lt;/span&gt;&lt;/div&gt;&lt;/header&gt;
+    &lt;div id=&quot;isa-admin&quot; class=&quot;isa-shell&quot;&gt;
+      &lt;nav class=&quot;isa-nav&quot; aria-label=&quot;Admin work areas&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;cursor-interaction&quot; data-pane=&quot;schedules&quot; aria-pressed=&quot;true&quot;&gt;&lt;i data-lucide=&quot;calendar-clock&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Schedules&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;cursor-interaction&quot; data-pane=&quot;calendar&quot; aria-pressed=&quot;false&quot;&gt;&lt;i data-lucide=&quot;calendar-days&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Calendar&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;cursor-interaction&quot; data-pane=&quot;announcements&quot; aria-pressed=&quot;false&quot;&gt;&lt;i data-lucide=&quot;megaphone&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Announcements&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;cursor-interaction&quot; data-pane=&quot;banner&quot; aria-pressed=&quot;false&quot;&gt;&lt;i data-lucide=&quot;flag&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Banner&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;cursor-interaction&quot; data-pane=&quot;permissions&quot; aria-pressed=&quot;false&quot;&gt;&lt;i data-lucide=&quot;shield-check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Permissions&lt;/button&gt;
+      &lt;/nav&gt;
+      &lt;main class=&quot;isa-main&quot;&gt;
+        &lt;section data-content=&quot;schedules&quot;&gt;
+          &lt;div class=&quot;isa-page-heading&quot;&gt;&lt;div&gt;&lt;h1&gt;Schedules&lt;/h1&gt;&lt;p class=&quot;isa-support&quot;&gt;Manage the repeating timetable and changes for individual dates.&lt;/p&gt;&lt;/div&gt;&lt;span class=&quot;isa-pill&quot;&gt;&lt;i data-lucide=&quot;file-pen-line&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Draft workspace&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;isa-tabs&quot; aria-label=&quot;Schedule task&quot;&gt;&lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-task=&quot;override&quot; aria-pressed=&quot;true&quot;&gt;Substitute lesson&lt;/button&gt;&lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-task=&quot;recurring&quot; aria-pressed=&quot;false&quot;&gt;Cycle timetable&lt;/button&gt;&lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-task=&quot;groups&quot; aria-pressed=&quot;false&quot;&gt;Class groups&lt;/button&gt;&lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-task=&quot;subjects&quot; aria-pressed=&quot;false&quot;&gt;Subjects&lt;/button&gt;&lt;/div&gt;
+          &lt;div data-task-content=&quot;override&quot;&gt;
+            &lt;h2&gt;Substitute lesson&lt;/h2&gt;&lt;p class=&quot;isa-support&quot;&gt;Change the subject, room or teacher for this date.&lt;/p&gt;
+            &lt;form id=&quot;isa-sub-form&quot; class=&quot;isa-form&quot;&gt;
+              &lt;div class=&quot;isa-field-grid&quot;&gt;&lt;label&gt;Date&lt;input type=&quot;date&quot; id=&quot;isa-sub-date&quot; value=&quot;2026-10-09&quot; required&gt;&lt;/label&gt;&lt;label&gt;Class group&lt;input id=&quot;isa-sub-group&quot; value=&quot;3CS&quot; readonly&gt;&lt;/label&gt;&lt;/div&gt;
+              &lt;div class=&quot;isa-original&quot;&gt;&lt;i data-lucide=&quot;repeat-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;div&gt;&lt;b&gt;Day 5 · Session 4 · 11:05–12:00&lt;/b&gt;&lt;span&gt;PE · Room not listed in supplied timetable&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+              &lt;div class=&quot;isa-field-grid&quot;&gt;&lt;label&gt;Substitute subject&lt;select id=&quot;isa-sub-subject&quot; required&gt;&lt;option value=&quot;&quot;&gt;Choose subject&lt;/option&gt;&lt;option value=&quot;SIL&quot;&gt;SIL · Student Individualized Learning&lt;/option&gt;&lt;option value=&quot;LA&quot;&gt;LA · Language Arts&lt;/option&gt;&lt;option value=&quot;QR&quot;&gt;QR · Quantitative Reasoning / Math&lt;/option&gt;&lt;option value=&quot;PE&quot;&gt;PE · Physical Education&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;New room&lt;input id=&quot;isa-sub-room&quot; placeholder=&quot;Room code&quot; required maxlength=&quot;30&quot;&gt;&lt;/label&gt;&lt;/div&gt;
+              &lt;label&gt;Substitute teacher&lt;input id=&quot;isa-sub-teacher&quot; placeholder=&quot;Enter teacher name&quot; required maxlength=&quot;80&quot;&gt;&lt;/label&gt;
+              &lt;label&gt;Student-facing note &lt;span class=&quot;isa-optional&quot;&gt;optional&lt;/span&gt;&lt;input id=&quot;isa-sub-note&quot; placeholder=&quot;What should students know?&quot; maxlength=&quot;180&quot;&gt;&lt;/label&gt;
+              &lt;div class=&quot;isa-action-row&quot;&gt;&lt;button class=&quot;isa-primary cursor-interaction&quot; type=&quot;submit&quot;&gt;&lt;i data-lucide=&quot;eye&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span id=&quot;isa-sub-button&quot;&gt;Review changes&lt;/span&gt;&lt;/button&gt;&lt;span class=&quot;isa-small&quot; id=&quot;isa-sub-rights&quot;&gt;Schedule editors can publish after review.&lt;/span&gt;&lt;/div&gt;
+            &lt;/form&gt;
+            &lt;div id=&quot;isa-sub-review&quot; hidden aria-live=&quot;polite&quot; class=&quot;isa-review isa-sub-preview&quot;&gt;&lt;h2&gt;Lesson preview&lt;/h2&gt;&lt;p class=&quot;isa-small&quot; id=&quot;isa-review-date&quot;&gt;&lt;/p&gt;&lt;div class=&quot;isa-lesson&quot;&gt;&lt;div class=&quot;isa-time&quot;&gt;11:05&lt;br&gt;&lt;span&gt;12:00&lt;/span&gt;&lt;/div&gt;&lt;i data-lucide=&quot;book-open&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;div&gt;&lt;b id=&quot;isa-review-subject&quot;&gt;&lt;/b&gt;&lt;span id=&quot;isa-review-room&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;isa-flair&quot;&gt;&lt;i data-lucide=&quot;user-round-check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Substitute&lt;/span&gt;&lt;/div&gt;&lt;p id=&quot;isa-review-teacher&quot;&gt;&lt;/p&gt;&lt;p id=&quot;isa-review-note&quot;&gt;&lt;/p&gt;&lt;p class=&quot;isa-small&quot;&gt;Preview only · Nothing has been published&lt;/p&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div data-task-content=&quot;recurring&quot; hidden&gt;&lt;h2&gt;Edit the rolling timetable&lt;/h2&gt;&lt;p class=&quot;isa-support&quot;&gt;Select a class group, cycle day and session. Review the date the new version becomes effective before publishing.&lt;/p&gt;&lt;form id=&quot;isa-cycle-form&quot; class=&quot;isa-form&quot;&gt;&lt;div class=&quot;isa-field-grid&quot;&gt;&lt;label&gt;Class group&lt;select id=&quot;isa-cycle-group&quot;&gt;&lt;option&gt;3CS&lt;/option&gt;&lt;option&gt;4HST&lt;/option&gt;&lt;option&gt;1A&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;Cycle day&lt;select id=&quot;isa-cycle-day&quot;&gt;&lt;option&gt;Day 1&lt;/option&gt;&lt;option&gt;Day 2&lt;/option&gt;&lt;option&gt;Day 3&lt;/option&gt;&lt;option&gt;Day 4&lt;/option&gt;&lt;option selected&gt;Day 5&lt;/option&gt;&lt;option&gt;Day 6&lt;/option&gt;&lt;option&gt;Day 7&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;/div&gt;&lt;div class=&quot;isa-field-grid&quot;&gt;&lt;label&gt;Session&lt;select id=&quot;isa-cycle-session&quot;&gt;&lt;option&gt;Session 1&lt;/option&gt;&lt;option&gt;Session 2&lt;/option&gt;&lt;option&gt;Session 3&lt;/option&gt;&lt;option selected&gt;Session 4&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;Subject&lt;select id=&quot;isa-cycle-subject&quot;&gt;&lt;option&gt;PE&lt;/option&gt;&lt;option&gt;QR&lt;/option&gt;&lt;option&gt;LA&lt;/option&gt;&lt;option&gt;SIL&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;/div&gt;&lt;label&gt;Effective from&lt;input type=&quot;date&quot; id=&quot;isa-cycle-effective&quot; value=&quot;2026-10-13&quot; required&gt;&lt;/label&gt;&lt;button type=&quot;submit&quot; class=&quot;isa-primary cursor-interaction&quot; id=&quot;isa-cycle-review&quot;&gt;Review timetable draft&lt;/button&gt;&lt;p aria-live=&quot;polite&quot; id=&quot;isa-cycle-result&quot; class=&quot;isa-small&quot;&gt;&lt;/p&gt;&lt;/form&gt;&lt;/div&gt;
+          &lt;div data-task-content=&quot;groups&quot; hidden&gt;&lt;h2&gt;Class groups&lt;/h2&gt;&lt;p class=&quot;isa-support&quot; id=&quot;isa-group-rights&quot;&gt;Principal and Vice Principal can create and archive class groups.&lt;/p&gt;&lt;form id=&quot;isa-group-form&quot; class=&quot;isa-form&quot;&gt;&lt;div class=&quot;isa-field-grid&quot;&gt;&lt;label&gt;Year&lt;input type=&quot;number&quot; id=&quot;isa-group-year&quot; min=&quot;1&quot; max=&quot;4&quot; value=&quot;3&quot; required&gt;&lt;/label&gt;&lt;label&gt;Subclass code&lt;input id=&quot;isa-group-code&quot; placeholder=&quot;CS, HST, EM or future code&quot; required maxlength=&quot;16&quot; pattern=&quot;[A-Za-z0-9]+&quot;&gt;&lt;/label&gt;&lt;/div&gt;&lt;button type=&quot;submit&quot; class=&quot;isa-primary cursor-interaction&quot; id=&quot;isa-group-add&quot;&gt;Create draft class&lt;/button&gt;&lt;p id=&quot;isa-group-result&quot; aria-live=&quot;polite&quot; class=&quot;isa-small&quot;&gt;&lt;/p&gt;&lt;/form&gt;&lt;div class=&quot;isa-group-list&quot;&gt;&lt;span&gt;&lt;b&gt;3CS&lt;/b&gt; · Active&lt;/span&gt;&lt;button type=&quot;button&quot; class=&quot;cursor-interaction&quot; id=&quot;isa-archive&quot;&gt;Preview archiving 3CS&lt;/button&gt;&lt;/div&gt;&lt;p class=&quot;isa-small&quot; id=&quot;isa-archive-result&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;&lt;/div&gt;
+          &lt;div data-task-content=&quot;subjects&quot; hidden&gt;&lt;h2&gt;Subject directory&lt;/h2&gt;&lt;p class=&quot;isa-support&quot;&gt;Subject codes stay compact. Full names appear on hover, focus or touch.&lt;/p&gt;&lt;form id=&quot;isa-subject-form&quot; class=&quot;isa-form&quot;&gt;&lt;div class=&quot;isa-field-grid&quot;&gt;&lt;label&gt;Code&lt;input id=&quot;isa-new-sub-code&quot; maxlength=&quot;16&quot; placeholder=&quot;Code&quot; required&gt;&lt;/label&gt;&lt;label&gt;Full name&lt;input id=&quot;isa-new-sub-name&quot; maxlength=&quot;100&quot; placeholder=&quot;Subject name&quot; required&gt;&lt;/label&gt;&lt;/div&gt;&lt;button type=&quot;submit&quot; class=&quot;isa-primary cursor-interaction&quot; id=&quot;isa-subject-add&quot;&gt;Add draft subject&lt;/button&gt;&lt;p id=&quot;isa-subject-result&quot; class=&quot;isa-small&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;&lt;/form&gt;&lt;div class=&quot;isa-original&quot;&gt;&lt;i data-lucide=&quot;book-open&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;&lt;b&gt;FL&amp;E&lt;/b&gt; · Financial Literacy &amp;amp; Education&lt;br&gt;&lt;b&gt;A&lt;/b&gt; · Assembly&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;/section&gt;
+        &lt;section data-content=&quot;calendar&quot; hidden&gt;&lt;p class=&quot;isa-kicker&quot;&gt;Calendar&lt;/p&gt;&lt;h1&gt;A clear plan for&lt;br&gt;unusual days.&lt;/h1&gt;&lt;form class=&quot;isa-form&quot; id=&quot;isa-calendar-form&quot;&gt;&lt;label&gt;Date&lt;input type=&quot;date&quot; id=&quot;isa-calendar-date&quot; value=&quot;2026-10-14&quot; required&gt;&lt;/label&gt;&lt;div class=&quot;isa-field-grid&quot;&gt;&lt;label&gt;Day arrangement&lt;select id=&quot;isa-arrangement&quot;&gt;&lt;option value=&quot;regular&quot;&gt;Regular school day&lt;/option&gt;&lt;option value=&quot;holiday&quot;&gt;Holiday / no school&lt;/option&gt;&lt;option value=&quot;async&quot;&gt;Asynchronous work&lt;/option&gt;&lt;option value=&quot;event&quot;&gt;Parade / school event&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;Bell schedule&lt;select id=&quot;isa-bells&quot;&gt;&lt;option value=&quot;regular&quot;&gt;Regular day&lt;/option&gt;&lt;option value=&quot;quick&quot;&gt;Quick Exit&lt;/option&gt;&lt;option value=&quot;half&quot;&gt;Half-day&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;/div&gt;&lt;label&gt;Calendar label&lt;input id=&quot;isa-calendar-label&quot; placeholder=&quot;Event or holiday name&quot; maxlength=&quot;100&quot;&gt;&lt;/label&gt;&lt;div class=&quot;isa-calendar-impact&quot; aria-live=&quot;polite&quot;&gt;&lt;i data-lucide=&quot;rotate-cw&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span id=&quot;isa-calendar-impact&quot;&gt;Advances the cycle · Normal classes&lt;/span&gt;&lt;/div&gt;&lt;div id=&quot;isa-bell-summary&quot; class=&quot;isa-bell-summary&quot;&gt;Six sessions · Dismissal 3:15 PM (provisional)&lt;/div&gt;&lt;details class=&quot;isa-bell-details&quot;&gt;&lt;summary class=&quot;cursor-interaction&quot;&gt;View session times&lt;/summary&gt;&lt;ol id=&quot;isa-bell-times&quot;&gt;&lt;/ol&gt;&lt;/details&gt;&lt;button type=&quot;submit&quot; class=&quot;isa-primary cursor-interaction&quot; id=&quot;isa-calendar-button&quot;&gt;Review calendar draft&lt;/button&gt;&lt;p id=&quot;isa-calendar-result&quot; class=&quot;isa-small&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;&lt;/form&gt;&lt;p class=&quot;isa-small&quot;&gt;Day 7 defaults to half-day · Four student sessions · Dismissal 12:20 PM schoolwide · Staff PLC follows.&lt;/p&gt;&lt;/section&gt;
+        &lt;section data-content=&quot;announcements&quot; hidden&gt;&lt;p class=&quot;isa-kicker&quot;&gt;Announcements&lt;/p&gt;&lt;h1&gt;The right notice.&lt;br&gt;The right people.&lt;/h1&gt;&lt;form id=&quot;isa-announcement-form&quot; class=&quot;isa-form&quot;&gt;&lt;label&gt;Audience&lt;select id=&quot;isa-audience&quot;&gt;&lt;option value=&quot;school&quot;&gt;Schoolwide · ISA Updates&lt;/option&gt;&lt;option value=&quot;3CS&quot;&gt;3CS&lt;/option&gt;&lt;option value=&quot;4HST&quot;&gt;4HST&lt;/option&gt;&lt;option value=&quot;1A&quot;&gt;1A&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;Title&lt;input id=&quot;isa-ann-title&quot; placeholder=&quot;Announcement title&quot; required maxlength=&quot;120&quot;&gt;&lt;/label&gt;&lt;label&gt;Message&lt;textarea id=&quot;isa-ann-body&quot; rows=&quot;4&quot; placeholder=&quot;Write a clear, short notice&quot; required maxlength=&quot;1500&quot;&gt;&lt;/textarea&gt;&lt;/label&gt;&lt;label class=&quot;isa-check&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;isa-ann-public&quot; checked&gt;Approved notice can be viewed publicly&lt;/label&gt;&lt;button class=&quot;isa-primary cursor-interaction&quot; type=&quot;submit&quot;&gt;&lt;i data-lucide=&quot;eye&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Preview announcement&lt;/button&gt;&lt;/form&gt;&lt;article id=&quot;isa-ann-preview&quot; class=&quot;isa-review&quot; hidden aria-live=&quot;polite&quot;&gt;&lt;span class=&quot;isa-pill&quot; id=&quot;isa-ann-tag&quot;&gt;&lt;/span&gt;&lt;h2 id=&quot;isa-ann-preview-title&quot;&gt;&lt;/h2&gt;&lt;p id=&quot;isa-ann-preview-body&quot;&gt;&lt;/p&gt;&lt;p id=&quot;isa-ann-preview-state&quot; class=&quot;isa-small&quot;&gt;&lt;/p&gt;&lt;/article&gt;&lt;p class=&quot;isa-small&quot; id=&quot;isa-ann-rights&quot;&gt;Schoolwide posts require approved publication rights. Classroom sync is planned separately.&lt;/p&gt;&lt;/section&gt;
+        &lt;section data-content=&quot;banner&quot; hidden&gt;&lt;p class=&quot;isa-kicker&quot;&gt;Banner&lt;/p&gt;&lt;h1&gt;One important message.&lt;br&gt;Visible to everyone.&lt;/h1&gt;&lt;form id=&quot;isa-banner-form&quot; class=&quot;isa-form&quot;&gt;&lt;label&gt;Banner message&lt;input id=&quot;isa-banner-text&quot; required maxlength=&quot;160&quot; placeholder=&quot;e.g. Quick Exit today — dismissal at 2:10 PM&quot;&gt;&lt;/label&gt;&lt;div class=&quot;isa-field-grid&quot;&gt;&lt;label&gt;Tone&lt;select id=&quot;isa-banner-tone&quot;&gt;&lt;option value=&quot;info&quot;&gt;Information&lt;/option&gt;&lt;option value=&quot;attention&quot;&gt;Attention&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;label&gt;Expires at&lt;input id=&quot;isa-banner-expiry&quot; type=&quot;datetime-local&quot; value=&quot;2026-10-09T14:10&quot; required&gt;&lt;/label&gt;&lt;/div&gt;&lt;button type=&quot;submit&quot; class=&quot;isa-primary cursor-interaction&quot; id=&quot;isa-banner-button&quot;&gt;Preview banner&lt;/button&gt;&lt;/form&gt;&lt;div id=&quot;isa-banner-preview&quot; class=&quot;isa-live-banner&quot; hidden aria-live=&quot;polite&quot;&gt;&lt;i data-lucide=&quot;megaphone&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span id=&quot;isa-banner-message&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;p id=&quot;isa-banner-result&quot; class=&quot;isa-small&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;&lt;/section&gt;
+        &lt;section data-content=&quot;permissions&quot; hidden&gt;&lt;p class=&quot;isa-kicker&quot;&gt;Permissions&lt;/p&gt;&lt;h1&gt;Every account.&lt;br&gt;A deliberate scope.&lt;/h1&gt;&lt;div id=&quot;isa-role-description&quot; class=&quot;isa-support&quot;&gt;&lt;/div&gt;&lt;div class=&quot;isa-permission-list&quot; id=&quot;isa-permission-list&quot;&gt;&lt;/div&gt;&lt;form id=&quot;isa-permission-form&quot; class=&quot;isa-form&quot;&gt;&lt;h2&gt;Grant an admin role&lt;/h2&gt;&lt;label&gt;School account email&lt;input type=&quot;email&quot; id=&quot;isa-admin-email&quot; placeholder=&quot;name@school.example&quot; required&gt;&lt;/label&gt;&lt;label&gt;Role&lt;select id=&quot;isa-admin-grant&quot;&gt;&lt;option&gt;Teacher&lt;/option&gt;&lt;option&gt;Principal / Vice Principal&lt;/option&gt;&lt;option&gt;Admin / Codeveloper&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;button type=&quot;submit&quot; class=&quot;isa-primary cursor-interaction&quot; id=&quot;isa-grant-button&quot;&gt;Review permission grant&lt;/button&gt;&lt;p id=&quot;isa-grant-result&quot; class=&quot;isa-small&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;&lt;/form&gt;&lt;p class=&quot;isa-small&quot;&gt;Concept permissions are indicative. Production authorization must be enforced by Supabase policies and server-side checks.&lt;/p&gt;&lt;/section&gt;
+      &lt;/main&gt;
+    &lt;/div&gt;
+    &lt;main id=&quot;isa-student&quot; class=&quot;isa-role-main&quot; hidden&gt;&lt;p class=&quot;isa-kicker&quot;&gt;Student · 3CS&lt;/p&gt;&lt;h1&gt;Day 5, at a glance.&lt;/h1&gt;&lt;p class=&quot;isa-support&quot;&gt;Timetable preview · Session times use the regular-day template.&lt;/p&gt;&lt;div class=&quot;isa-lesson&quot;&gt;&lt;div class=&quot;isa-time&quot;&gt;8:00&lt;br&gt;&lt;span&gt;8:55&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;QR&lt;/b&gt;&lt;span&gt;Room D2&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;isa-lesson&quot;&gt;&lt;div class=&quot;isa-time&quot;&gt;9:00&lt;br&gt;&lt;span&gt;9:55&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;DA&amp;amp;M&lt;/b&gt;&lt;span&gt;Room DAS&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;isa-lesson&quot;&gt;&lt;div class=&quot;isa-time&quot;&gt;10:05&lt;br&gt;&lt;span&gt;11:00&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Span&lt;/b&gt;&lt;span&gt;Room N5&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;isa-lesson&quot;&gt;&lt;div class=&quot;isa-time&quot;&gt;11:05&lt;br&gt;&lt;span&gt;12:00&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;PE&lt;/b&gt;&lt;span&gt;Room not listed&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;isa-lesson&quot;&gt;&lt;div class=&quot;isa-time&quot;&gt;1:00&lt;br&gt;&lt;span&gt;1:55&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;CP&lt;/b&gt;&lt;span&gt;Room N4&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;isa-lesson&quot;&gt;&lt;div class=&quot;isa-time&quot;&gt;2:05&lt;br&gt;&lt;span&gt;3:00&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;CP&lt;/b&gt;&lt;span&gt;Room N4&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;p class=&quot;isa-small&quot;&gt;The companion student concept includes the full class chooser and rolling calendar.&lt;/p&gt;&lt;button type=&quot;button&quot; class=&quot;cursor-interaction&quot; id=&quot;isa-student-back&quot;&gt;Choose a different view&lt;/button&gt;&lt;/main&gt;
+    &lt;main id=&quot;isa-teacher&quot; class=&quot;isa-role-shell&quot; hidden&gt;
+      &lt;aside class=&quot;isa-audience-nav&quot; aria-label=&quot;Teacher work areas&quot;&gt;
+        &lt;span class=&quot;isa-audience-current&quot;&gt;&lt;i data-lucide=&quot;calendar-days&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;My day&lt;/span&gt;
+        &lt;button type=&quot;button&quot; class=&quot;cursor-interaction&quot; id=&quot;isa-teacher-post&quot;&gt;&lt;i data-lucide=&quot;megaphone&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Class notices&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;cursor-interaction&quot; id=&quot;isa-teacher-cover&quot;&gt;&lt;i data-lucide=&quot;user-round-check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Request cover&lt;/button&gt;
+        &lt;p class=&quot;isa-sidebar-note&quot;&gt;Your assigned classes and staff events will appear here.&lt;/p&gt;
+      &lt;/aside&gt;
+      &lt;section class=&quot;isa-role-content&quot;&gt;
+        &lt;div class=&quot;isa-page-heading isa-teacher-heading&quot;&gt;&lt;div&gt;&lt;h1&gt;Your teaching day&lt;/h1&gt;&lt;p class=&quot;isa-support&quot;&gt;Friday, 9 October · Preview date&lt;/p&gt;&lt;/div&gt;&lt;span class=&quot;isa-pill&quot;&gt;Day 5&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;isa-empty isa-teacher-empty&quot;&gt;&lt;i data-lucide=&quot;calendar-plus&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;h2&gt;Your lessons aren’t assigned yet.&lt;/h2&gt;&lt;p&gt;Once your teaching assignments are added, your classes, rooms and the next lesson will appear in this space.&lt;/p&gt;&lt;p class=&quot;isa-small&quot;&gt;Waiting for the teacher assignment list&lt;/p&gt;&lt;/div&gt;
+        &lt;details&gt;&lt;summary class=&quot;cursor-interaction&quot;&gt;What will my schedule include?&lt;/summary&gt;&lt;p class=&quot;isa-support&quot;&gt;Assigned lessons, class groups and rooms; date-specific substitute changes; school events; and staff PLC on Day 7.&lt;/p&gt;&lt;/details&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+    &lt;main id=&quot;isa-parent&quot; class=&quot;isa-role-shell&quot; hidden&gt;
+      &lt;aside class=&quot;isa-audience-nav&quot; aria-label=&quot;Parent work areas&quot;&gt;&lt;a class=&quot;isa-audience-current cursor-interaction&quot; href=&quot;#isa-parent-updates&quot;&gt;&lt;i data-lucide=&quot;megaphone&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;ISA Updates&lt;/a&gt;&lt;a class=&quot;cursor-interaction&quot; href=&quot;#isa-parent-calendar&quot;&gt;&lt;i data-lucide=&quot;calendar-days&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;School calendar&lt;/a&gt;&lt;p class=&quot;isa-sidebar-note&quot;&gt;Approved notices are available without signing in.&lt;/p&gt;&lt;/aside&gt;
+      &lt;section class=&quot;isa-role-content&quot;&gt;
+        &lt;div class=&quot;isa-page-heading&quot;&gt;&lt;div&gt;&lt;h1&gt;School updates&lt;/h1&gt;&lt;p class=&quot;isa-support&quot;&gt;Notices for your family. Dates to keep in mind.&lt;/p&gt;&lt;/div&gt;&lt;label class=&quot;isa-parent-filter&quot;&gt;Class group&lt;select id=&quot;isa-parent-group&quot;&gt;&lt;option value=&quot;all&quot;&gt;Schoolwide&lt;/option&gt;&lt;option value=&quot;3CS&quot;&gt;3CS&lt;/option&gt;&lt;option value=&quot;4HST&quot;&gt;4HST&lt;/option&gt;&lt;option value=&quot;1A&quot;&gt;1A&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;/div&gt;
+        &lt;section class=&quot;isa-parent-section&quot; id=&quot;isa-parent-updates&quot;&gt;&lt;h2&gt;&lt;i data-lucide=&quot;megaphone&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;ISA Updates&lt;/h2&gt;&lt;div class=&quot;isa-empty isa-parent-empty&quot; id=&quot;isa-parent-empty&quot;&gt;&lt;h3&gt;No approved notices loaded.&lt;/h3&gt;&lt;p&gt;Schoolwide announcements will appear here. Select a class group to also see its approved notices.&lt;/p&gt;&lt;/div&gt;&lt;article id=&quot;isa-parent-draft&quot; class=&quot;isa-parent-notice&quot; hidden&gt;&lt;span class=&quot;isa-pill&quot;&gt;Local draft preview&lt;/span&gt;&lt;h3 id=&quot;isa-parent-notice-title&quot;&gt;&lt;/h3&gt;&lt;p id=&quot;isa-parent-notice-body&quot;&gt;&lt;/p&gt;&lt;span id=&quot;isa-parent-notice-audience&quot; class=&quot;isa-small&quot;&gt;&lt;/span&gt;&lt;details&gt;&lt;summary class=&quot;cursor-interaction&quot;&gt;More information&lt;/summary&gt;&lt;p class=&quot;isa-small&quot;&gt;This is your locally composed preview, not a published school notice.&lt;/p&gt;&lt;/details&gt;&lt;/article&gt;&lt;/section&gt;
+        &lt;section class=&quot;isa-parent-section&quot; id=&quot;isa-parent-calendar&quot;&gt;&lt;h2&gt;&lt;i data-lucide=&quot;calendar-days&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;School calendar&lt;/h2&gt;&lt;p class=&quot;isa-support&quot;&gt;The school calendar hasn’t been uploaded yet.&lt;/p&gt;&lt;details&gt;&lt;summary class=&quot;cursor-interaction&quot;&gt;What will appear here?&lt;/summary&gt;&lt;p class=&quot;isa-support&quot;&gt;Upcoming holidays, events, asynchronous days and dismissal changes. Each date will show whether students attend and whether it advances the cycle.&lt;/p&gt;&lt;/details&gt;&lt;/section&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+    &lt;main id=&quot;isa-landing&quot; class=&quot;isa-role-main isa-landing&quot; hidden&gt;&lt;p class=&quot;isa-kicker&quot;&gt;Itz’at STEAM Academy&lt;/p&gt;&lt;h1&gt;Your school day,&lt;br&gt;at a glance.&lt;/h1&gt;&lt;p class=&quot;isa-support&quot;&gt;Choose the view that helps you.&lt;/p&gt;&lt;div class=&quot;isa-role-choices&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;cursor-interaction&quot; data-landing=&quot;student&quot;&gt;&lt;i data-lucide=&quot;backpack&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;b&gt;Student&lt;/b&gt;&lt;span&gt;Classes, rooms &amp;amp; what’s next&lt;/span&gt;&lt;i data-lucide=&quot;arrow-up-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;cursor-interaction&quot; data-landing=&quot;teacher&quot;&gt;&lt;i data-lucide=&quot;presentation&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;b&gt;Teacher&lt;/b&gt;&lt;span&gt;Your teaching day &amp;amp; notices&lt;/span&gt;&lt;i data-lucide=&quot;arrow-up-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;cursor-interaction&quot; data-landing=&quot;parent&quot;&gt;&lt;i data-lucide=&quot;users-round&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;b&gt;Parent&lt;/b&gt;&lt;span&gt;Updates &amp;amp; school calendar&lt;/span&gt;&lt;i data-lucide=&quot;arrow-up-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; disabled&gt;Sign-in planned&lt;/button&gt;&lt;p class=&quot;isa-small&quot;&gt;Public schedules and approved notices don’t require an account.&lt;/p&gt;&lt;div id=&quot;isa-student-handoff&quot; hidden aria-live=&quot;polite&quot; class=&quot;isa-original&quot;&gt;&lt;i data-lucide=&quot;calendar-clock&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;&lt;b&gt;Student view selected&lt;/b&gt;&lt;br&gt;Explore the student schedule in the companion concept.&lt;/span&gt;&lt;/div&gt;&lt;/main&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;text-small text-muted&quot;&gt;Planning preview · Drafts stay in this preview · No authentication, publishing or chat backend&lt;/p&gt;
+&lt;/div&gt;
+&lt;style&gt;
+#isa-role-planning .isa-window{--isa-bg:light-dark(#fbf8ff,#181321);--isa-paper:light-dark(#ffffff,#231c2e);--isa-ink:light-dark(#25163e,#f7f2ff);--isa-muted:light-dark(#6b607b,#bdb0cf);--isa-line:light-dark(#dfd6ea,#44374f);--isa-purple:light-dark(#6135b4,#bc98ff);--isa-accent:light-dark(#a54509,#ffba82);--isa-wash:light-dark(#eee5fb,#352644);font-family:&#x27;DM Sans&#x27;,sans-serif;color:var(--isa-ink);background:var(--isa-bg);border-radius:18px;overflow:hidden;margin-top:14px;box-sizing:border-box}
+#isa-role-planning .isa-window *{box-sizing:border-box}
+#isa-role-planning .isa-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 28px;background:light-dark(#542b9a,#382156);color:#fff}
+#isa-role-planning .isa-brand{display:flex;align-items:center;gap:10px;font-size:21px;letter-spacing:-.5px}
+#isa-role-planning .isa-brand b{font-weight:500;opacity:.8}
+#isa-role-planning .isa-context{font-size:13px;line-height:1.4;max-width:200px;text-align:right}
+#isa-role-planning .isa-shell{display:grid;grid-template-columns:185px minmax(0,1fr)}
+#isa-role-planning .isa-nav{padding:26px 14px;background:var(--isa-wash);display:flex;flex-direction:column;gap:7px;align-items:stretch}
+#isa-role-planning .isa-window button,#isa-role-planning .isa-window input,#isa-role-planning .isa-window select,#isa-role-planning .isa-window textarea{font:inherit;color:var(--isa-ink);min-height:44px;border:1px solid var(--isa-line);border-radius:10px;background:var(--isa-paper);padding:10px 13px;max-width:100%}
+#isa-role-planning .isa-window button{font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:background-color .15s,transform .15s}
+#isa-role-planning .isa-window button:active:not(:disabled){transform:translateY(1px)}
+#isa-role-planning .isa-window button:disabled{opacity:.55}
+#isa-role-planning .isa-nav button{background:transparent;border-color:transparent;justify-content:flex-start;font-size:14px;padding:12px 10px}
+#isa-role-planning .isa-nav button[aria-pressed=true]{background:var(--isa-paper);color:var(--isa-purple)}
+#isa-role-planning .isa-window button:hover:not(:disabled){background:var(--isa-wash)}
+#isa-role-planning .isa-main{padding:32px;min-width:0}
+#isa-role-planning .isa-kicker{color:var(--isa-purple);font-size:14px;font-weight:700;margin:0 0 10px}
+#isa-role-planning .isa-window h1{font-family:&#x27;Space Grotesk&#x27;,sans-serif;font-size:clamp(30px,4vw,42px);line-height:1.1;letter-spacing:-1.6px;margin:0 0 20px;text-wrap:balance}
+#isa-role-planning .isa-window h2{font-family:&#x27;Space Grotesk&#x27;,sans-serif;font-size:22px;line-height:1.3;margin:0 0 14px;letter-spacing:-.5px}
+#isa-role-planning .isa-window h3{font-family:&#x27;Space Grotesk&#x27;,sans-serif;font-size:20px;margin:10px 0}
+#isa-role-planning .isa-page-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+#isa-role-planning .isa-pill{font-size:12px;font-weight:700;color:var(--isa-purple);display:inline-flex;align-items:center;gap:6px;padding:7px 10px;background:var(--isa-wash);border-radius:20px;white-space:nowrap}
+#isa-role-planning .isa-support{font-size:15px;line-height:1.6;max-width:62ch;color:var(--isa-muted);margin:8px 0 22px;text-wrap:pretty}
+#isa-role-planning .isa-small,#isa-role-planning .isa-optional{font-size:13px;color:var(--isa-muted);line-height:1.5}
+#isa-role-planning .isa-tabs{display:flex;gap:5px;border-bottom:1px solid var(--isa-line);flex-wrap:wrap;margin:4px 0 24px;padding-bottom:10px}
+#isa-role-planning .isa-tabs button{border:0;background:transparent;font-size:13px;min-height:44px;padding:8px 10px}
+#isa-role-planning .isa-tabs button[aria-pressed=true]{color:var(--isa-purple);background:var(--isa-wash)}
+#isa-role-planning .isa-form{display:grid;gap:18px;max-width:640px}
+#isa-role-planning .isa-field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;min-width:0}
+#isa-role-planning .isa-window label{display:grid;gap:8px;font-size:14px;font-weight:600;min-width:0}
+#isa-role-planning .isa-window input,#isa-role-planning .isa-window select,#isa-role-planning .isa-window textarea{width:100%;font-size:16px;font-weight:400}
+#isa-role-planning .isa-window textarea{resize:vertical}
+#isa-role-planning .isa-original{padding:16px 0;display:flex;align-items:center;gap:14px;border-top:1px solid var(--isa-line);border-bottom:1px solid var(--isa-line);font-size:14px;line-height:1.6}
+#isa-role-planning .isa-original span{display:block;color:var(--isa-muted)}
+#isa-role-planning .isa-original i{color:var(--isa-accent)}
+#isa-role-planning .isa-action-row{display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+#isa-role-planning .isa-window .isa-primary{background:var(--isa-purple);color:light-dark(#fff,#231538);border-color:transparent;width:max-content;max-width:100%}
+#isa-role-planning .isa-window .isa-primary:hover:not(:disabled){background:light-dark(#4c2394,#d1b7ff)}
+#isa-role-planning .isa-review{margin-top:26px;padding-top:24px;border-top:2px solid var(--isa-accent)}
+#isa-role-planning .isa-review p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55}
+#isa-role-planning .isa-lesson{display:flex;align-items:center;gap:18px;border-block:1px solid var(--isa-line);padding:18px 0}
+#isa-role-planning .isa-lesson b{font-size:26px;font-family:&#x27;Space Grotesk&#x27;,sans-serif}
+#isa-role-planning .isa-lesson span:not(.isa-flair){display:block;font-size:14px;color:var(--isa-muted)}
+#isa-role-planning .isa-time{font-size:17px;font-variant-numeric:tabular-nums;line-height:1.5}
+#isa-role-planning .isa-flair{margin-left:auto;color:var(--isa-accent);background:light-dark(#fff0df,#472b19);padding:7px 10px;border-radius:20px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px}
+#isa-role-planning .isa-group-list{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;border-bottom:1px solid var(--isa-line);margin-top:16px;font-size:14px;flex-wrap:wrap}
+#isa-role-planning .isa-calendar-impact{display:flex;align-items:center;gap:10px;padding:14px;background:var(--isa-wash);border-radius:8px;font-size:14px;font-weight:600;line-height:1.5}
+#isa-role-planning .isa-bell-summary{font-size:15px;color:var(--isa-accent);font-weight:600}
+#isa-role-planning .isa-window details{padding:10px 0;font-size:14px;color:var(--isa-muted)}
+#isa-role-planning .isa-window summary{color:var(--isa-ink);min-height:44px;align-content:center}
+#isa-role-planning .isa-bell-details ol{line-height:1.8;font-variant-numeric:tabular-nums;padding-left:24px}
+#isa-role-planning .isa-window .isa-check{display:flex;align-items:center;gap:10px;font-weight:400;line-height:1.5}
+#isa-role-planning .isa-check input{width:18px;min-height:18px;flex-shrink:0;accent-color:var(--isa-purple)}
+#isa-role-planning .isa-live-banner{display:flex;align-items:center;gap:12px;line-height:1.5;margin-top:28px;padding:18px;border-radius:10px;background:var(--isa-wash);color:var(--isa-ink);font-weight:600;overflow-wrap:anywhere}
+#isa-role-planning .isa-live-banner[data-tone=attention]{background:light-dark(#ffddb3,#5a3115)}
+#isa-role-planning .isa-permission-list{display:grid;gap:0;margin:20px 0 28px}
+#isa-role-planning .isa-permission-list div{display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--isa-line);font-size:14px;line-height:1.5}
+#isa-role-planning .isa-permission-list span{color:var(--isa-muted);text-align:right}
+#isa-role-planning .isa-role-main{padding:40px;min-width:0}
+#isa-role-planning .isa-window[data-view=teacher]{--isa-bg:light-dark(#fffbed,#221e11);--isa-wash:light-dark(#fff0bc,#3d3214);--isa-purple:light-dark(#70500a,#f9d16a);--isa-accent:light-dark(#8a4c06,#ffd085)}
+#isa-role-planning .isa-window[data-view=teacher] .isa-header{background:light-dark(#ffe28e,#4b3a0c);color:var(--isa-ink)}
+#isa-role-planning .isa-window[data-view=parent]{--isa-bg:light-dark(#f6f6f7,#19191c);--isa-wash:light-dark(#e9e9ec,#303036);--isa-purple:light-dark(#42434b,#d2d2da);--isa-accent:light-dark(#54545c,#d8d8df)}
+#isa-role-planning .isa-window[data-view=parent] .isa-header{background:light-dark(#e4e4e8,#2e2e35);color:var(--isa-ink)}
+#isa-role-planning .isa-empty{padding:36px 0;border-block:1px solid var(--isa-line);max-width:660px}
+#isa-role-planning .isa-empty&gt;i{color:var(--isa-purple);display:block;margin-bottom:14px}
+#isa-role-planning .isa-empty p{max-width:56ch;font-size:15px;color:var(--isa-muted);line-height:1.6}
+#isa-role-planning .isa-teacher-actions{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 10px}
+#isa-role-planning .isa-parent-filter{min-width:155px}
+#isa-role-planning .isa-parent-section{margin-top:24px;padding-top:24px;border-top:1px solid var(--isa-line)}
+#isa-role-planning .isa-parent-section h2{display:flex;align-items:center;gap:10px}
+#isa-role-planning .isa-parent-empty{border:0;padding:8px 0}
+#isa-role-planning .isa-parent-notice p{line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+#isa-role-planning .isa-landing{text-align:center;padding-block:55px}
+#isa-role-planning .isa-landing .isa-support{margin:12px auto 30px}
+#isa-role-planning .isa-landing h1{font-size:clamp(38px,5vw,54px)}
+#isa-role-planning .isa-role-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0;max-width:850px;margin-inline:auto}
+#isa-role-planning .isa-window .isa-role-choices button{display:grid;grid-template-columns:1fr;text-align:left;justify-items:start;gap:10px;padding:24px;background:var(--isa-paper);border:1px solid var(--isa-line)}
+#isa-role-planning .isa-role-choices b{font-family:&#x27;Space Grotesk&#x27;,sans-serif;font-size:24px;letter-spacing:-.6px}
+#isa-role-planning .isa-role-choices span{font-size:14px;color:var(--isa-muted);line-height:1.5}
+#isa-role-planning .isa-role-choices button[data-landing=teacher]{background:light-dark(#fff3c9,#3a301b)}
+#isa-role-planning .isa-role-choices button[data-landing=parent]{background:light-dark(#efeff2,#303036)}
+#isa-role-planning .isa-role-choices button&gt;svg:last-child{justify-self:end;color:var(--isa-purple)}
+#isa-role-planning [hidden]{display:none!important}
+@media(max-width:760px){#isa-role-planning .isa-shell{grid-template-columns:1fr}#isa-role-planning .isa-nav{flex-direction:row;flex-wrap:wrap;padding:12px;gap:3px}#isa-role-planning .isa-nav button{font-size:12px;padding:10px 8px}#isa-role-planning .isa-main,#isa-role-planning .isa-role-main{padding:26px 20px}#isa-role-planning .isa-header{padding:20px}#isa-role-planning .isa-brand{font-size:19px}#isa-role-planning .isa-context{max-width:130px;font-size:11px}}
+@media(max-width:480px){#isa-role-planning .isa-field-grid,#isa-role-planning .isa-role-choices{grid-template-columns:1fr}#isa-role-planning .isa-page-heading{flex-wrap:wrap}#isa-role-planning .isa-brand b{display:none}#isa-role-planning .isa-window h1{font-size:30px;letter-spacing:-1px}#isa-role-planning .isa-landing h1{font-size:38px}#isa-role-planning .isa-lesson{gap:12px;flex-wrap:wrap}#isa-role-planning .isa-flair{margin-left:0}#isa-role-planning .isa-permission-list div{flex-direction:column;gap:3px}#isa-role-planning .isa-permission-list span{text-align:left}#isa-role-planning .isa-role-choices button{padding:20px}#isa-role-planning .isa-parent-filter{width:100%}}
+@media(prefers-reduced-motion:reduce){#isa-role-planning .isa-window button{transition:none}#isa-role-planning .isa-window button:active:not(:disabled){transform:none}}
+/* Desktop visual direction: a shared school wordmark, a quiet side rail,
+   an open workspace, and one warm preview for the change being reviewed. */
+#isa-role-planning .isa-window{--isa-bg:light-dark(#ece6fc,#221a32);--isa-paper:light-dark(#fefcff,#211a2d);--isa-ink:light-dark(#261345,#f7f0ff);--isa-muted:light-dark(#695980,#bfb1d0);--isa-line:light-dark(#ded3ef,#463950);--isa-purple:light-dark(#522496,#bc98ff);--isa-wash:light-dark(#e9e0fb,#37274c);--isa-accent:light-dark(#9b5306,#ffcc83);border-radius:16px;background:var(--isa-paper);box-shadow:0 8px 26px light-dark(#34205a12,#00000024);font-size:16px}
+#isa-role-planning .isa-header{display:grid;grid-template-columns:198px minmax(0,1fr);gap:0;padding:0;background:var(--isa-paper);color:var(--isa-ink);align-items:stretch;border-bottom:1px solid var(--isa-line)}
+#isa-role-planning .isa-brand{background:var(--isa-wash);padding:27px 22px;align-items:center}
+#isa-role-planning .isa-wordmark{font-family:&#x27;Space Grotesk&#x27;,sans-serif;font-size:34px;font-weight:700;letter-spacing:-1.1px;line-height:1}
+#isa-role-planning .isa-wordmark small{display:block;font-family:&#x27;DM Sans&#x27;,sans-serif;font-size:12px;font-weight:600;letter-spacing:.1px;line-height:1.6;margin-top:6px}
+#isa-role-planning .isa-header-content{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:23px 34px}
+#isa-role-planning .isa-header-content&gt;b{font-family:&#x27;Space Grotesk&#x27;,sans-serif;font-size:23px;font-weight:600;letter-spacing:-.5px}
+#isa-role-planning .isa-context{font-size:13px;color:var(--isa-muted);max-width:240px;text-align:right}
+#isa-role-planning .isa-shell,#isa-role-planning .isa-role-shell{display:grid;grid-template-columns:198px minmax(0,1fr);min-height:690px}
+#isa-role-planning .isa-nav,#isa-role-planning .isa-audience-nav{padding:20px 12px;background:var(--isa-wash);display:flex;flex-direction:column;gap:6px}
+#isa-role-planning .isa-nav button{font-size:15px;padding:13px 11px;gap:11px;min-height:48px;line-height:1.2;border-radius:9px}
+#isa-role-planning .isa-nav button[aria-pressed=true]{background:light-dark(#d9caf4,#513672);color:var(--isa-ink)}
+#isa-role-planning .isa-nav button svg,#isa-role-planning .isa-audience-nav svg{width:20px;height:20px;flex-shrink:0;stroke-width:1.7}
+#isa-role-planning .isa-main,#isa-role-planning .isa-role-content{padding:34px;min-width:0;background:var(--isa-paper)}
+#isa-role-planning .isa-role-main{padding:42px;background:var(--isa-paper)}
+#isa-role-planning .isa-window h1{font-size:35px;line-height:1.15;letter-spacing:-1.2px;margin:0 0 12px}
+#isa-role-planning .isa-window h2{font-size:24px;line-height:1.3;letter-spacing:-.6px}
+#isa-role-planning .isa-support{font-size:15px;margin:8px 0 21px;max-width:58ch}
+#isa-role-planning .isa-page-heading{align-items:flex-start;margin-bottom:8px}
+#isa-role-planning .isa-pill{border-radius:7px;font-size:12px;font-weight:600;padding:8px 10px}
+#isa-role-planning .isa-tabs{gap:18px;padding:0;margin:12px 0 27px;border-color:var(--isa-line)}
+#isa-role-planning .isa-tabs button{border-radius:0;padding:11px 0 13px;font-size:14px;min-height:44px;color:var(--isa-muted);border-bottom:3px solid transparent}
+#isa-role-planning .isa-tabs button[aria-pressed=true]{background:transparent;color:var(--isa-purple);border-bottom-color:var(--isa-purple)}
+#isa-role-planning .isa-tabs button:hover:not(:disabled){background:transparent;color:var(--isa-ink)}
+#isa-role-planning .isa-form{gap:20px;max-width:700px}
+#isa-role-planning .isa-field-grid{gap:20px}
+#isa-role-planning .isa-window label{font-size:14px;gap:9px;font-weight:500;line-height:1.3}
+#isa-role-planning .isa-window input,#isa-role-planning .isa-window select,#isa-role-planning .isa-window textarea{border-radius:7px;font-size:15px;min-height:45px;padding:11px 13px;line-height:1.5;background:light-dark(#fdfbff,#292135)}
+#isa-role-planning .isa-window button{border-radius:7px}
+#isa-role-planning .isa-window .isa-primary{min-height:46px;padding:11px 17px;font-size:14px}
+#isa-role-planning .isa-original{border:0;background:var(--isa-wash);padding:15px 16px;border-radius:7px;gap:12px}
+#isa-role-planning .isa-original svg{width:21px;height:21px;flex-shrink:0;color:var(--isa-purple)}
+#isa-role-planning .isa-action-row{padding-top:5px;align-items:center}
+#isa-role-planning .isa-action-row .isa-small{max-width:31ch;font-size:12px}
+#isa-role-planning .isa-sub-preview{background:light-dark(#fff5dd,#3b2c17);border:0;border-radius:10px;padding:20px;max-width:700px;margin-top:28px}
+#isa-role-planning .isa-sub-preview h2{font-size:19px;margin-bottom:6px}
+#isa-role-planning .isa-sub-preview .isa-lesson{background:var(--isa-paper);border:0;border-radius:7px;padding:18px 15px;gap:18px;margin:15px 0}
+#isa-role-planning .isa-sub-preview .isa-lesson&gt;svg{width:27px;height:27px;stroke-width:1.6;flex-shrink:0}
+#isa-role-planning .isa-sub-preview .isa-lesson b{font-size:25px}
+#isa-role-planning .isa-sub-preview .isa-time{font-size:14px;min-width:48px}
+#isa-role-planning .isa-sub-preview p{font-size:14px;margin:8px 0}
+#isa-role-planning .isa-flair{border-radius:6px;background:light-dark(#ffe19a,#614216);font-size:12px;color:var(--isa-ink)}
+#isa-role-planning .isa-audience-nav button,#isa-role-planning .isa-audience-nav a,#isa-role-planning .isa-audience-current{display:flex;align-items:center;gap:11px;min-height:48px;padding:12px 11px;line-height:1.3;font-size:14px;text-decoration:none;color:var(--isa-ink);background:transparent;border:0;text-align:left;justify-content:flex-start;border-radius:8px}
+#isa-role-planning .isa-audience-nav .isa-audience-current{background:light-dark(#d9caf4,#513672);font-weight:600}
+#isa-role-planning .isa-sidebar-note{font-size:12px;line-height:1.6;color:var(--isa-muted);margin:26px 11px 0;max-width:21ch}
+#isa-role-planning .isa-window[data-view=teacher]{--isa-bg:light-dark(#fff4c5,#31280e);--isa-wash:light-dark(#ffea99,#443611);--isa-purple:light-dark(#70501b,#f7d275);--isa-ink:light-dark(#38270d,#fff4d0);--isa-muted:light-dark(#77663f,#d1be91);--isa-line:light-dark(#eadfae,#4d4126)}
+#isa-role-planning .isa-window[data-view=teacher] .isa-header{background:var(--isa-paper);color:var(--isa-ink)}
+#isa-role-planning .isa-window[data-view=teacher] .isa-audience-current{background:light-dark(#ffd856,#685118)}
+#isa-role-planning .isa-window[data-view=teacher] .isa-role-content{padding:0 32px 34px}
+#isa-role-planning .isa-teacher-heading{margin:0 -32px 32px;padding:28px 32px 23px;background:light-dark(#fff0b2,#3b3010);align-items:center}
+#isa-role-planning .isa-teacher-heading h1{font-size:34px}
+#isa-role-planning .isa-teacher-heading .isa-support{margin-bottom:0}
+#isa-role-planning .isa-teacher-heading .isa-pill{background:var(--isa-paper)}
+#isa-role-planning .isa-teacher-empty{border:1px solid var(--isa-line);border-radius:10px;max-width:none;padding:36px;min-height:280px;background:var(--isa-paper);margin-bottom:22px}
+#isa-role-planning .isa-teacher-empty&gt;svg{width:30px;height:30px;margin-bottom:24px;stroke-width:1.5;color:var(--isa-purple)}
+#isa-role-planning .isa-teacher-empty h2{font-size:24px;max-width:24ch}
+#isa-role-planning .isa-window[data-view=parent]{--isa-bg:light-dark(#ececee,#222227);--isa-wash:light-dark(#ececef,#2d2d35);--isa-ink:light-dark(#33313d,#f3f1f7);--isa-muted:light-dark(#706c7a,#bfbacb);--isa-purple:light-dark(#56515f,#d3cadf);--isa-line:light-dark(#dedbe3,#46414e)}
+#isa-role-planning .isa-window[data-view=parent] .isa-header{background:var(--isa-paper);color:var(--isa-ink)}
+#isa-role-planning .isa-window[data-view=parent] .isa-audience-current{background:light-dark(#dbd9e1,#45404e)}
+#isa-role-planning .isa-parent-section{margin-top:32px;padding-top:26px}
+#isa-role-planning .isa-parent-section h2 svg{width:23px;height:23px;stroke-width:1.7;color:var(--isa-purple)}
+#isa-role-planning .isa-parent-empty{padding:15px 0 22px;min-height:135px}
+#isa-role-planning .isa-parent-filter{width:160px;min-width:140px}
+#isa-role-planning .isa-landing{padding:58px 42px 64px;background:light-dark(#f6f1ff,#251c36)}
+#isa-role-planning .isa-landing h1{font-size:52px;letter-spacing:-2px;line-height:1.08}
+#isa-role-planning .isa-role-choices{gap:18px;max-width:900px;margin:36px auto}
+#isa-role-planning .isa-window .isa-role-choices button{border:0;min-height:212px;padding:26px;gap:13px;border-radius:11px}
+#isa-role-planning .isa-role-choices button&gt;svg:first-child{width:28px;height:28px;stroke-width:1.6;margin-bottom:5px}
+#isa-role-planning .isa-role-choices button[data-landing=student]{background:light-dark(#522496,#4e3073);color:light-dark(#fff,#f7efff)}
+#isa-role-planning .isa-role-choices button[data-landing=student] span,#isa-role-planning .isa-role-choices button[data-landing=student]&gt;svg:last-child{color:light-dark(#e9dcff,#e9dcff)}
+#isa-role-planning .isa-role-choices button[data-landing=teacher]{background:light-dark(#ffe599,#4c3c19)}
+#isa-role-planning .isa-role-choices button[data-landing=parent]{background:light-dark(#e7e4ed,#37313f)}
+#isa-role-planning .isa-role-choices b{font-size:25px;letter-spacing:-.6px}
+@media(max-width:850px){#isa-role-planning .isa-header{grid-template-columns:170px minmax(0,1fr)}#isa-role-planning .isa-shell,#isa-role-planning .isa-role-shell{grid-template-columns:170px minmax(0,1fr)}#isa-role-planning .isa-main,#isa-role-planning .isa-role-content{padding:25px}#isa-role-planning .isa-header-content{padding:21px 25px}#isa-role-planning .isa-tabs{gap:13px}#isa-role-planning .isa-window h1{font-size:31px}}
+@media(max-width:650px){#isa-role-planning .isa-header{grid-template-columns:1fr}#isa-role-planning .isa-brand{padding:20px}#isa-role-planning .isa-header-content{padding:18px 20px}#isa-role-planning .isa-shell,#isa-role-planning .isa-role-shell{grid-template-columns:1fr;min-height:0}#isa-role-planning .isa-nav,#isa-role-planning .isa-audience-nav{flex-direction:row;flex-wrap:wrap}#isa-role-planning .isa-sidebar-note{display:none}#isa-role-planning .isa-field-grid{grid-template-columns:1fr}#isa-role-planning .isa-window[data-view=teacher] .isa-role-content{padding:0 24px 24px}#isa-role-planning .isa-teacher-heading{margin:0 -24px 24px;padding:24px;flex-wrap:wrap}#isa-role-planning .isa-role-choices{grid-template-columns:1fr}#isa-role-planning .isa-teacher-empty{padding:26px}#isa-role-planning .isa-page-heading{flex-wrap:wrap}#isa-role-planning .isa-parent-filter{width:100%}}
+&lt;/style&gt;
+&lt;script&gt;
+(()=&gt;{
+const root=document.getElementById(&#x27;isa-role-planning&#x27;);const q=s=&gt;root.querySelector(s);const qa=s=&gt;Array.from(root.querySelectorAll(s));let view=&#x27;admin&#x27;,role=&#x27;developer&#x27;,pane=&#x27;schedules&#x27;,task=&#x27;override&#x27;,announcement=null;
+for(const [name,label] of Object.entries({calendar:&#x27;School calendar&#x27;,announcements:&#x27;Announcements&#x27;,banner:&#x27;Schoolwide banner&#x27;,permissions:&#x27;Permissions&#x27;})){q(&#x27;[data-content=&quot;&#x27;+name+&#x27;&quot;] h1&#x27;).textContent=label;q(&#x27;[data-content=&quot;&#x27;+name+&#x27;&quot;] .isa-kicker&#x27;).hidden=true;}
+const roles={developer:{label:&#x27;Developer&#x27;,description:&#x27;Full administration, with explicit control over admin accounts and delegated permissions.&#x27;,schedule:true,groups:true,school:true,grant:true,calendar:true,banner:true,subjects:true},principal:{label:&#x27;Principal / Vice Principal&#x27;,description:&#x27;Publish schedules and notices, manage the school calendar, and create or archive class groups.&#x27;,schedule:true,groups:true,school:true,grant:false,calendar:true,banner:true,subjects:true},teacher:{label:&#x27;Teacher&#x27;,description:&#x27;Post to assigned class groups and prepare substitute requests. Schoolwide publication and schedule approval require an authorized editor.&#x27;,schedule:false,groups:false,school:false,grant:false,calendar:false,banner:false,subjects:false},codeveloper:{label:&#x27;Admin / Codeveloper&#x27;,description:&#x27;Access is granted per capability. This preview shows a delegated editor for schedules, calendar and notices; account grants remain with the Developer.&#x27;,schedule:true,groups:false,school:true,grant:false,calendar:true,banner:true,subjects:true}};
+const bellSets={regular:{summary:&#x27;Six sessions · Dismissal 3:15 PM (provisional)&#x27;,times:[&#x27;8:00–8:55 AM&#x27;,&#x27;9:00–9:55 AM&#x27;,&#x27;10:05–11:00 AM&#x27;,&#x27;11:05 AM–12:00 PM&#x27;,&#x27;1:00–1:55 PM&#x27;,&#x27;2:05–3:00 PM&#x27;]},quick:{summary:&#x27;Quick Exit · Six sessions · Dismissal 2:10 PM&#x27;,times:[&#x27;8:00–8:50 AM&#x27;,&#x27;8:55–9:45 AM&#x27;,&#x27;9:55–10:45 AM&#x27;,&#x27;10:55–11:45 AM&#x27;,&#x27;12:25–1:10 PM&#x27;,&#x27;1:15–1:55 PM&#x27;]},half:{summary:&#x27;Half-day · Four student sessions · Dismissal 12:20 PM&#x27;,times:[&#x27;8:00–8:55 AM&#x27;,&#x27;9:00–9:55 AM&#x27;,&#x27;10:05–11:00 AM&#x27;,&#x27;11:05 AM–12:00 PM&#x27;]}};
+function persist(){if(window.openai?.setWidgetState)window.openai.setWidgetState({modelContent:{roleView:view,permissionPreview:role,adminWorkArea:pane},privateContent:{view,role,pane,task}}).catch(()=&gt;{});}
+function setView(v,save=true){view=v;q(&#x27;#isa-view&#x27;).value=v;q(&#x27;.isa-window&#x27;).dataset.view=v;[&#x27;admin&#x27;,&#x27;teacher&#x27;,&#x27;parent&#x27;,&#x27;landing&#x27;,&#x27;student&#x27;].forEach(n=&gt;q(&#x27;#isa-&#x27;+n).hidden=n!==v);q(&#x27;#isa-role-label&#x27;).hidden=v!==&#x27;admin&#x27;;q(&#x27;#isa-title&#x27;).textContent={admin:&#x27;Workspace&#x27;,teacher:&#x27;Teaching&#x27;,parent:&#x27;Updates&#x27;,landing:&#x27;School&#x27;,student:&#x27;Schedule&#x27;}[v];q(&#x27;#isa-context&#x27;).textContent=v===&#x27;admin&#x27;?roles[role].label+&#x27; · Planning preview&#x27;:{teacher:&#x27;Your teaching day&#x27;,parent:&#x27;Public notices&#x27;,landing:&#x27;Schoolwide&#x27;,student:&#x27;3CS · Timetable preview&#x27;}[v];if(v===&#x27;parent&#x27;)renderParent();if(save)persist();}
+function setPane(p,save=true){pane=p;qa(&#x27;[data-content]&#x27;).forEach(e=&gt;e.hidden=e.dataset.content!==p);qa(&#x27;[data-pane]&#x27;).forEach(e=&gt;e.setAttribute(&#x27;aria-pressed&#x27;,String(e.dataset.pane===p)));if(save)persist();}
+function setTask(t,save=true){task=t;qa(&#x27;[data-task-content]&#x27;).forEach(e=&gt;e.hidden=e.dataset.taskContent!==t);qa(&#x27;[data-task]&#x27;).forEach(e=&gt;e.setAttribute(&#x27;aria-pressed&#x27;,String(e.dataset.task===t)));if(save)persist();}
+function permissions(){const r=roles[role];q(&#x27;#isa-sub-button&#x27;).textContent=r.schedule?&#x27;Review changes&#x27;:&#x27;Review substitute request&#x27;;q(&#x27;#isa-sub-rights&#x27;).textContent=r.schedule?&#x27;Schedule editors can publish after review.&#x27;:&#x27;Submit a draft request to an authorized schedule editor.&#x27;;q(&#x27;#isa-group-rights&#x27;).textContent=r.groups?&#x27;This role can create and archive class groups.&#x27;:&#x27;Principal / Vice Principal approval required to create or archive classes.&#x27;;q(&#x27;#isa-group-add&#x27;).disabled=!r.groups;q(&#x27;#isa-archive&#x27;).disabled=!r.groups;q(&#x27;#isa-cycle-review&#x27;).disabled=!r.schedule;q(&#x27;#isa-subject-add&#x27;).disabled=!r.subjects;q(&#x27;#isa-calendar-button&#x27;).disabled=!r.calendar;q(&#x27;#isa-banner-button&#x27;).disabled=!r.banner;q(&#x27;#isa-grant-button&#x27;).disabled=!r.grant;q(&#x27;#isa-ann-rights&#x27;).textContent=r.school?&#x27;Schoolwide notices can be prepared for approval and publication. Classroom sync is planned separately.&#x27;:&#x27;Teachers post to assigned class groups. No assignments supplied yet; this is an audience-selection draft.&#x27;;qa(&#x27;#isa-audience option&#x27;).forEach(e=&gt;e.disabled=e.value===&#x27;school&#x27;&amp;&amp;!r.school);if(!r.school&amp;&amp;q(&#x27;#isa-audience&#x27;).value===&#x27;school&#x27;)q(&#x27;#isa-audience&#x27;).value=&#x27;3CS&#x27;;q(&#x27;#isa-role-description&#x27;).textContent=r.description;const capabilities=[[&#x27;Publish schedule changes&#x27;,r.schedule?&#x27;Allowed&#x27;:&#x27;Draft requests only&#x27;],[&#x27;Create / archive class groups&#x27;,r.groups?&#x27;Allowed&#x27;:&#x27;Not granted&#x27;],[&#x27;Schoolwide announcements&#x27;,r.school?&#x27;Allowed&#x27;:&#x27;Assigned class notices only&#x27;],[&#x27;Calendar &amp; holidays&#x27;,r.calendar?&#x27;Allowed&#x27;:&#x27;Not granted&#x27;],[&#x27;Schoolwide banner&#x27;,r.banner?&#x27;Allowed&#x27;:&#x27;Not granted&#x27;],[&#x27;Subject directory&#x27;,r.subjects?&#x27;Allowed&#x27;:&#x27;Not granted&#x27;],[&#x27;Grant admin accounts&#x27;,r.grant?&#x27;Allowed&#x27;:&#x27;Developer only&#x27;]];q(&#x27;#isa-permission-list&#x27;).replaceChildren(...capabilities.map(([label,status])=&gt;{const div=document.createElement(&#x27;div&#x27;),b=document.createElement(&#x27;b&#x27;),span=document.createElement(&#x27;span&#x27;);b.textContent=label;span.textContent=status;div.append(b,span);return div}));if(view===&#x27;admin&#x27;)q(&#x27;#isa-context&#x27;).textContent=r.label+&#x27; · Planning preview&#x27;;}
+function calendar(){const a=q(&#x27;#isa-arrangement&#x27;).value;const descriptions={regular:&#x27;Advances the cycle · Normal classes&#x27;,holiday:&#x27;Pauses the cycle · No classes&#x27;,async:&#x27;Advances the cycle · Independent work, no live classes&#x27;,event:&#x27;Advances the cycle · Event arrangements replace lessons&#x27;};q(&#x27;#isa-calendar-impact&#x27;).textContent=descriptions[a];q(&#x27;#isa-bells&#x27;).disabled=a!==&#x27;regular&#x27;;q(&#x27;#isa-bell-summary&#x27;).textContent=a===&#x27;regular&#x27;?bellSets[q(&#x27;#isa-bells&#x27;).value].summary:&#x27;Bell schedule does not apply to this arrangement&#x27;;q(&#x27;.isa-bell-details&#x27;).hidden=a!==&#x27;regular&#x27;;q(&#x27;#isa-bell-times&#x27;).replaceChildren(...bellSets[q(&#x27;#isa-bells&#x27;).value].times.map((t,i)=&gt;{const li=document.createElement(&#x27;li&#x27;);li.textContent=&#x27;Session &#x27;+(i+1)+&#x27; · &#x27;+t;return li;}));}
+function renderParent(){const group=q(&#x27;#isa-parent-group&#x27;).value;const matches=announcement&amp;&amp;announcement.public&amp;&amp;(announcement.audience===&#x27;school&#x27;||announcement.audience===group);q(&#x27;#isa-parent-draft&#x27;).hidden=!matches;q(&#x27;#isa-parent-empty&#x27;).hidden=!!matches;if(matches){q(&#x27;#isa-parent-notice-title&#x27;).textContent=announcement.title;q(&#x27;#isa-parent-notice-body&#x27;).textContent=announcement.body;q(&#x27;#isa-parent-notice-audience&#x27;).textContent=announcement.audience===&#x27;school&#x27;?&#x27;Schoolwide · ISA Updates&#x27;:announcement.audience+&#x27; · Class notice&#x27;;}}
+q(&#x27;#isa-view&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;setView(e.target.value));q(&#x27;#isa-role&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{role=e.target.value;permissions();persist()});qa(&#x27;[data-pane]&#x27;).forEach(b=&gt;b.addEventListener(&#x27;click&#x27;,()=&gt;setPane(b.dataset.pane)));qa(&#x27;[data-task]&#x27;).forEach(b=&gt;b.addEventListener(&#x27;click&#x27;,()=&gt;setTask(b.dataset.task)));
+q(&#x27;#isa-sub-form button[type=submit]&#x27;).addEventListener(&#x27;click&#x27;,e=&gt;{e.preventDefault();if(!q(&#x27;#isa-sub-form&#x27;).reportValidity())return;q(&#x27;#isa-sub-review&#x27;).hidden=false;q(&#x27;#isa-review-date&#x27;).textContent=q(&#x27;#isa-sub-group&#x27;).value+&#x27; · &#x27;+q(&#x27;#isa-sub-date&#x27;).value+&#x27; · Date-specific draft&#x27;;q(&#x27;#isa-review-subject&#x27;).textContent=q(&#x27;#isa-sub-subject&#x27;).value;q(&#x27;#isa-review-room&#x27;).textContent=&#x27;Room &#x27;+q(&#x27;#isa-sub-room&#x27;).value.trim();q(&#x27;#isa-review-teacher&#x27;).textContent=&#x27;With &#x27;+q(&#x27;#isa-sub-teacher&#x27;).value.trim();q(&#x27;#isa-review-note&#x27;).textContent=q(&#x27;#isa-sub-note&#x27;).value.trim();persist()});
+q(&#x27;#isa-cycle-form button[type=submit]&#x27;).addEventListener(&#x27;click&#x27;,e=&gt;{e.preventDefault();if(!q(&#x27;#isa-cycle-form&#x27;).reportValidity())return;if(!roles[role].schedule)return;q(&#x27;#isa-cycle-result&#x27;).textContent=q(&#x27;#isa-cycle-group&#x27;).value+&#x27; · &#x27;+q(&#x27;#isa-cycle-day&#x27;).value+&#x27; · &#x27;+q(&#x27;#isa-cycle-session&#x27;).value+&#x27; → &#x27;+q(&#x27;#isa-cycle-subject&#x27;).value+&#x27; · Effective &#x27;+q(&#x27;#isa-cycle-effective&#x27;).value+&#x27;. Draft only; complete timetable validation is planned.&#x27;;});
+q(&#x27;#isa-group-form button[type=submit]&#x27;).addEventListener(&#x27;click&#x27;,e=&gt;{e.preventDefault();if(!q(&#x27;#isa-group-form&#x27;).reportValidity())return;if(!roles[role].groups)return;const code=q(&#x27;#isa-group-code&#x27;).value.trim().toUpperCase();q(&#x27;#isa-group-result&#x27;).textContent=&#x27;Draft group &#x27;+q(&#x27;#isa-group-year&#x27;).value+code+&#x27; created in this preview. No timetable or teachers assigned.&#x27;;});q(&#x27;#isa-archive&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{if(!roles[role].groups)return;q(&#x27;#isa-archive-result&#x27;).textContent=&#x27;Archive preview: 3CS will be removed from new selections after the chosen effective date. Historical schedules and notices remain available. Nothing archived.&#x27;;});
+q(&#x27;#isa-subject-form button[type=submit]&#x27;).addEventListener(&#x27;click&#x27;,e=&gt;{e.preventDefault();if(!q(&#x27;#isa-subject-form&#x27;).reportValidity())return;if(!roles[role].subjects)return;q(&#x27;#isa-subject-result&#x27;).textContent=&#x27;Draft subject: &#x27;+q(&#x27;#isa-new-sub-code&#x27;).value.trim()+&#x27; · &#x27;+q(&#x27;#isa-new-sub-name&#x27;).value.trim()+&#x27;. Nothing published.&#x27;;});
+q(&#x27;#isa-arrangement&#x27;).addEventListener(&#x27;change&#x27;,calendar);q(&#x27;#isa-bells&#x27;).addEventListener(&#x27;change&#x27;,calendar);q(&#x27;#isa-calendar-form button[type=submit]&#x27;).addEventListener(&#x27;click&#x27;,e=&gt;{e.preventDefault();if(!q(&#x27;#isa-calendar-form&#x27;).reportValidity())return;if(!roles[role].calendar)return;q(&#x27;#isa-calendar-result&#x27;).textContent=q(&#x27;#isa-calendar-date&#x27;).value+&#x27; · &#x27;+(q(&#x27;#isa-calendar-label&#x27;).value.trim()||q(&#x27;#isa-arrangement&#x27;).selectedOptions[0].text)+&#x27; · &#x27;+q(&#x27;#isa-calendar-impact&#x27;).textContent+&#x27;. Draft only; later cycle dates will be recalculated before publication.&#x27;;});
+q(&#x27;#isa-announcement-form button[type=submit]&#x27;).addEventListener(&#x27;click&#x27;,e=&gt;{e.preventDefault();if(!q(&#x27;#isa-announcement-form&#x27;).reportValidity())return;announcement={audience:q(&#x27;#isa-audience&#x27;).value,title:q(&#x27;#isa-ann-title&#x27;).value.trim(),body:q(&#x27;#isa-ann-body&#x27;).value.trim(),public:q(&#x27;#isa-ann-public&#x27;).checked};q(&#x27;#isa-ann-preview&#x27;).hidden=false;q(&#x27;#isa-ann-tag&#x27;).textContent=announcement.audience===&#x27;school&#x27;?&#x27;ISA Updates · Schoolwide&#x27;:announcement.audience+&#x27; · Class notice&#x27;;q(&#x27;#isa-ann-preview-title&#x27;).textContent=announcement.title;q(&#x27;#isa-ann-preview-body&#x27;).textContent=announcement.body;q(&#x27;#isa-ann-preview-state&#x27;).textContent=announcement.public?&#x27;Draft · Marked for approved public publication; no notice published.&#x27;:&#x27;Draft · Account-only visibility; no notice published.&#x27;;renderParent();});
+q(&#x27;#isa-banner-form button[type=submit]&#x27;).addEventListener(&#x27;click&#x27;,e=&gt;{e.preventDefault();if(!q(&#x27;#isa-banner-form&#x27;).reportValidity())return;if(!roles[role].banner)return;q(&#x27;#isa-banner-preview&#x27;).hidden=false;q(&#x27;#isa-banner-preview&#x27;).dataset.tone=q(&#x27;#isa-banner-tone&#x27;).value;q(&#x27;#isa-banner-message&#x27;).textContent=q(&#x27;#isa-banner-text&#x27;).value.trim();q(&#x27;#isa-banner-result&#x27;).textContent=&#x27;Expires &#x27;+q(&#x27;#isa-banner-expiry&#x27;).value.replace(&#x27;T&#x27;,&#x27; at &#x27;)+&#x27; · Draft preview only&#x27;;});
+q(&#x27;#isa-permission-form button[type=submit]&#x27;).addEventListener(&#x27;click&#x27;,e=&gt;{e.preventDefault();if(!q(&#x27;#isa-permission-form&#x27;).reportValidity())return;if(!roles[role].grant)return;q(&#x27;#isa-grant-result&#x27;).textContent=&#x27;Review: &#x27;+q(&#x27;#isa-admin-email&#x27;).value.trim()+&#x27; → &#x27;+q(&#x27;#isa-admin-grant&#x27;).value+&#x27;. No account created; capability selection and audit record are planned.&#x27;;});
+q(&#x27;#isa-parent-group&#x27;).addEventListener(&#x27;change&#x27;,renderParent);q(&#x27;#isa-teacher-post&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{role=&#x27;teacher&#x27;;q(&#x27;#isa-role&#x27;).value=role;permissions();setView(&#x27;admin&#x27;,false);setPane(&#x27;announcements&#x27;);});q(&#x27;#isa-teacher-cover&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{role=&#x27;teacher&#x27;;q(&#x27;#isa-role&#x27;).value=role;permissions();setView(&#x27;admin&#x27;,false);setPane(&#x27;schedules&#x27;,false);setTask(&#x27;override&#x27;);});qa(&#x27;[data-landing]&#x27;).forEach(b=&gt;b.addEventListener(&#x27;click&#x27;,()=&gt;setView(b.dataset.landing)));q(&#x27;#isa-student-back&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;setView(&#x27;landing&#x27;));
+const saved=window.openai?.widgetState?.privateContent;if(saved){if(roles[saved.role]){role=saved.role;q(&#x27;#isa-role&#x27;).value=role;}if([&#x27;schedules&#x27;,&#x27;calendar&#x27;,&#x27;announcements&#x27;,&#x27;banner&#x27;,&#x27;permissions&#x27;].includes(saved.pane))setPane(saved.pane,false);if([&#x27;override&#x27;,&#x27;recurring&#x27;,&#x27;groups&#x27;,&#x27;subjects&#x27;].includes(saved.task))setTask(saved.task,false);if([&#x27;admin&#x27;,&#x27;teacher&#x27;,&#x27;parent&#x27;,&#x27;landing&#x27;,&#x27;student&#x27;].includes(saved.view))view=saved.view;}
+permissions();calendar();setView(view,false);
+window.addEventListener(&#x27;openai:set_globals&#x27;,event=&gt;{const s=event.detail?.globals?.widgetState?.privateContent;if(!s)return;if(roles[s.role]){role=s.role;q(&#x27;#isa-role&#x27;).value=role;permissions();}if([&#x27;admin&#x27;,&#x27;teacher&#x27;,&#x27;parent&#x27;,&#x27;landing&#x27;,&#x27;student&#x27;].includes(s.view))setView(s.view,false);if([&#x27;schedules&#x27;,&#x27;calendar&#x27;,&#x27;announcements&#x27;,&#x27;banner&#x27;,&#x27;permissions&#x27;].includes(s.pane))setPane(s.pane,false);if([&#x27;override&#x27;,&#x27;recurring&#x27;,&#x27;groups&#x27;,&#x27;subjects&#x27;].includes(s.task))setTask(s.task,false);});
+})();
+&lt;/script&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+  let lastPointerWasTouch = false;
+  let pinnedByTouch = false;
+
+  const getTrigger = (event) =&gt; {
+    for (const target of event.composedPath()) {
+      if (target?.nodeType === Node.ELEMENT_NODE) {
+        const trigger = target.closest(&quot;[data-tooltip]&quot;);
+        if (trigger) return trigger;
+      }
+    }
+    return null;
+  };
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    pinnedByTouch = false;
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handlePointer = (event) =&gt; {
+    lastPointerWasTouch =
+      event.type === &quot;pointerdown&quot; &amp;&amp; event.pointerType === &quot;touch&quot;;
+  };
+  const handleTouchClick = (event) =&gt; {
+    const isTouch = event.pointerType === &quot;touch&quot; || lastPointerWasTouch;
+    lastPointerWasTouch = false;
+    if (!isTouch || event.detail === 0) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (
+      trigger == null ||
+      !trigger.isConnected ||
+      getContent(trigger).length === 0 ||
+      (pinnedByTouch &amp;&amp; activeTrigger === trigger)
+    ) {
+      if (pinnedByTouch) {
+        closeTooltip();
+      }
+      return;
+    }
+    openTooltip(trigger);
+    pinnedByTouch = activeTrigger === trigger;
+    window.setTimeout(() =&gt; {
+      if (activeTrigger === trigger &amp;&amp; !trigger.isConnected) {
+        closeTooltip(false);
+      }
+    }, 0);
+  };
+  const handleLeave = (event) =&gt; {
+    if (pinnedByTouch) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    lastPointerWasTouch = false;
+    const trigger = getTrigger(event);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handlers = {
+    pointerover: handlePointerOpen,
+    pointerdown: handlePointer,
+    pointercancel: handlePointer,
+    click: handleTouchClick,
+    pointerout: handleLeave,
+    focusin: handleFocusIn,
+    focusout: handleLeave,
+    keydown: handleKeyDown,
+    contextmenu: handleContextMenu,
+  };
+  const roots = new Map();
+  const handledEvents = new WeakSet();
+  const handleEvent = (event) =&gt; {
+    if (handledEvents.has(event)) return;
+    handledEvents.add(event);
+    handlers[event.type](event);
+  };
+  const discoverRoots = (node) =&gt; {
+    if (node.shadowRoot) listen(node.shadowRoot);
+    for (const element of node.querySelectorAll(&quot;*&quot;)) {
+      if (element.shadowRoot) listen(element.shadowRoot);
+    }
+  };
+  const listen = (root) =&gt; {
+    if (roots.has(root)) return;
+    for (const type of Object.keys(handlers)) root.addEventListener(type, handleEvent);
+    const observer = new window.MutationObserver((records) =&gt; {
+      for (const { addedNodes } of records) {
+        for (const node of addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE) discoverRoots(node);
+        }
+      }
+      for (const [root, cleanup] of roots) {
+        if (root.host &amp;&amp; !root.host.isConnected) {
+          cleanup();
+          roots.delete(root);
+        }
+      }
+      if (activeTrigger &amp;&amp; !activeTrigger.isConnected) closeTooltip(false);
+    });
+    observer.observe(root, { childList: true, subtree: true });
+    roots.set(root, () =&gt; {
+      observer.disconnect();
+      for (const type of Object.keys(handlers)) root.removeEventListener(type, handleEvent);
+    });
+    discoverRoots(root);
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    lastPointerWasTouch = false;
+    for (const cleanup of roots.values()) cleanup();
+    roots.clear();
+    tooltip = null;
+  };
+
+  // Events between children of one shadow root never reach the document.
+  listen(document);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-tabs&quot;&gt;
+(() =&gt; {
+  const selector = &#x27;.nav[role=&quot;tablist&quot;] [role=&quot;tab&quot;]&#x27;;
+  const disabled = &#x27;:disabled,[aria-disabled=&quot;true&quot;]&#x27;;
+  const selectTab = (selected) =&gt; {
+    const panelId = selected.getAttribute(&quot;aria-controls&quot;);
+    for (const tab of selected.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;)) {
+      const active = tab === selected;
+      tab.classList.toggle(&quot;active&quot;, active);
+      tab.setAttribute(&quot;aria-selected&quot;, String(active));
+      const id = tab.getAttribute(&quot;aria-controls&quot;);
+      const panel = id &amp;&amp; document.getElementById(id);
+      if (panel != null) {
+        panel.hidden = id !== panelId;
+        if (!panel.hidden &amp;&amp; selected.id) {
+          panel.setAttribute(&quot;aria-labelledby&quot;, selected.id);
+        }
+      }
+    }
+  };
+  const interact = (event) =&gt; {
+    const tab = event.target?.closest?.(selector);
+    if (event.defaultPrevented || tab == null || tab.matches(disabled)) {
+      return;
+    }
+    if (event.type === &quot;click&quot;) {
+      selectTab(tab);
+      return;
+    }
+    const tabs = Array.from(
+      tab.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;),
+    ).filter((candidate) =&gt; !candidate.matches(disabled));
+    const current = tabs.indexOf(tab);
+    let next;
+    if (event.key === &quot;ArrowRight&quot; || event.key === &quot;ArrowDown&quot;) {
+      next = (current + 1) % tabs.length;
+    } else if (event.key === &quot;ArrowLeft&quot; || event.key === &quot;ArrowUp&quot;) {
+      next = (current + tabs.length - 1) % tabs.length;
+    } else if (event.key === &quot;Home&quot;) {
+      next = 0;
+    } else if (event.key === &quot;End&quot;) {
+      next = tabs.length - 1;
+    } else {
+      return;
+    }
+    event.preventDefault();
+    tabs[next].focus();
+    selectTab(tabs[next]);
+  };
+
+  for (const list of document.querySelectorAll(&#x27;.nav[role=&quot;tablist&quot;]&#x27;)) {
+    const selected =
+      list.querySelector(&#x27;[role=&quot;tab&quot;][aria-selected=&quot;true&quot;]&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;].active&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;]&#x27;);
+    if (selected != null) {
+      selectTab(selected);
+    }
+  }
+  document.addEventListener(&quot;click&quot;, interact);
+  document.addEventListener(&quot;keydown&quot;, interact);
+  window.addEventListener(&quot;pagehide&quot;, () =&gt; {
+    document.removeEventListener(&quot;click&quot;, interact);
+    document.removeEventListener(&quot;keydown&quot;, interact);
+  }, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-carousel&quot;&gt;
+  (() =&gt; {
+    for (const root of document.querySelectorAll(&quot;.viz-carousel&quot;)) {
+      const panels = Array.from(
+        root.querySelectorAll(&quot;:scope &gt; [data-variant]&quot;),
+      );
+      if (panels.length === 0) {
+        continue;
+      }
+      root.setAttribute(&quot;role&quot;, &quot;group&quot;);
+      panels.forEach((panel, index) =&gt; {
+        panel.hidden = index !== 0;
+        panel.setAttribute(&quot;role&quot;, &quot;group&quot;);
+        if (!panel.hasAttribute(&quot;aria-label&quot;)) {
+          panel.setAttribute(&quot;aria-label&quot;, panel.dataset.variant);
+        }
+      });
+      root.dataset.activeVariant = panels[0].dataset.variant;
+      if (panels.length === 1) {
+        continue;
+      }
+
+      const controls = document.createElement(&quot;div&quot;);
+      controls.className = &quot;viz-carousel-controls&quot;;
+      // Portable copy of the settings dropdown&#x27;s legacy glyph; no 14px icon-package preset matches it.
+      // https://github.com/openai/openai/blob/master/codex/codex-apps/webview/src/icons/chevron.svg
+      controls.innerHTML = `
+      &lt;button type=&quot;button&quot; class=&quot;viz-carousel-previous cursor-interaction&quot;&gt;&lt;i data-lucide=&quot;chevron-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;details class=&quot;viz-carousel-picker&quot;&gt;
+        &lt;summary class=&quot;cursor-interaction&quot;&gt;
+          &lt;span class=&quot;viz-carousel-count tabular-nums&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;viz-carousel-name&quot;&gt;&lt;/span&gt;
+          &lt;svg class=&quot;viz-carousel-caret&quot; width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 20 21&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;
+            &lt;path d=&quot;M15.2793 7.71101C15.539 7.45131 15.961 7.45131 16.2207 7.71101C16.4804 7.97071 16.4804 8.39272 16.2207 8.65242L10.4707 14.4024C10.211 14.6621 9.78902 14.6621 9.52932 14.4024L3.77932 8.65242L3.69436 8.54792C3.52385 8.28979 3.55205 7.93828 3.77932 7.71101C4.00659 7.48374 4.3581 7.45554 4.61623 7.62605L4.72073 7.71101L10 12.9903L15.2793 7.71101Z&quot; fill=&quot;currentColor&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;0.6&quot; /&gt;
+          &lt;/svg&gt;
+        &lt;/summary&gt;
+        &lt;div class=&quot;viz-carousel-options&quot;&gt;&lt;/div&gt;
+      &lt;/details&gt;
+      &lt;button type=&quot;button&quot; class=&quot;viz-carousel-next cursor-interaction&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;`;
+      const previous = controls.querySelector(&quot;.viz-carousel-previous&quot;);
+      const next = controls.querySelector(&quot;.viz-carousel-next&quot;);
+      const picker = controls.querySelector(&quot;.viz-carousel-picker&quot;);
+      const summary = picker.querySelector(&quot;summary&quot;);
+      const count = controls.querySelector(&quot;.viz-carousel-count&quot;);
+      const name = controls.querySelector(&quot;.viz-carousel-name&quot;);
+      const options = controls.querySelector(&quot;.viz-carousel-options&quot;);
+      const status = document.createElement(&quot;span&quot;);
+      status.className = &quot;sr-only&quot;;
+      status.setAttribute(&quot;role&quot;, &quot;status&quot;);
+      status.setAttribute(&quot;aria-live&quot;, &quot;polite&quot;);
+      status.setAttribute(&quot;aria-atomic&quot;, &quot;true&quot;);
+      previous.setAttribute(
+        &quot;aria-label&quot;,
+        root.dataset.previousLabel ?? &quot;Previous variant&quot;,
+      );
+      next.setAttribute(&quot;aria-label&quot;, root.dataset.nextLabel ?? &quot;Next variant&quot;);
+
+      let active = 0;
+      let mousePointerId = null;
+      let summaryPointerHandled = false;
+      summary.addEventListener(&quot;pointerdown&quot;, (event) =&gt; {
+        summaryPointerHandled =
+          event.pointerType === &quot;mouse&quot; &amp;&amp; event.button === 0 &amp;&amp; !event.ctrlKey;
+        if (!summaryPointerHandled) {
+          return;
+        }
+        event.preventDefault();
+        summary.focus({ preventScroll: true });
+        picker.open = !picker.open;
+        mousePointerId = picker.open ? event.pointerId : null;
+      });
+      summary.addEventListener(&quot;click&quot;, (event) =&gt; {
+        if (summaryPointerHandled &amp;&amp; event.detail &gt; 0) {
+          event.preventDefault();
+        }
+      });
+      const choices = panels.map((panel, index) =&gt; {
+        const choice = document.createElement(&quot;button&quot;);
+        choice.type = &quot;button&quot;;
+        choice.className = &quot;cursor-interaction&quot;;
+        choice.textContent = panel.dataset.variant;
+        choice.addEventListener(&quot;click&quot;, () =&gt; {
+          select(index);
+          summary.focus();
+        });
+        choice.addEventListener(&quot;pointerup&quot;, (event) =&gt; {
+          if (
+            picker.open &amp;&amp;
+            event.pointerType === &quot;mouse&quot; &amp;&amp;
+            event.button === 0 &amp;&amp;
+            event.pointerId === mousePointerId
+          ) {
+            choice.click();
+          }
+        });
+        options.appendChild(choice);
+        return choice;
+      });
+      const select = (index) =&gt; {
+        const changed = active !== index;
+        active = index;
+        panels.forEach((panel, position) =&gt; {
+          panel.hidden = position !== active;
+          choices[position].setAttribute(
+            &quot;aria-current&quot;,
+            String(position === active),
+          );
+        });
+        root.dataset.activeVariant = panels[active].dataset.variant;
+        count.textContent = `${active + 1} / ${panels.length}`;
+        name.textContent = panels[active].dataset.variant;
+        picker.open = false;
+        mousePointerId = null;
+        if (changed) {
+          status.textContent = `${count.textContent}: ${name.textContent}`;
+        }
+      };
+      previous.addEventListener(&quot;click&quot;, () =&gt;
+        select((active + panels.length - 1) % panels.length),
+      );
+      next.addEventListener(&quot;click&quot;, () =&gt;
+        select((active + 1) % panels.length),
+      );
+      picker.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+        if (event.key === &quot;Escape&quot; &amp;&amp; picker.open) {
+          event.preventDefault();
+          picker.open = false;
+          mousePointerId = null;
+          summary.focus();
+          return;
+        }
+        if (event.altKey || event.ctrlKey || event.metaKey) {
+          return;
+        }
+        const index = choices.indexOf(document.activeElement);
+        let nextIndex;
+        if (event.key === &quot;ArrowDown&quot;) {
+          nextIndex = index &lt; 0 ? active : (index + 1) % choices.length;
+        } else if (event.key === &quot;ArrowUp&quot;) {
+          nextIndex = index &lt; 0 ? active : (index + choices.length - 1) % choices.length;
+        } else if (picker.open &amp;&amp; event.key === &quot;Home&quot;) {
+          nextIndex = 0;
+        } else if (picker.open &amp;&amp; event.key === &quot;End&quot;) {
+          nextIndex = choices.length - 1;
+        } else {
+          return;
+        }
+        event.preventDefault();
+        picker.open = true;
+        choices[nextIndex].focus();
+      });
+      picker.addEventListener(&quot;focusout&quot;, (event) =&gt; {
+        if (!picker.contains(event.relatedTarget)) {
+          picker.open = false;
+          mousePointerId = null;
+        }
+      });
+      const dismiss = (event) =&gt; {
+        if (!summary.contains(event.target)) {
+          mousePointerId = null;
+        }
+        if (!picker.contains(event.target)) {
+          picker.open = false;
+        }
+      };
+      const endPointerSelection = () =&gt; {
+        mousePointerId = null;
+      };
+      const sizePicker = () =&gt; {
+        root.style.setProperty(
+          &quot;--viz-carousel-picker-height&quot;,
+          `${picker.open ? options.offsetHeight : 0}px`,
+        );
+      };
+      picker.addEventListener(&quot;toggle&quot;, sizePicker);
+      window.addEventListener(&quot;resize&quot;, sizePicker);
+      document.addEventListener(&quot;pointerdown&quot;, dismiss);
+      document.addEventListener(&quot;pointerup&quot;, endPointerSelection);
+      document.addEventListener(&quot;pointercancel&quot;, endPointerSelection);
+      window.addEventListener(&quot;blur&quot;, endPointerSelection);
+      window.addEventListener(
+        &quot;pagehide&quot;,
+        () =&gt; {
+          document.removeEventListener(&quot;pointerdown&quot;, dismiss);
+          document.removeEventListener(&quot;pointerup&quot;, endPointerSelection);
+          document.removeEventListener(&quot;pointercancel&quot;, endPointerSelection);
+          window.removeEventListener(&quot;blur&quot;, endPointerSelection);
+          window.removeEventListener(&quot;resize&quot;, sizePicker);
+        },
+        { once: true },
+      );
+      root.append(controls, status);
+      select(0);
+    }
+  })();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+<script>(() => {
+  const frame = document.getElementById("codex-visualization");
+  if (!(frame instanceof HTMLIFrameElement)) {
+    return;
+  }
+  let viewportHeight = globalThis.innerHeight;
+  const storageKey = `codex:visualization-widget-state-v2:${JSON.stringify([
+    globalThis.location.pathname,
+    globalThis.location.search,
+  ])}`;
+  const parseState = (serializedState) => {
+    if (
+      typeof serializedState !== "string" ||
+      new TextEncoder().encode(serializedState).length > 16 * 1024
+    ) {
+      throw new TypeError(
+        "Widget state must be a JSON object of at most 16 KiB",
+      );
+    }
+    /** @type {unknown} */
+    const state = JSON.parse(serializedState);
+    if (
+      state == null ||
+      typeof state !== "object" ||
+      Array.isArray(state) ||
+      ("imageIds" in state &&
+        (!Array.isArray(state.imageIds) || state.imageIds.length > 0))
+    ) {
+      throw new TypeError("Widget state must be a JSON object");
+    }
+    const storedState = { modelContent: null, privateContent: null, ...state };
+    const canonicalState = JSON.stringify(
+      storedState,
+      (_key, /** @type {unknown} */ value) => {
+        if (typeof value === "number" && !Number.isFinite(value)) {
+          throw new TypeError("Widget state must contain finite numbers");
+        }
+        return value;
+      },
+    );
+    if (new TextEncoder().encode(canonicalState).length > 16 * 1024) {
+      throw new TypeError(
+        "Widget state must be a JSON object of at most 16 KiB",
+      );
+    }
+    return storedState;
+  };
+  let storage = null;
+  let state = null;
+  try {
+    const localStorage = globalThis.localStorage;
+    const probeKey = `${storageKey}:probe`;
+    localStorage.setItem(probeKey, "1");
+    localStorage.removeItem(probeKey);
+    storage = localStorage;
+    const savedState = storage.getItem(storageKey);
+    if (savedState != null) {
+      try {
+        state = parseState(savedState);
+      } catch {
+        // Invalid saved state does not disable future writes.
+      }
+    }
+  } catch {
+    storage = null;
+  }
+  const initialGlobals = {
+    widgetState: state,
+    statePersistence: storage == null ? "none" : "local",
+  };
+
+  const channel = new MessageChannel();
+  channel.port1.addEventListener("message", (event) => {
+    const data = event.data;
+    if (typeof data !== "object" || data == null) {
+      return;
+    }
+    if (data.type === "widget-state-write") {
+      if (!Number.isSafeInteger(data.id) || data.id <= 0) {
+        return;
+      }
+      let ok = false;
+      try {
+        if (storage != null) {
+          const state = parseState(data.state);
+          storage.setItem(storageKey, JSON.stringify(state));
+          ok = true;
+        }
+      } catch {
+        // Storage denial, quota limits, and invalid state return a failed receipt.
+      }
+      channel.port1.postMessage({
+        type: "widget-state-result",
+        id: data.id,
+        ok,
+      });
+      return;
+    }
+    if (data.type === "height") {
+      const height = data.height;
+      if (
+        typeof height === "number" &&
+        Number.isFinite(height) &&
+        height >= 0 &&
+        height <= 10_000
+      ) {
+        frame.style.height = Math.ceil(height) + "px";
+      }
+      return;
+    }
+    if (data.type === "scroll-to") {
+      const top = data.top;
+      if (
+        typeof top === "number" &&
+        Number.isFinite(top) &&
+        top >= 0 &&
+        globalThis.navigator.userActivation?.isActive === true
+      ) {
+        globalThis.scrollTo({
+          top: Math.ceil(
+            globalThis.scrollY + frame.getBoundingClientRect().top + top,
+          ),
+        });
+      }
+      return;
+    }
+    if (data.type === "open-external") {
+      const rawHref = data.href;
+      if (typeof rawHref !== "string") {
+        return;
+      }
+      let href;
+      try {
+        const url = new URL(rawHref, document.baseURI);
+        if (url.protocol !== "https:") {
+          return;
+        }
+        href = url.href;
+      } catch {
+        return;
+      }
+      if (globalThis.navigator.userActivation?.isActive === true) {
+        const anchor = document.createElement("a");
+        anchor.href = href;
+        anchor.rel = "noopener noreferrer";
+        anchor.target = "_blank";
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+      }
+      return;
+    }
+    if (data.type === "follow-up") {
+      const prompt = data.prompt;
+      if (
+        typeof prompt !== "string" ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      const title = data.title;
+      globalThis.prompt(typeof title === "string" ? title : prompt, prompt);
+    }
+  });
+  channel.port1.start();
+  const srcdoc = frame.dataset.srcdoc;
+  if (srcdoc == null) {
+    return;
+  }
+  globalThis.addEventListener("resize", () => {
+    const height = Number.parseFloat(frame.style.height);
+    if (!Number.isFinite(height) || height <= viewportHeight) {
+      frame.style.removeProperty("height");
+    }
+    viewportHeight = globalThis.innerHeight;
+    channel.port1.postMessage({ type: "measure" });
+  });
+  frame.addEventListener(
+    "load",
+    () => {
+      frame.contentWindow?.postMessage(
+        { type: "codex-visualization-initialize" },
+        "*",
+        [channel.port2],
+      );
+    },
+    { once: true },
+  );
+  // Match the trusted bootstrap element, not the same text in an authored title.
+  frame.srcdoc = srcdoc.replace(
+    '<script type="application/json" id="codex-visualization-widget-state">__CODEX_VISUALIZATION_WIDGET_STATE__<\/script>',
+    () =>
+      '<script type="application/json" id="codex-visualization-widget-state">' +
+      JSON.stringify(initialGlobals).replaceAll("<", "\\u003c") +
+      "<\/script>",
+  );
+  delete frame.dataset.srcdoc;
+})();
+</script>
+</body>
+</html>

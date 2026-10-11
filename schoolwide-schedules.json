@@ -1,0 +1,1908 @@
+{
+  "1A": [
+    [
+      {
+        "subject": "BS",
+        "room": "N3"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "SDP",
+        "room": "N4"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      }
+    ],
+    [
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "SIL",
+        "room": null
+      },
+      {
+        "subject": "SDP",
+        "room": "N4"
+      }
+    ],
+    [
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "SDP",
+        "room": "N4"
+      },
+      {
+        "subject": "M",
+        "room": null
+      },
+      {
+        "subject": "Super Teams",
+        "room": null,
+        "span": 2
+      }
+    ],
+    [
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "SIL",
+        "room": null
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "Seminar",
+        "room": null,
+        "span": 2
+      }
+    ],
+    [
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "LS",
+        "room": "N4"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "CP",
+        "room": null
+      }
+    ],
+    [
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "SIL",
+        "room": "D5"
+      },
+      {
+        "subject": "Assembly",
+        "room": null
+      }
+    ],
+    [
+      {
+        "subject": "BS",
+        "room": "N3"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      }
+    ]
+  ],
+  "1B": [
+    [
+      {
+        "subject": "S&T",
+        "room": "N4"
+      },
+      {
+        "subject": "LS",
+        "room": "N4"
+      },
+      {
+        "subject": "BS",
+        "room": "N2"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "LA",
+        "room": "D3"
+      }
+    ],
+    [
+      {
+        "subject": "SIL",
+        "room": "N2"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "SDP",
+        "room": "D5"
+      },
+      {
+        "subject": "BS",
+        "room": "N2"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      }
+    ],
+    [
+      {
+        "subject": "S&T",
+        "room": "N4"
+      },
+      {
+        "subject": "LA",
+        "room": "D3"
+      },
+      {
+        "subject": "LA",
+        "room": "D3"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "Super Teams",
+        "room": null,
+        "span": 2
+      }
+    ],
+    [
+      {
+        "subject": "SIL",
+        "room": "N2"
+      },
+      {
+        "subject": "S&T",
+        "room": "N4"
+      },
+      {
+        "subject": "SDP",
+        "room": "D5"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "Seminar",
+        "room": null,
+        "span": 2
+      }
+    ],
+    [
+      {
+        "subject": "SIL",
+        "room": "N2"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "CP",
+        "room": "N2"
+      }
+    ],
+    [
+      {
+        "subject": "LA",
+        "room": "D3"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "Assembly",
+        "room": null
+      }
+    ],
+    [
+      {
+        "subject": "S&T",
+        "room": "N4"
+      },
+      {
+        "subject": "SDP",
+        "room": "D5"
+      },
+      {
+        "subject": "LA",
+        "room": "D3"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      }
+    ]
+  ],
+  "2A": [
+    [
+      {
+        "subject": "QR",
+        "room": "D6"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "SIL",
+        "room": "N5"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      }
+    ],
+    [
+      {
+        "subject": "S&T",
+        "room": null
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "QR",
+        "room": "D6"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "M",
+        "room": null
+      },
+      {
+        "subject": "SDP",
+        "room": "D5"
+      }
+    ],
+    [
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "S&T",
+        "room": null
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "Super Teams",
+        "room": null,
+        "span": 2
+      }
+    ],
+    [
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "SDP",
+        "room": "D5"
+      },
+      {
+        "subject": "QR",
+        "room": "D6"
+      },
+      {
+        "subject": "SIL",
+        "room": "N5"
+      },
+      {
+        "subject": "Seminar",
+        "room": null,
+        "span": 2
+      }
+    ],
+    [
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "SIL",
+        "room": "N5"
+      },
+      {
+        "subject": "BS",
+        "room": "N2"
+      },
+      {
+        "subject": "CP",
+        "room": null
+      }
+    ],
+    [
+      {
+        "subject": "SDP",
+        "room": "D5"
+      },
+      {
+        "subject": "LS",
+        "room": "N4"
+      },
+      {
+        "subject": "QR",
+        "room": "D6"
+      },
+      {
+        "subject": "BS",
+        "room": "N2"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "Assembly",
+        "room": null
+      }
+    ],
+    [
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "SIL",
+        "room": "N5"
+      },
+      {
+        "subject": "QR",
+        "room": "D6"
+      }
+    ]
+  ],
+  "2B": [
+    [
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "SDP",
+        "room": "D5"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "SIL",
+        "room": "D5"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      }
+    ],
+    [
+      {
+        "subject": "SIL",
+        "room": "D5"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      }
+    ],
+    [
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "SDP",
+        "room": "D5"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "SIL",
+        "room": "D5"
+      },
+      {
+        "subject": "Super Teams",
+        "room": null,
+        "span": 2
+      }
+    ],
+    [
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "BS",
+        "room": "N2"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "Seminar",
+        "room": null,
+        "span": 2
+      }
+    ],
+    [
+      {
+        "subject": "LS",
+        "room": "N4"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "LA",
+        "room": null
+      },
+      {
+        "subject": "SDP",
+        "room": "D5"
+      },
+      {
+        "subject": "CP",
+        "room": "D5"
+      }
+    ],
+    [
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "SIL",
+        "room": "D5"
+      },
+      {
+        "subject": "BS",
+        "room": "N2"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "Assembly",
+        "room": null
+      }
+    ],
+    [
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      }
+    ]
+  ],
+  "2C": [
+    [
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "SIL",
+        "room": "N4"
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "QR",
+        "room": "D5"
+      }
+    ],
+    [
+      {
+        "subject": "SIL",
+        "room": null
+      },
+      {
+        "subject": "BS",
+        "room": "N3"
+      },
+      {
+        "subject": "QR",
+        "room": "D5"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      }
+    ],
+    [
+      {
+        "subject": "QR",
+        "room": null
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "Super Teams",
+        "room": null,
+        "span": 2
+      }
+    ],
+    [
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "BS",
+        "room": "N3"
+      },
+      {
+        "subject": "SIL",
+        "room": "N4"
+      },
+      {
+        "subject": "Seminar",
+        "room": null,
+        "span": 2
+      }
+    ],
+    [
+      {
+        "subject": "SDP",
+        "room": "D5"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "SIL",
+        "room": null
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "CP",
+        "room": null
+      }
+    ],
+    [
+      {
+        "subject": "LS",
+        "room": "N4"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "QR",
+        "room": "D5"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "SDP",
+        "room": "D5"
+      },
+      {
+        "subject": "Assembly",
+        "room": null
+      }
+    ],
+    [
+      {
+        "subject": "SDP",
+        "room": "D5"
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "QR",
+        "room": "D5"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      }
+    ]
+  ],
+  "3CS": [
+    [
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "BS",
+        "room": "N3"
+      }
+    ],
+    [
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      }
+    ],
+    [
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "FL&E",
+        "room": "N2"
+      }
+    ],
+    [
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "LS",
+        "room": "N3"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      }
+    ],
+    [
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "CP",
+        "room": "N4"
+      },
+      {
+        "subject": "CP",
+        "room": "N4"
+      }
+    ],
+    [
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "A",
+        "room": "MS"
+      }
+    ],
+    [
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "BS",
+        "room": "N3"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      }
+    ]
+  ],
+  "3EM": [
+    [
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      }
+    ],
+    [
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "FL&E",
+        "room": "N2"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      }
+    ],
+    [
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      }
+    ],
+    [
+      {
+        "subject": "M",
+        "room": null
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "S&T",
+        "room": null
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      }
+    ],
+    [
+      {
+        "subject": "M",
+        "room": null
+      },
+      {
+        "subject": "BS",
+        "room": "N2"
+      },
+      {
+        "subject": "LS",
+        "room": "N3"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "CP",
+        "room": null
+      },
+      {
+        "subject": "CP",
+        "room": null
+      }
+    ],
+    [
+      {
+        "subject": "BS",
+        "room": null
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "A",
+        "room": "MS"
+      }
+    ],
+    [
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      }
+    ]
+  ],
+  "3HST": [
+    [
+      {
+        "subject": "FL&E",
+        "room": "N2"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      }
+    ],
+    [
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "M",
+        "room": null
+      },
+      {
+        "subject": "BS",
+        "room": "N3"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      }
+    ],
+    [
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "LS",
+        "room": "N3"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "BS",
+        "room": "N3"
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      }
+    ],
+    [
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      }
+    ],
+    [
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "CP",
+        "room": "D6"
+      },
+      {
+        "subject": "CP",
+        "room": "D6"
+      }
+    ],
+    [
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "A",
+        "room": "MS"
+      }
+    ],
+    [
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "QR",
+        "room": "D2"
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "LA",
+        "room": "D1"
+      }
+    ]
+  ],
+  "4CS": [
+    [
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      }
+    ],
+    [
+      {
+        "subject": "BS",
+        "room": "D3"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "FL&E",
+        "room": "N2"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      }
+    ],
+    [
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "I",
+        "room": "N4"
+      },
+      {
+        "subject": "I",
+        "room": "N4"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      }
+    ],
+    [
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "I",
+        "room": "N4"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      }
+    ],
+    [
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "I",
+        "room": "N4"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      }
+    ],
+    [
+      {
+        "subject": "S&T",
+        "room": null
+      },
+      {
+        "subject": "LS",
+        "room": "N3"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "A",
+        "room": "MS"
+      }
+    ],
+    [
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "BS",
+        "room": "D3"
+      }
+    ]
+  ],
+  "4EM": [
+    [
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "BS",
+        "room": "N2"
+      },
+      {
+        "subject": "LA",
+        "room": null
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      }
+    ],
+    [
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "I",
+        "room": "N4"
+      },
+      {
+        "subject": "LA",
+        "room": null
+      }
+    ],
+    [
+      {
+        "subject": "M",
+        "room": null
+      },
+      {
+        "subject": "BS",
+        "room": "N2"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      }
+    ],
+    [
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "S&T",
+        "room": null
+      },
+      {
+        "subject": "S&T",
+        "room": "D4"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      }
+    ],
+    [
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      }
+    ],
+    [
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "I",
+        "room": "N4"
+      },
+      {
+        "subject": "LS",
+        "room": "N3"
+      },
+      {
+        "subject": "FL&E",
+        "room": "N2"
+      },
+      {
+        "subject": "A",
+        "room": "MS"
+      }
+    ],
+    [
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "I",
+        "room": "N4"
+      },
+      {
+        "subject": "I",
+        "room": "N4"
+      }
+    ]
+  ],
+  "4HST": [
+    [
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "I",
+        "room": "N4"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "BS",
+        "room": "N2"
+      }
+    ],
+    [
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "I",
+        "room": "N4"
+      },
+      {
+        "subject": "I",
+        "room": "N4"
+      },
+      {
+        "subject": "LS",
+        "room": "N3"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      }
+    ],
+    [
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "BS",
+        "room": "N2"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      }
+    ],
+    [
+      {
+        "subject": "S&T",
+        "room": null
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      },
+      {
+        "subject": "PE",
+        "room": null
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "I",
+        "room": "N4"
+      }
+    ],
+    [
+      {
+        "subject": "S&T",
+        "room": null
+      },
+      {
+        "subject": "S&T",
+        "room": null
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "FL&E",
+        "room": "N2"
+      },
+      {
+        "subject": "FA",
+        "room": "FAS"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      }
+    ],
+    [
+      {
+        "subject": "S&T",
+        "room": null
+      },
+      {
+        "subject": "QR",
+        "room": "N1"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "Span",
+        "room": "N5"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "A",
+        "room": "MS"
+      }
+    ],
+    [
+      {
+        "subject": "S&T",
+        "room": "D6"
+      },
+      {
+        "subject": "DA&M",
+        "room": "DAS"
+      },
+      {
+        "subject": "M",
+        "room": "MS"
+      },
+      {
+        "subject": "LA",
+        "room": "N6"
+      }
+    ]
+  ]
+}

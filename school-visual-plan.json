@@ -1,0 +1,72 @@
+{
+  "status": "Provisional concept; values may change independently of school-functional-plan.json",
+  "source": "schoolwide-student-concept.html",
+  "standaloneConcept": "schoolwide-student-preview.html",
+  "maturity": "L1 provisional desktop system in DESIGN.md; no connected Figma library",
+  "fonts": {
+    "headingsAndSubjectCodes": "Space Grotesk from Google Fonts",
+    "readingAndControls": "DM Sans from Google Fonts"
+  },
+  "palette": {
+    "3CS": {
+      "purple": "#5424A0",
+      "orange": "#FA9B36",
+      "ink": "#241833",
+      "paper": "#FFFEFD"
+    },
+    "4HST": {
+      "purple": "#743585",
+      "orange": "#FFAD5D",
+      "scheduleStatus": "Uploaded timetable included"
+    },
+    "semantics": "Purple identifies the selected class group; orange identifies time remaining and the current row. Explicit labels preserve meaning without color."
+  },
+  "provisionalSizes": {
+    "desktopHeadingPx": 32,
+    "subjectCodePx": 23,
+    "currentSubjectPx": 35,
+    "countdownMaximumPx": 37,
+    "minimumTouchTargetPx": 44
+  },
+  "navigation": [
+    "Sidebar: Schedule, Cycle calendar, ISA Updates",
+    "Local: Today, Next school day, Week",
+    "One cycle-day dropdown"
+  ],
+  "removed": [
+    "Three similar design variants from the student concept",
+    "Repeated class identity in dates and footer",
+    "Session counts next to timed daily lessons",
+    "Progress bar that repeated the countdown",
+    "Small tracked capital labels",
+    "Per-row session metadata in the daily timetable"
+  ],
+  "preserved": [
+    "All 11 uploaded groups with their actual schedules",
+    "One selected cycle day instead of all seven grids",
+    "Next school day visible by scrolling",
+    "Mobile finished lessons collapsed",
+    "Codes with hover/focus/touch full names and Lucide icons",
+    "Rooms beneath subjects; omitted rooms explicitly unassigned",
+    "Holiday pause and async/parade advancement",
+    "Day 7 four student lessons, dismissal 12:20 PM"
+  ],
+  "screenReferences": [
+    {
+      "application": "MyStudyLife",
+      "url": "https://mystudylife.com/tour/",
+      "image": "https://mystudylife.com/wp-content/uploads/2024/08/MOCKUP-A-%E2%80%93-3-portrait-2.png",
+      "observed": "Next class is prominent with time and an Up Next label",
+      "adapted": "Make current and next lessons directly readable"
+    },
+    {
+      "application": "Amie",
+      "url": "https://amie.so/art",
+      "observed": "Widgets place the event name beside time remaining",
+      "adapted": "Keep class, room, and remaining time together"
+    }
+  ],
+  "boundaries": "Illustrative calendar and notices; regular dismissal provisional. Offline state is a visual preview. Admin draft workflows are local concepts; Supabase, authentication, synchronization and chat remain implementation work.",
+  "layout": "User-selected generated image: purple rail, white header, lavender canvas, horizontal current lesson strip, broad agenda",
+  "target": "Desktop now; mobile and Android delivery later"
+}

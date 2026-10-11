@@ -1,0 +1,51 @@
+{
+  "status": "ideation",
+  "school": "Itz’at STEAM Academy",
+  "timezone": "America/Belize",
+  "visualPlanning": "Maintained separately in school-visual-plan.json and interactive student/admin concepts",
+  "priorities": [
+    "Schedules",
+    "School announcements",
+    "Optional polls later"
+  ],
+  "cycle": {
+    "length": 7,
+    "day7": "Half day with four student sessions; dismissal 12:20 PM schoolwide; PLC is staff planning",
+    "weekends": "Pause",
+    "holidays": "Pause",
+    "asynchronous": "Advance; independent work without campus or live online classes",
+    "paradesAndEvents": "Advance; display published event arrangements instead of normal lessons"
+  },
+  "modes": {
+    "duringSchool": "Current lesson, time left, next lesson, remainder of today, next school day, single cycle-day picker below",
+    "afterSchool": "Next school day and expandable today recap",
+    "weekend": "Next school day and upcoming calendar week, including holidays",
+    "beforeSchool": "Proposed: first class and start time; no lesson countdown before the bell"
+  },
+  "confirmedPresentation": {
+    "mobileFinishedLessons": "Collapse under Earlier today",
+    "subjectNames": "Short codes with full names revealed on hover, keyboard focus or touch; rooms below",
+    "announcements": "Publish approved schoolwide notices publicly"
+  },
+  "proposedDataFlow": {
+    "schedules": "Supabase versioned published schedules with effective dates",
+    "calendar": "Explicit per-date day type and cycle advancement; preview downstream effects before publishing",
+    "governmentHolidays": "Import Belize official holiday dates into a reviewed school calendar",
+    "classroom": "Apps Script imports eligible ISA Updates posts as drafts; publish approved schoolwide notices",
+    "publicAccess": "Published schedules and approved notices only",
+    "adminAccess": "Authenticated administrators with role-based database policies",
+    "offline": "Cache a published schedule and calendar snapshot together with version and last-sync time",
+    "android": "Consider after PWA; background class-ending alerts are a separate capability"
+  },
+  "openImplementationInputs": [
+    "Anchor cycle date and term boundaries",
+    "Teacher identities and lesson assignments",
+    "School calendar",
+    "Missing rooms in uploaded timetables",
+    "Regular dismissal time (3:15 PM provisional)",
+    "Who may approve imported public announcements",
+    "Permission scope and chat retention decisions"
+  ],
+  "finalBuildPlan": "school-build-plan.md",
+  "currentPlatformScope": "Desktop concept and initial release; mobile/PWA/Android later"
+}

@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {changes,renderChanges} from '../src/review.js';
+test('review shows actual group day room change',()=>{let a={groups:{'3CS':[[{subject:'QR',room:'D2'}]]}};let b=structuredClone(a);b.groups['3CS'][0][0].room='N4';assert.deepEqual(changes(a,b)[0].path,['groups','3CS',0,0,'room']);let html=renderChanges(a,b);assert.match(html,/Day 1/);assert.match(html,/D2/);assert.match(html,/N4/);});
+test('review escapes proposed content and shows no-op',()=>{assert.equal(changes({},{}).length,0);assert.match(renderChanges({banners:[]},{banners:[{text:'<script>unsafe</script>'}]}),/&lt;script&gt;/);});

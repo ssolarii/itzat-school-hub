@@ -1,0 +1,33 @@
+{
+  "country": "BZ",
+  "timezone": "America/Belize",
+  "verifiedAt": "2026-10-10",
+  "source": {
+    "publisher": "Government of Belize Press Office",
+    "title": "Public and Bank Holidays 2026",
+    "releaseNumber": "PR#218-25",
+    "publishedAt": "2025-11-06",
+    "url": "https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"
+  },
+  "coverage": {
+    "2026": "official annual release verified",
+    "2027": "No official annual release located during this review; no dates inferred or imported."
+  },
+  "cyclePolicy": "pause",
+  "holidays": [
+    {"date":"2026-01-01","label":"New Year's Day","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-01-15","label":"George Price Day","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-03-09","label":"National Heroes and Benefactor Day","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-04-03","label":"Good Friday","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-04-04","label":"Holy Saturday","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-04-06","label":"Easter Monday","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-05-01","label":"Labour Day","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-08-01","label":"Emancipation Day","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-09-10","label":"St. George's Caye Day","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-09-21","label":"Independence Day","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-10-12","label":"Indigenous People's Resistance Day","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-11-19","label":"Garifuna Settlement Day","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-12-25","label":"Christmas Day","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"},
+    {"date":"2026-12-26","label":"Boxing Day","sourceUrl":"https://www.pressoffice.gov.bz/wp-content/uploads/2025/11/Nov-6-PR218-25-Public-and-Bank-Holidays-2026.pdf"}
+  ]
+}

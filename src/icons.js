@@ -1,0 +1,32 @@
+import {
+  createIcons, Activity, ArrowLeftRight, ArrowRight, BookOpen, BookOpenCheck,
+  Briefcase, BriefcaseBusiness, Calculator, CalendarClock, CalendarDays,
+  Check, CheckCircle2, CircleAlert, Cloud, Dumbbell, FileCheck, FileClock,
+  FlaskConical, Footprints, Globe, GraduationCap, Hammer, HeartHandshake,
+  Info, Landmark, Languages, LockKeyhole, LogOut, Mail, Megaphone, Monitor,
+  MonitorPlay, Palette, Presentation, RefreshCw, Repeat2, ShieldCheck,
+  SlidersHorizontal, Sprout, Sun, TriangleAlert, Users, UsersRound, Utensils,
+  Wallet, WifiOff, X
+} from 'lucide';
+
+// Explicit registry keeps the other 1,500+ Lucide icons out of the app bundle.
+const registry = {
+  Activity, ArrowLeftRight, ArrowRight, BookOpen, BookOpenCheck, Briefcase,
+  BriefcaseBusiness, Calculator, CalendarClock, CalendarDays, Check,
+  CheckCircle2, CircleAlert, Cloud, CloudCheck: Cloud, Dumbbell, FileCheck,
+  FileClock, FlaskConical, Footprints, Globe, GraduationCap, Hammer,
+  HeartHandshake, Info, Landmark, Languages, LockKeyhole, LogOut, Mail,
+  Megaphone, Monitor, MonitorPlay, Palette, Presentation, RefreshCw, Repeat2,
+  ShieldCheck, SlidersHorizontal, Sprout, Sun, TriangleAlert, Users,
+  UsersRound, Utensils, Wallet, WifiOff, X
+};
+const pascalCase = name => String(name).split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('');
+export function hasIcon(name) { return Object.hasOwn(registry, pascalCase(name)); }
+
+export function paintIcons() {
+  // New subjects from older/newer clients always receive a useful safe fallback.
+  document.querySelectorAll('[data-lucide]').forEach(element => {
+    if (!hasIcon(element.getAttribute('data-lucide'))) element.setAttribute('data-lucide', 'book-open');
+  });
+  createIcons({ icons: registry, attrs: { 'stroke-width': 1.8 } });
+}

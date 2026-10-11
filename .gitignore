@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env.local
+*.jpg
+.openai/
+.qa/
+site-source.zip
+.pnpm-store/
+.impeccable/

@@ -1,0 +1,56 @@
+{
+  "3CS": [
+    [{"subject":"QR","room":"D2"},{"subject":"FA","room":"FAS"},{"subject":"LA","room":"D1"},{"subject":"S&T","room":"D4"},{"subject":"Span","room":"N5"},{"subject":"BS","room":"N3"}],
+    [{"subject":"QR","room":"D2"},{"subject":"DA&M","room":"DAS"},{"subject":"FA","room":"FAS"},{"subject":"LA","room":"D1"},{"subject":"S&T","room":"D4"},{"subject":"M","room":"MS"}],
+    [{"subject":"FA","room":"FAS"},{"subject":"LA","room":"D1"},{"subject":"M","room":"MS"},{"subject":"M","room":"MS"},{"subject":"QR","room":"D2"},{"subject":"FL&E","room":"N2"}],
+    [{"subject":"S&T","room":"D4"},{"subject":"M","room":"MS"},{"subject":"DA&M","room":"DAS"},{"subject":"LS","room":"N3"},{"subject":"LA","room":"D1"},{"subject":"QR","room":"D2"}],
+    [{"subject":"QR","room":"D2"},{"subject":"DA&M","room":"DAS"},{"subject":"Span","room":"N5"},{"subject":"PE","room":null},{"subject":"CP","room":"N4"},{"subject":"CP","room":"N4"}],
+    [{"subject":"LA","room":"D1"},{"subject":"DA&M","room":"DAS"},{"subject":"DA&M","room":"DAS"},{"subject":"S&T","room":"D4"},{"subject":"PE","room":null},{"subject":"A","room":"MS"}],
+    [{"subject":"DA&M","room":"DAS"},{"subject":"BS","room":"N3"},{"subject":"LA","room":"D1"},{"subject":"QR","room":"D2"}]
+  ],
+  "3EM": [
+    [{"subject":"M","room":"MS"},{"subject":"S&T","room":"D4"},{"subject":"FA","room":"FAS"},{"subject":"DA&M","room":"DAS"},{"subject":"QR","room":"N1"},{"subject":"LA","room":"D1"}],
+    [{"subject":"DA&M","room":"DAS"},{"subject":"S&T","room":"D4"},{"subject":"FL&E","room":"N2"},{"subject":"M","room":"MS"},{"subject":"QR","room":"N1"},{"subject":"LA","room":"D1"}],
+    [{"subject":"PE","room":null},{"subject":"M","room":"MS"},{"subject":"LA","room":"D1"},{"subject":"QR","room":"N1"},{"subject":"DA&M","room":"DAS"},{"subject":"DA&M","room":"DAS"}],
+    [{"subject":"M","room":null},{"subject":"Span","room":"N5"},{"subject":"QR","room":"N1"},{"subject":"S&T","room":null},{"subject":"FA","room":"FAS"},{"subject":"LA","room":"D1"}],
+    [{"subject":"M","room":null},{"subject":"BS","room":"N2"},{"subject":"LS","room":"N3"},{"subject":"LA","room":"D1"},{"subject":"CP","room":null},{"subject":"CP","room":null}],
+    [{"subject":"BS","room":null},{"subject":"S&T","room":"D4"},{"subject":"Span","room":"N5"},{"subject":"QR","room":"N1"},{"subject":"FA","room":"FAS"},{"subject":"A","room":"MS"}],
+    [{"subject":"LA","room":"D1"},{"subject":"PE","room":null},{"subject":"QR","room":"N1"},{"subject":"S&T","room":"D4"}]
+  ],
+  "3HST": [
+    [{"subject":"FL&E","room":"N2"},{"subject":"LA","room":"D1"},{"subject":"PE","room":null},{"subject":"FA","room":"FAS"},{"subject":"DA&M","room":"DAS"},{"subject":"S&T","room":"D6"}],
+    [{"subject":"LA","room":"D1"},{"subject":"M","room":null},{"subject":"BS","room":"N3"},{"subject":"Span","room":"N5"},{"subject":"LA","room":"D1"},{"subject":"S&T","room":"D6"}],
+    [{"subject":"DA&M","room":"DAS"},{"subject":"LS","room":"N3"},{"subject":"FA","room":"FAS"},{"subject":"BS","room":"N3"},{"subject":"S&T","room":"D6"},{"subject":"QR","room":"D2"}],
+    [{"subject":"DA&M","room":"DAS"},{"subject":"LA","room":"D1"},{"subject":"PE","room":null},{"subject":"S&T","room":"D6"},{"subject":"QR","room":"D2"},{"subject":"M","room":"MS"}],
+    [{"subject":"DA&M","room":"DAS"},{"subject":"LA","room":"D1"},{"subject":"S&T","room":"D6"},{"subject":"QR","room":"D2"},{"subject":"CP","room":"D6"},{"subject":"CP","room":"D6"}],
+    [{"subject":"QR","room":"D2"},{"subject":"Span","room":"N5"},{"subject":"FA","room":"FAS"},{"subject":"M","room":"MS"},{"subject":"S&T","room":"D6"},{"subject":"A","room":"MS"}],
+    [{"subject":"QR","room":"D2"},{"subject":"QR","room":"D2"},{"subject":"S&T","room":"D6"},{"subject":"LA","room":"D1"}]
+  ],
+  "4CS": [
+    [{"subject":"Span","room":"N5"},{"subject":"PE","room":null},{"subject":"LA","room":"N6"},{"subject":"QR","room":"N1"},{"subject":"M","room":"MS"},{"subject":"DA&M","room":"DAS"}],
+    [{"subject":"BS","room":"D3"},{"subject":"QR","room":"N1"},{"subject":"S&T","room":"D4"},{"subject":"FL&E","room":"N2"},{"subject":"DA&M","room":"DAS"},{"subject":"DA&M","room":"DAS"}],
+    [{"subject":"QR","room":"N1"},{"subject":"Span","room":"N5"},{"subject":"S&T","room":"D4"},{"subject":"I","room":"N4"},{"subject":"I","room":"N4"},{"subject":"LA","room":"N6"}],
+    [{"subject":"LA","room":"N6"},{"subject":"PE","room":null},{"subject":"I","room":"N4"},{"subject":"QR","room":"N1"},{"subject":"DA&M","room":"DAS"},{"subject":"DA&M","room":"DAS"}],
+    [{"subject":"FA","room":"FAS"},{"subject":"I","room":"N4"},{"subject":"LA","room":"N6"},{"subject":"S&T","room":"D4"},{"subject":"M","room":"MS"},{"subject":"M","room":"MS"}],
+    [{"subject":"S&T","room":null},{"subject":"LS","room":"N3"},{"subject":"LA","room":"N6"},{"subject":"DA&M","room":"DAS"},{"subject":"QR","room":"N1"},{"subject":"A","room":"MS"}],
+    [{"subject":"LA","room":"N6"},{"subject":"QR","room":"N1"},{"subject":"FA","room":"FAS"},{"subject":"BS","room":"D3"}]
+  ],
+  "4EM": [
+    [{"subject":"PE","room":null},{"subject":"QR","room":"N1"},{"subject":"DA&M","room":"DAS"},{"subject":"BS","room":"N2"},{"subject":"LA","room":null},{"subject":"Span","room":"N5"}],
+    [{"subject":"QR","room":"N1"},{"subject":"FA","room":"FAS"},{"subject":"DA&M","room":"DAS"},{"subject":"S&T","room":"D4"},{"subject":"I","room":"N4"},{"subject":"LA","room":null}],
+    [{"subject":"M","room":null},{"subject":"BS","room":"N2"},{"subject":"Span","room":"N5"},{"subject":"S&T","room":"D4"},{"subject":"LA","room":"N6"},{"subject":"QR","room":"N1"}],
+    [{"subject":"QR","room":"N1"},{"subject":"S&T","room":null},{"subject":"S&T","room":"D4"},{"subject":"DA&M","room":"DAS"},{"subject":"LA","room":"N6"},{"subject":"FA","room":"FAS"}],
+    [{"subject":"QR","room":"N1"},{"subject":"QR","room":"N1"},{"subject":"DA&M","room":"DAS"},{"subject":"M","room":"MS"},{"subject":"LA","room":"N6"},{"subject":"PE","room":null}],
+    [{"subject":"M","room":"MS"},{"subject":"LA","room":"N6"},{"subject":"I","room":"N4"},{"subject":"LS","room":"N3"},{"subject":"FL&E","room":"N2"},{"subject":"A","room":"MS"}],
+    [{"subject":"M","room":"MS"},{"subject":"M","room":"MS"},{"subject":"I","room":"N4"},{"subject":"I","room":"N4"}]
+  ],
+  "4HST": [
+    [{"subject":"DA&M","room":"DAS"},{"subject":"LA","room":"N6"},{"subject":"QR","room":"N1"},{"subject":"I","room":"N4"},{"subject":"FA","room":"FAS"},{"subject":"BS","room":"N2"}],
+    [{"subject":"S&T","room":"D6"},{"subject":"I","room":"N4"},{"subject":"I","room":"N4"},{"subject":"LS","room":"N3"},{"subject":"LA","room":"N6"},{"subject":"QR","room":"N1"}],
+    [{"subject":"LA","room":"N6"},{"subject":"S&T","room":"D6"},{"subject":"BS","room":"N2"},{"subject":"Span","room":"N5"},{"subject":"QR","room":"N1"},{"subject":"PE","room":null}],
+    [{"subject":"S&T","room":null},{"subject":"QR","room":"N1"},{"subject":"LA","room":"N6"},{"subject":"PE","room":null},{"subject":"M","room":"MS"},{"subject":"I","room":"N4"}],
+    [{"subject":"S&T","room":null},{"subject":"S&T","room":null},{"subject":"QR","room":"N1"},{"subject":"FL&E","room":"N2"},{"subject":"FA","room":"FAS"},{"subject":"LA","room":"N6"}],
+    [{"subject":"S&T","room":null},{"subject":"QR","room":"N1"},{"subject":"M","room":"MS"},{"subject":"Span","room":"N5"},{"subject":"DA&M","room":"DAS"},{"subject":"A","room":"MS"}],
+    [{"subject":"S&T","room":"D6"},{"subject":"DA&M","room":"DAS"},{"subject":"M","room":"MS"},{"subject":"LA","room":"N6"}]
+  ]
+}
