@@ -7,7 +7,7 @@ const source = readFileSync(new URL('../public/sw.js', import.meta.url), 'utf8')
 const manifest = ['index.html', 'assets/app-123.js', 'assets/app-456.css', 'assets/font-789.woff2'];
 function worker() {
   const handlers = {}, cacheEntries = new Map(), cacheNames = new Set(['unrelated-site', 'isa-shell-%2Fhub%2F-old', 'isa-shell-%2Fother-project%2F-old']);
-  const deleted = [], network = [];
+  const deleted = [], network = [], installRequests=[];let installedHTML='';
   let claimed = 0, skipped = 0;
   const caches = {
     keys: async () => [...cacheNames],
@@ -15,7 +15,8 @@ function worker() {
     open: async name => {
       cacheNames.add(name);
       return {
-        addAll: async urls => { urls.forEach(url => cacheEntries.set(url, `saved:${url}`)); },
+        addAll: async requests => { requests.forEach(request => {installRequests.push(request);cacheEntries.set(request.url, `saved:${request.url}`);}); },
+        put: async (url,response)=>{installedHTML=await response.text();cacheEntries.set(url,`saved:${url}`);},
         match: async request => cacheEntries.get(typeof request === 'string' ? request : request.url)
       };
     }
@@ -26,11 +27,11 @@ function worker() {
     clients: { claim: async () => { claimed++; } },
     skipWaiting: () => { skipped++; }
   };
-  vm.runInNewContext(source.replace('__BUILD_ID__', 'test').replace('__BUILD_ASSETS__', JSON.stringify(manifest)), {
-    URL, self, caches, fetch: async request => { const url = request.url || request; network.push(url); return `network:${url}`; }
+  vm.runInNewContext(source.replace('__BUILD_ID__', 'test').replace('__BUILD_ASSETS__', JSON.stringify(manifest)).replace('__BUILD_SHELL__',JSON.stringify('<html>matched build</html>')), {
+    URL, Request, Response, self, caches, fetch: async request => { const url = request.url || request; network.push(url); return `network:${url}`; }
   });
   return {
-    handlers, cacheEntries, deleted, network, get claimed() { return claimed; }, get skipped() { return skipped; },
+    handlers, cacheEntries, deleted, network,installRequests,get installedHTML(){return installedHTML;}, get claimed() { return claimed; }, get skipped() { return skipped; },
     async lifecycle(name) { let promise; handlers[name]({ waitUntil: value => { promise = value; } }); await promise; },
     async request(path, { mode = 'cors', method = 'GET', authorization = false } = {}) {
       let handled = false, promise;
@@ -96,3 +97,5 @@ test('update remains waiting until explicit user activation message', () => {
   runtime.handlers.message({ data: { type: 'OTHER_MESSAGE' } }); assert.equal(runtime.skipped, 0);
   runtime.handlers.message({ data: { type: 'ACTIVATE_UPDATE' } }); assert.equal(runtime.skipped, 1);
 });
+
+test("install uses build-matched embedded HTML and reloads hashed assets",async()=>{const runtime=worker();await runtime.lifecycle("install");assert.equal(runtime.installedHTML,"<html>matched build</html>");assert.equal(runtime.installRequests.length,3);assert.ok(runtime.installRequests.every(r=>r.cache==="reload"));});

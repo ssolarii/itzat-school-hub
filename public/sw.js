@@ -1,6 +1,7 @@
 /* Filled with exact content-hashed asset paths by scripts/build-sw.mjs. */
 const BUILD_ID = '__BUILD_ID__';
 const BUILD_ASSETS = __BUILD_ASSETS__;
+const BUILD_SHELL_HTML = __BUILD_SHELL__;
 const scope = new URL(self.registration.scope);
 // Several GitHub Pages projects can share an origin. Keep their caches separate.
 const CACHE_PREFIX = `isa-shell-${encodeURIComponent(scope.pathname)}-`;
@@ -9,7 +10,10 @@ const assetURLs = new Set(BUILD_ASSETS.map(path => new URL(path, scope).href));
 const shellURL = new URL('index.html', scope).href;
 
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll([...assetURLs])));
+  event.waitUntil(caches.open(CACHE).then(async cache => {
+    await cache.addAll([...assetURLs].filter(url=>url!==shellURL).map(url=>new Request(url,{cache:'reload'})));
+    await cache.put(shellURL,new Response(BUILD_SHELL_HTML,{headers:{'Content-Type':'text/html; charset=utf-8'}}));
+  }));
 });
 self.addEventListener('activate', event => {
   event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith(CACHE_PREFIX) && key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim()));

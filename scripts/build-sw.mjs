@@ -19,5 +19,6 @@ hash.update(template);
 for (const file of files) { hash.update(relative(dist, file)); hash.update(await readFile(file)); }
 const buildId = hash.digest('hex').slice(0, 16);
 const assets = files.map(file => relative(dist, file).split(sep).join('/'));
-await writeFile(resolve(dist, 'sw.js'), template.replace('__BUILD_ID__', buildId).replace('__BUILD_ASSETS__', JSON.stringify(assets)));
+const html=await readFile(resolve(dist,'index.html'),'utf8');
+await writeFile(resolve(dist, 'sw.js'), template.replace('__BUILD_ID__', buildId).replace('__BUILD_ASSETS__', JSON.stringify(assets)).replace('__BUILD_SHELL__',()=>JSON.stringify(html)));
 process.stdout.write(`Offline shell ${buildId}: ${assets.length} versioned assets.\n`);
