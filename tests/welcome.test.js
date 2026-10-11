@@ -8,7 +8,7 @@ import {loginView,renderTeacherRequests} from '../src/staff-views.js';
 test('welcome has a plain admin link and no school navigation',()=>{
   const html=welcomeView({});
   assert.match(html,/<a href="#request-admin" data-request-admin>Request an admin role<\/a>/);
-  assert.ok(!html.includes('side-nav')); assert.match(html,/Let’s get started/);
+  assert.ok(!html.includes('side-nav')); assert.match(html,/Get started/);
 });
 test('roles are presented as three deliberate choices',()=>{
   const html=welcomeView({step:'role'});
@@ -28,13 +28,13 @@ test('profile cookies round trip scoped preferences and reject corrupt/privilege
 test('parent personalization exposes meaningful interests without claiming notifications',()=>{
   const html=welcomeView({step:'personalize',role:'parent',name:'A',groups:['3CS'],interests:DEFAULT_INTERESTS});
   assert.match(html,/Which class are you following/); assert.equal((html.match(/name="interests"/g)||[]).length,3);
-  assert.match(html,/not email or phone notifications/);
+  assert.match(html,/do not enable email or phone notifications/);
 });
 test('account prompts distinguish approval, optional access and planned questions',()=>{
   const teacher=welcomeView({step:'account',role:'teacher',name:'A'});
   assert.match(teacher,/invite-only/);assert.match(teacher,/Vice Principal/);assert.ok(!teacher.includes('Continue without'));
   const student=welcomeView({step:'account',role:'student',name:'A'});
-  assert.match(student,/strongly recommend/);assert.match(student,/posting is not available yet/);assert.match(student,/Continue without an account/);
+  assert.match(student,/recommend creating a student account/);assert.match(student,/cannot post questions yet/);assert.match(student,/Continue without an account/);
   const parent=welcomeView({step:'account',role:'parent',name:'A'});
   assert.match(parent,/Create an account \(optional\)/);assert.match(parent,/Open my parent overview/);
 });
