@@ -25,4 +25,4 @@ Anchor: Tuesday 13 October 2026 is Day 6. Weekends and holidays pause the seven-
 
 ## Pending integrations
 
-Teacher assignments, Classroom synchronization, student chat, notifications and Play Store packaging are future work. Teacher account-request UI requires migration 002 to be applied. End-to-end staff approval testing requires verified staff test accounts.
+Teacher assignments, Classroom synchronization, student chat, notifications and Play Store packaging are future work. Migrations 001–003 are applied to the separate school project. The first verified Developer account is active. Staff authorization is covered by rollback-only database fixtures; ordinary teacher assignments await the school’s data.

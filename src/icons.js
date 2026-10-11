@@ -3,9 +3,9 @@ import {
   Briefcase, BriefcaseBusiness, Calculator, CalendarClock, CalendarDays,
   Check, CheckCircle2, CircleAlert, Cloud, Dumbbell, FileCheck, FileClock,
   FlaskConical, Footprints, Globe, GraduationCap, Hammer, HeartHandshake,
-  Info, Landmark, Languages, LockKeyhole, LogOut, Mail, Megaphone, Monitor,
-  MonitorPlay, Palette, Presentation, RefreshCw, Repeat2, ShieldCheck,
-  SlidersHorizontal, Sprout, Sun, TriangleAlert, Users, UsersRound, Utensils,
+  Info, Landmark, Languages, LockKeyhole, LogIn, LogOut, Mail, Megaphone, Monitor,
+  MonitorPlay, Palette, Presentation, RefreshCw, Repeat2, Send, ShieldCheck,
+  SlidersHorizontal, Sprout, Sun, TriangleAlert, UserCheck, UserPlus, Users, UsersRound, Utensils,
   Wallet, WifiOff, X
 } from 'lucide';
 
@@ -15,9 +15,9 @@ const registry = {
   BriefcaseBusiness, Calculator, CalendarClock, CalendarDays, Check,
   CheckCircle2, CircleAlert, Cloud, CloudCheck: Cloud, Dumbbell, FileCheck,
   FileClock, FlaskConical, Footprints, Globe, GraduationCap, Hammer,
-  HeartHandshake, Info, Landmark, Languages, LockKeyhole, LogOut, Mail,
+  HeartHandshake, Info, Landmark, Languages, LockKeyhole, LogIn, LogOut, Mail,
   Megaphone, Monitor, MonitorPlay, Palette, Presentation, RefreshCw, Repeat2,
-  ShieldCheck, SlidersHorizontal, Sprout, Sun, TriangleAlert, Users,
+  Send, ShieldCheck, SlidersHorizontal, Sprout, Sun, TriangleAlert, UserCheck, UserPlus, Users,
   UsersRound, Utensils, Wallet, WifiOff, X
 };
 const pascalCase = name => String(name).split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('');
