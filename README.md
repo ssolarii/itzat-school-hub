@@ -9,7 +9,7 @@ Production output is `dist/`. The build generates versioned offline shells for `
 
 ## Access
 
-First visits use Welcome → Your view → Make it yours → Your account. `isa_welcome` stores a greeting name, role, completion flag and parent interests in a scoped cookie; `isa_audience` remembers the selected view. Both are presentation preferences, never authorization claims. Returning visitors get a personal greeting. Settings is the role-switching entry point. Student/parent accounts use normal Supabase email/password authentication; approved class notices stay public and student questions are still planned. Parent preferences filter elective dates while keeping closures in the next seven days visible; early-dismissal reminders cover the next three weeks.
+First visits use three role choices → Name and preferences → Account options. `isa_welcome` stores a greeting name, role, completion flag and parent interests in a scoped cookie; `isa_audience` remembers the selected view. Both are presentation preferences, never authorization claims. Returning visitors get a personal greeting. Settings is the role-switching entry point. Student/parent accounts use normal Supabase email/password authentication; approved class notices stay public and student questions are still planned. Parent preferences filter elective dates while keeping closures in the next seven days visible; early-dismissal reminders cover the next three weeks.
 
 The landing page’s plain “Request an admin role” link starts a verified-account request. Its private note is marked as an admin request, never approved through the Teacher approval action. A Developer reviews the account and assigns permissions separately. No onboarding step grants staff rights.
 
