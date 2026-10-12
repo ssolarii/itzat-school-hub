@@ -3,8 +3,8 @@
  * purple/orange identity. Role cards are the requested functional chooser.
  */
 :root {
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'Helvetica Now Display', sans-serif;
+  --font-body: 'Helvetica Now Display', sans-serif;
   --surface-teacher: #fff3c4;
   --ink-teacher: #645013;
   --surface-parent: #eeeff2;

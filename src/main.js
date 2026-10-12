@@ -1,10 +1,4 @@
-import '@fontsource/dm-sans/latin-400.css';
-import '@fontsource/dm-sans/latin-500.css';
-import '@fontsource/dm-sans/latin-600.css';
-import '@fontsource/dm-sans/latin-700.css';
-import '@fontsource/space-grotesk/latin-500.css';
-import '@fontsource/space-grotesk/latin-600.css';
-import '@fontsource/space-grotesk/latin-700.css';
+import './fonts.css';
 import './app.css';
 import './layout-v57.css';
 import {APP_NAME,APP_SHORT_NAME,APP_VERSION} from './product-info.js';

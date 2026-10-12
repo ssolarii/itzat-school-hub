@@ -23,7 +23,7 @@ Admin: lavender navigation rail, white workspace, clearly named work areas, rest
 | Warm preview | #FFF4DF | #352918 | Substitutions and exceptions |
 | Divider | #E8E1F0 | #42344F | Row boundaries |
 
-Space Grotesk: titles, subject codes and countdown. DM Sans: forms, reading and navigation. Google Fonts are used in the concepts; the implementation should cache or self-host font files for offline use.
+Helvetica Now Display: titles, subject codes, countdown, forms, reading and navigation. Use the supplied local WOFF2 files, included in the offline cache.
 
 ## Desktop measurements
 

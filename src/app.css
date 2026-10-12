@@ -1,6 +1,6 @@
 /* Itz'at School: desktop timetable, quiet reading surfaces, clear editing states. */
 :root {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Helvetica Now Display', sans-serif;
   color: #23103f;
   background: #f7f4fd;
   font-synthesis: none;
@@ -28,7 +28,7 @@ button, input, select, textarea { border-radius: 8px; }
 a { color: var(--purple); text-underline-offset: 4px; }
 svg { width: 21px; height: 21px; flex: none; vertical-align: middle; }
 button svg, a svg { pointer-events: none; }
-h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -.025em; text-wrap: balance; }
+h1, h2, h3 { font-family: 'Helvetica Now Display', sans-serif; letter-spacing: -.025em; text-wrap: balance; }
 h1 { margin: 0; font-size: 30px; line-height: 1.2; }
 h2 { margin: 0 0 7px; font-size: 30px; line-height: 1.2; }
 h3 { margin: 0 0 8px; font-size: 21px; line-height: 1.3; }
@@ -37,8 +37,8 @@ p { margin: 0; line-height: 1.55; text-wrap: pretty; }
 :focus-visible { outline: 3px solid #ae5b08; outline-offset: 4px; }
 .app-shell { --accent: #512393; --rail: #512393; --on-rail: #fcf9ff; --accent-wash: #ebe3fc; display: grid; grid-template-columns: 200px minmax(0, 1fr); min-height: 100vh; }
 .sidebar { background: var(--rail); color: var(--on-rail); padding: 30px 16px 24px; display: flex; flex-direction: column; gap: 36px; }
-.brand { color: inherit; text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; letter-spacing: -.035em; line-height: 1.1; padding: 0 9px; }
-.brand span { display: block; margin-top: 8px; font: 500 14px/1.45 'DM Sans', sans-serif; letter-spacing: 0; }
+.brand { color: inherit; text-decoration: none; font-family: 'Helvetica Now Display', sans-serif; font-size: 36px; font-weight: 700; letter-spacing: -.035em; line-height: 1.1; padding: 0 9px; }
+.brand span { display: block; margin-top: 8px; font: 500 14px/1.45 'Helvetica Now Display', sans-serif; letter-spacing: 0; }
 .side-nav { display: grid; gap: 7px; }
 .side-nav button, .side-nav a { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 12px; border: 0; border-radius: 8px; background: transparent; color: inherit; text-decoration: none; font-size: 15px; text-align: left; line-height: 1.3; }
 .side-nav .active { background: rgb(255 255 255 / 17%); font-weight: 700; }
@@ -64,14 +64,14 @@ p { margin: 0; line-height: 1.55; text-wrap: pretty; }
 .subtle { color: var(--muted); font-size: 14px; }
 .live-strip { display: grid; grid-template-columns: minmax(190px, 1.1fr) minmax(160px, .85fr) minmax(180px, 1fr); gap: 27px; align-items: center; padding: 25px 28px; border-radius: 12px; background: var(--accent); color: #fff; margin-bottom: 28px; box-shadow: 0 7px 22px #38206412; }
 .subject, .subject-code { display: inline-flex; align-items: center; gap: 14px; }
-.subject button, button.subject-code { border: 0; background: transparent; color: inherit; padding: 0; min-height: 40px; text-align: left; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.2; position: relative; }
+.subject button, button.subject-code { border: 0; background: transparent; color: inherit; padding: 0; min-height: 40px; text-align: left; font-family: 'Helvetica Now Display', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.2; position: relative; }
 .subject-code .subject-icon, .subject-code svg { width: 28px; height: 28px; color: var(--accent); }
 .subject-icon { display: inline-flex; align-items: center; flex: none; }
 .room { margin-top: 3px; padding-left: 42px; font-size: 15px; line-height: 1.4; color: var(--muted); }
 .live-strip .subject button, .live-strip .subject-code { font-size: 35px; }
 .live-strip .subject-icon, .live-strip .subject svg, .live-strip .subject-code svg { width: 34px; height: 34px; color: inherit; }
 .live-strip .room { color: #f1e8ff; padding-left: 48px; font-size: 16px; margin-top: 5px; }
-.live-timer strong { display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 43px; letter-spacing: -.03em; color: var(--orange); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.live-timer strong { display: inline-block; font-family: 'Helvetica Now Display', sans-serif; font-size: 43px; letter-spacing: -.03em; color: var(--orange); line-height: 1.2; font-variant-numeric: tabular-nums; }
 .live-timer > span { font-size: 15px; margin-left: 6px; }
 .live-timer small { display: block; margin-top: 7px; font-size: 14px; color: #f1e8ff; }
 .live-next { padding-left: 25px; border-left: 1px solid rgb(255 255 255 / 25%); }
@@ -167,7 +167,7 @@ textarea { min-height: 110px; resize: vertical; }
 .role-choices button.teacher { background: #fff3c4; border-color: #ead996; color: #645013; }
 .role-choices button.parent { background: #eeeff2; border-color: #d3d5dc; color: #414752; }
 .role-choices button:hover { outline: 2px solid currentColor; outline-offset: -2px; }
-.role-choices strong { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 26px; margin: 17px 0 9px; }
+.role-choices strong { display: block; font-family: 'Helvetica Now Display', sans-serif; font-size: 26px; margin: 17px 0 9px; }
 .role-choices p, .role-choices span { font-size: 15px; line-height: 1.5; display: block; }
 .role-icon svg { width: 33px; height: 33px; }
 .login-panel { max-width: 520px; padding: 30px; background: var(--paper); border-radius: 12px; margin: 30px auto; }
@@ -189,7 +189,7 @@ dialog::backdrop { background: #23103f80; }
 .details, details { margin: 20px 0; }
 summary { cursor: pointer; min-height: 40px; padding: 10px 0; color: var(--accent); font-weight: 600; }
 [data-tooltip] { position: relative; }
-[data-tooltip]::after { content: attr(data-tooltip); pointer-events: none; position: absolute; z-index: 20; left: 0; top: calc(100% + 7px); width: max-content; max-width: 280px; padding: 8px 11px; background: #23103f; color: #fff; border-radius: 6px; font: 500 13px/1.45 'DM Sans', sans-serif; letter-spacing: 0; opacity: 0; visibility: hidden; box-shadow: 0 4px 12px #23103f22; }
+[data-tooltip]::after { content: attr(data-tooltip); pointer-events: none; position: absolute; z-index: 20; left: 0; top: calc(100% + 7px); width: max-content; max-width: 280px; padding: 8px 11px; background: #23103f; color: #fff; border-radius: 6px; font: 500 13px/1.45 'Helvetica Now Display', sans-serif; letter-spacing: 0; opacity: 0; visibility: hidden; box-shadow: 0 4px 12px #23103f22; }
 [data-tooltip]:hover::after, [data-tooltip]:focus-visible::after { opacity: 1; visibility: visible; }
 .app-shell[data-audience=admin] { --rail: #e7dcf7; --on-rail: #452275; --accent-wash: #ece4f8; }
 .app-shell[data-audience=teacher] { --rail: #f2d572; --on-rail: #433711; --accent: #73590e; --accent-wash: #fff3c8; --canvas: #fffdf5; }
@@ -271,8 +271,8 @@ summary { cursor: pointer; min-height: 40px; padding: 10px 0; color: var(--accen
   .week-grid { grid-template-columns: 1fr; }
 }
 .role-gate {min-height:100vh; padding:48px 7vw; background:radial-gradient(ellipse at 90% 0%,#eee4ff,transparent 55%),#fbf9ff;}
-.gate-brand {font:700 30px 'Space Grotesk',sans-serif;color:#512393;}
-.gate-brand span {display:block;font:500 14px 'DM Sans',sans-serif; margin-top:6px;}
+.gate-brand {font:700 30px 'Helvetica Now Display',sans-serif;color:#512393;}
+.gate-brand span {display:block;font:500 14px 'Helvetica Now Display',sans-serif; margin-top:6px;}
 .role-gate .landing {max-width:1060px;margin:80px auto 0;}
 .role-gate .landing h2 {font-size:clamp(36px,4vw,60px);line-height:1.08;max-width:800px;text-wrap:balance;}
 .role-gate .landing>p {max-width:650px;margin-top:20px;line-height:1.6;}
@@ -316,7 +316,7 @@ summary { cursor: pointer; min-height: 40px; padding: 10px 0; color: var(--accen
 .welcome-role { display:flex; align-items:center; gap:24px; padding:22px 24px; border:1px solid #e8e1f0; background:#fff; text-align:left; transition:background-color 180ms ease-out, transform 180ms ease-out; }
 .welcome-role>svg:first-child { width:32px; height:32px; color:#512393; }
 .welcome-role>svg:last-child { margin-left:auto; }
-.welcome-role strong { display:block; font:600 25px 'Space Grotesk',sans-serif; }
+.welcome-role strong { display:block; font:600 25px 'Helvetica Now Display',sans-serif; }
 .welcome-role small { display:block; color:#6a5b7d; font-size:15px; margin-top:6px; }
 .welcome-role:hover { background:#ebe3fc; transform:translateX(4px); }
 .welcome-role.teacher:hover { background:#fff0bc; }

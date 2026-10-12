@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('./fonts/HelveticaNowDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('./fonts/HelveticaNowDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('./fonts/HelveticaNowDisplay-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('./fonts/HelveticaNowDisplay-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('./fonts/HelveticaNowDisplay-RegIta.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('./fonts/HelveticaNowDisplay-BoldIta.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
