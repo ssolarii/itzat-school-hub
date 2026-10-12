@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
 const source = readFileSync(new URL('../public/sw.js', import.meta.url), 'utf8');
-const manifest = ['index.html','schedule.html', 'assets/app-123.js', 'assets/app-456.css', 'assets/font-789.woff2'];
+const manifest = ['index.html','schedule.html','chat.html', 'assets/app-123.js', 'assets/app-456.css', 'assets/font-789.woff2'];
 function worker() {
   const handlers = {}, cacheEntries = new Map(), cacheNames = new Set(['unrelated-site', 'isa-shell-%2Fhub%2F-old', 'isa-shell-%2Fother-project%2F-old']);
   const deleted = [], network = [], installRequests=[];let installedHTML='';
@@ -27,7 +27,7 @@ function worker() {
     clients: { claim: async () => { claimed++; } },
     skipWaiting: () => { skipped++; }
   };
-  vm.runInNewContext(source.replace('__BUILD_ID__', 'test').replace('__BUILD_ASSETS__', JSON.stringify(manifest)).replace('__BUILD_SHELLS__',JSON.stringify({'index.html':'<html>matched build</html>','schedule.html':'<html>schedule build</html>'})), {
+  vm.runInNewContext(source.replace('__BUILD_ID__', 'test').replace('__BUILD_ASSETS__', JSON.stringify(manifest)).replace('__BUILD_SHELLS__',JSON.stringify({'index.html':'<html>matched build</html>','schedule.html':'<html>schedule build</html>','chat.html':'<html>chat build</html>'})), {
     URL, Request, Response, self, caches, fetch: async request => { const url = request.url || request; network.push(url); return `network:${url}`; }
   });
   return {
@@ -105,3 +105,5 @@ test('update remains waiting until explicit user activation message', () => {
 });
 
 test("install uses build-matched embedded HTML and reloads hashed assets",async()=>{const runtime=worker();await runtime.lifecycle("install");assert.equal(runtime.installedHTML,"<html>matched build</html>");assert.equal(runtime.installRequests.length,3);assert.ok(runtime.installRequests.every(r=>r.cache==="reload"));});
+
+test("chat navigation uses its own cached shell", async()=>{const runtime=worker();await runtime.lifecycle("install");const result=await runtime.request("chat.html",{mode:"navigate"});assert.equal(result.handled,true);assert.equal(result.response,"saved:https://school.example/hub/chat.html");});

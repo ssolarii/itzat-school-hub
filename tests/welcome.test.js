@@ -30,11 +30,11 @@ test('parent personalization exposes meaningful interests without claiming notif
   assert.match(html,/Which class are you following/); assert.equal((html.match(/name="interests"/g)||[]).length,3);
   assert.match(html,/do not enable email or phone notifications/);
 });
-test('account prompts distinguish approval, optional access and planned questions',()=>{
+test('account prompts distinguish approval, optional access and private community features',()=>{
   const teacher=welcomeView({step:'account',role:'teacher',name:'A'});
   assert.match(teacher,/invite-only/);assert.match(teacher,/Vice Principal/);assert.ok(!teacher.includes('Continue without'));
   const student=welcomeView({step:'account',role:'student',name:'A'});
-  assert.match(student,/recommend creating a student account/);assert.match(student,/cannot post questions yet/);assert.match(student,/Continue without an account/);
+  assert.match(student,/recommend creating a student account/);assert.match(student,/class polls require a verified account/);assert.match(student,/Continue without an account/);
   const parent=welcomeView({step:'account',role:'parent',name:'A'});
   assert.match(parent,/Create an account \(optional\)/);assert.match(parent,/Open my parent overview/);
 });

@@ -27,6 +27,28 @@ Apply migrations in order, then seed only on a fresh database. Migration 002 ins
 
 Anchor: Tuesday 13 October 2026 is Day 6. Weekends and holidays pause the seven-day cycle; asynchronous and event days advance it. Day 7 has four student sessions and 12:20 dismissal. Regular dismissal 15:15; Quick Exit 14:10. Missing rooms and teacher assignments remain unassigned. Official Belize 2026 holidays are included; future government calendars require an approved import.
 
+## Community
+
+Chat, Q+A and account profiles use migrations `202610110004_community.sql` and `202610120005_friends.sql`; apply both before publishing the community frontend. See `supabase/community.md` for permissions and review flows. Chat messages, profiles and member lists stay out of the offline cache and browser storage. Saved GIFs, notification opt-in and the selected room ID are local preferences; message bodies and member lists are never stored locally.
+
+Students select their class themselves. A verified account gets the corresponding class chat when its community profile is first saved. Private DM/group conversations require leadership review. Class polls are private to the class; approved site suggestions and Developer Updates are public. Votes and likes require verified accounts and are separate records. Custom emojis require Developer review.
+
+Profiles accept JPG, PNG, WebP and GIF photos/banners up to 5 MB. Names are self-reported; this release does not verify school identity. Private media uses short-lived signed URLs. Uploaded GIFs up to 1 MB can be saved on this browser. Direct Tenor/Giphy GIF links are also supported.
+
+Reports reveal the reported message to the Developer, not a private conversation's full archive. All ordinary private reads use current server-side class or conversation membership, never the schedule picker or greeting cookie.
+
 ## Pending integrations
 
-Teacher assignments, Classroom synchronization, student chat, notifications and Play Store packaging are future work. Migrations 001–003 are applied to the separate school project. The first verified Developer account is active. Staff authorization is covered by rollback-only database fixtures; ordinary teacher assignments await the school’s data.
+Teacher assignments, Classroom synchronization, notifications and Play Store packaging are future work. Migrations 001–003 are applied to the separate school project. The first verified Developer account is active. Staff authorization is covered by rollback-only database fixtures; ordinary teacher assignments await the school’s data.
+
+Chat opens at `chat.html#chat` in a separate full-height shell. School class channels and Friends/DMs have their own navigation. The profile dock stays at the bottom left. Desktop alerts are opt-in, generic, and available only while the site is open. Closed-tab push and voice/video calling are not implemented. See `chat-research.md` for source-backed layout decisions.
+
+## Schoolwide space and profiles
+
+Migration `202610120006_school_space.sql` follows community 004 and friends 005. It adds explicit schoolwide profile-sharing consent, General/Assignments/Announcements channels, actual heartbeat presence, scoped chat moderators, status emojis, cosmetic tags, readable name colors and account-saved Light/Dark/System themes. Staff roles remain derived from school memberships; self-assigned tags never authorize moderation. Profile edits and preferences save atomically. See `supabase/school-space.md`. Local examples in `.qa` use synthetic accounts/messages and are excluded from production builds.
+
+## First-use guides and release state
+
+Short browser-local guides appear once on first launch and on the first visit to Schedule, Calendar, ISA Updates, Chat, Q+A and Profile. Next, Back, Skip and Escape are supported. Replay guides from Settings. The guide completion keys contain no account data.
+
+Community migrations 004–006 remain unapplied by user choice. This release keeps `communityEnabled: false` in `school-config.json`, showing a clear coming-soon screen for Chat, Q+A and Profiles and preventing their API writes. Set it to true only after approved database setup and live verification. Personal tags are Creative, Music, Gaming, Books, Sports, Night owl, Early bird and Pet lover, with up to four choices.

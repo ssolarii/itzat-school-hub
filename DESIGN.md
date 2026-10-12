@@ -42,3 +42,9 @@ Use Lucide icons with visible labels. Subject icons are 28 px, current-subject i
 The approved V5.7 composition supersedes the provisional measurements above. Use a 168 px desktop rail, 80 px header, 110 px live strip, and 56 px timetable rows. Place the timetable beside ISA Updates. Adjacent matching periods share one row, retaining their individual timing and intervening breaks. Hide ordinary room labels by default; always show a changed substitute room. Expand subject names when the timetable has sufficient width.
 
 The landing page contains three horizontal role choices on desktop, without a progress bar or feature overview. Landing and workspace have separate physical URLs. At 760 px and below, use the optimized single-column schedule, 58 px rows, bottom navigation, and collapsed earlier lessons. Settings retains room visibility and view changes. Mobile web is included in V5.7; native app packaging remains future work.
+
+## Community extension
+
+Chat uses a 260 px conversation list beside one message thread, a bounded scrolling history and a composer below. Q+A uses a readable suggestion list beside its selected detail; Class, Sitewide and Developer Updates are distinct local tabs. Likes and Yes/No votes have separate controls and counts. Developer decisions use plain text, not a decorative status graphic.
+
+Profiles use a preview beside the editor on desktop and above it on mobile. User-selected accent gradients belong only to profile personalization. Private requests, moderation and emoji submissions use disclosures, preserving focus on the conversation. The existing Helvetica Now, colors, button shapes and spacing remain authoritative. At 760 px, all content becomes one column and message moderation targets are at least 44 px high.

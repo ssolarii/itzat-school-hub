@@ -3,10 +3,10 @@ import {
   Briefcase, BriefcaseBusiness, Calculator, CalendarClock, CalendarDays,
   Check, CheckCircle2, CircleAlert, Cloud, Dumbbell, FileCheck, FileClock,
   FlaskConical, Footprints, Globe, GraduationCap, Hammer, HeartHandshake,
-  Info, Landmark, Languages, LockKeyhole, LogIn, LogOut, Mail, MapPin, Megaphone, Monitor,
-  MonitorPlay, Palette, Presentation, RefreshCw, Repeat2, Send, ShieldCheck,
+  Hash, School, UserMinus, Info, Landmark, Languages, LockKeyhole, LogIn, LogOut, Mail, MapPin, Megaphone, MessageCircle, Monitor,
+  MonitorPlay, Palette, Paperclip, Presentation, RefreshCw, Repeat2, Send, ShieldCheck,
   SlidersHorizontal, Sprout, Sun, TriangleAlert, UserCheck, UserPlus, Users, UsersRound, Utensils,
-  Wallet, WifiOff, X
+  Vote, Wallet, WifiOff, X
 } from 'lucide';
 
 // Explicit registry keeps the other 1,500+ Lucide icons out of the app bundle.
@@ -15,10 +15,10 @@ const registry = {
   BriefcaseBusiness, Calculator, CalendarClock, CalendarDays, Check,
   CheckCircle2, CircleAlert, Cloud, CloudCheck: Cloud, Dumbbell, FileCheck,
   FileClock, FlaskConical, Footprints, Globe, GraduationCap, Hammer,
-  HeartHandshake, Info, Landmark, Languages, LockKeyhole, LogIn, LogOut, Mail,
-  Megaphone, Monitor, MonitorPlay, Palette, Presentation, RefreshCw, Repeat2,
+  HeartHandshake, Hash, School, UserMinus, Info, Landmark, Languages, LockKeyhole, LogIn, LogOut, Mail, MapPin,
+  Megaphone, MessageCircle, Monitor, MonitorPlay, Palette, Paperclip, Presentation, RefreshCw, Repeat2,
   Send, ShieldCheck, SlidersHorizontal, Sprout, Sun, TriangleAlert, UserCheck, UserPlus, Users,
-  UsersRound, Utensils, Wallet, WifiOff, X
+  UsersRound, Utensils, Vote, Wallet, WifiOff, X
 };
 const pascalCase = name => String(name).split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('');
 export function hasIcon(name) { return Object.hasOwn(registry, pascalCase(name)); }
