@@ -3,7 +3,7 @@ import {
   Briefcase, BriefcaseBusiness, Calculator, CalendarClock, CalendarDays,
   Check, CheckCircle2, CircleAlert, Cloud, Dumbbell, FileCheck, FileClock,
   FlaskConical, Footprints, Globe, GraduationCap, Hammer, HeartHandshake,
-  Info, Landmark, Languages, LockKeyhole, LogIn, LogOut, Mail, Megaphone, Monitor,
+  Info, Landmark, Languages, LockKeyhole, LogIn, LogOut, Mail, MapPin, Megaphone, Monitor,
   MonitorPlay, Palette, Presentation, RefreshCw, Repeat2, Send, ShieldCheck,
   SlidersHorizontal, Sprout, Sun, TriangleAlert, UserCheck, UserPlus, Users, UsersRound, Utensils,
   Wallet, WifiOff, X

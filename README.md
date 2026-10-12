@@ -1,11 +1,11 @@
-# Itz’at School Hub
+# Itz'at Schedule Assistant V5.7
 
 Desktop-first school schedules, calendar, approved notices and staff administration.
 
 ## Development
 
 Node 24 and pnpm 10: `pnpm install`, `pnpm dev`, `pnpm test`, `pnpm build`.
-Production output is `dist/`. The build generates a versioned offline shell, including local fonts. Routes use URL fragments and assets are relative for GitHub Pages.
+Production output is `dist/`. The build generates versioned offline shells for `index.html` (landing) and `schedule.html` (workspace), including local fonts. Workspace sections use URL fragments and assets are relative for GitHub Pages.
 
 ## Access
 

@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
 const source = readFileSync(new URL('../public/sw.js', import.meta.url), 'utf8');
-const manifest = ['index.html', 'assets/app-123.js', 'assets/app-456.css', 'assets/font-789.woff2'];
+const manifest = ['index.html','schedule.html', 'assets/app-123.js', 'assets/app-456.css', 'assets/font-789.woff2'];
 function worker() {
   const handlers = {}, cacheEntries = new Map(), cacheNames = new Set(['unrelated-site', 'isa-shell-%2Fhub%2F-old', 'isa-shell-%2Fother-project%2F-old']);
   const deleted = [], network = [], installRequests=[];let installedHTML='';
@@ -16,7 +16,7 @@ function worker() {
       cacheNames.add(name);
       return {
         addAll: async requests => { requests.forEach(request => {installRequests.push(request);cacheEntries.set(request.url, `saved:${request.url}`);}); },
-        put: async (url,response)=>{installedHTML=await response.text();cacheEntries.set(url,`saved:${url}`);},
+        put: async (url,response)=>{const html=await response.text();if(url.endsWith('/index.html'))installedHTML=html;cacheEntries.set(url,`saved:${url}`);},
         match: async request => cacheEntries.get(typeof request === 'string' ? request : request.url)
       };
     }
@@ -27,7 +27,7 @@ function worker() {
     clients: { claim: async () => { claimed++; } },
     skipWaiting: () => { skipped++; }
   };
-  vm.runInNewContext(source.replace('__BUILD_ID__', 'test').replace('__BUILD_ASSETS__', JSON.stringify(manifest)).replace('__BUILD_SHELL__',JSON.stringify('<html>matched build</html>')), {
+  vm.runInNewContext(source.replace('__BUILD_ID__', 'test').replace('__BUILD_ASSETS__', JSON.stringify(manifest)).replace('__BUILD_SHELLS__',JSON.stringify({'index.html':'<html>matched build</html>','schedule.html':'<html>schedule build</html>'})), {
     URL, Request, Response, self, caches, fetch: async request => { const url = request.url || request; network.push(url); return `network:${url}`; }
   });
   return {
@@ -61,6 +61,12 @@ test('root and index navigation use the same versioned shell', async () => {
     assert.equal(result.handled, true); assert.equal(result.response, 'saved:https://school.example/hub/index.html');
   }
 });
+test('schedule navigation uses its own cached page', async () => {
+ const runtime=worker();await runtime.lifecycle('install');
+ const result=await runtime.request('schedule.html',{mode:'navigate'});
+ assert.equal(result.handled,true);assert.equal(result.response,'saved:https://school.example/hub/schedule.html');
+});
+
 test('auth, admin, API, query and credential-bearing requests bypass the worker', async () => {
   const runtime = worker(); await runtime.lifecycle('install');
   for (const path of ['auth', 'auth/callback', 'admin', 'admin/permissions', 'api/schedules', 'assets/app-123.js?access_token=redacted']) {

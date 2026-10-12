@@ -3,11 +3,14 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { calendarView, studentView, teacherView, agenda, notices, subject, lessonRow, dateLabel, escape } from '../src/views.js';
 
+import {groupDisplayLessons} from '../src/display-lessons.js';
+import {getLessons} from '../src/schedule.js';
+
 const seed = JSON.parse(readFileSync(new URL('../school-data.json', import.meta.url), 'utf8'));
 const fixture = () => structuredClone(seed);
 const at = (date, time) => new Date(`${date}T${time}:00-06:00`);
 const pattern = html => html.split('<h3>Explore the 7-day cycle</h3>')[1].split('<h3>Upcoming events & holidays</h3>')[0];
-const codes = html => [...html.matchAll(/<span class="subject-icon">.*?<\/span><span>(.*?)<\/span>/g)].map(match => match[1]);
+const codes = html => [...html.matchAll(/<span class="subject-short">(.*?)<\/span>/g)].map(match => match[1]);
 
 test('cycle picker shows the selected repeating day regardless of holidays and date overrides', () => {
   const doc = fixture();
@@ -15,7 +18,7 @@ test('cycle picker shows the selected repeating day regardless of holidays and d
   doc.overrides.push({ id: 'dated', date: '2026-10-13', group: '3CS', session: 1, subject: 'QR', room: 'N4', teacher: 'Test staff' });
   for (let day = 1; day <= 7; day++) {
     const html = calendarView({ document: doc, group: '3CS', calendarDate: '2026-10-13', cycleDay: day });
-    assert.deepEqual(codes(pattern(html)), doc.groups['3CS'][day - 1].map(lesson => escape(lesson.subject)), `Day ${day}`);
+    assert.deepEqual(codes(pattern(html)), groupDisplayLessons(getLessons('2026-10-13','3CS',{...doc,settings:{...doc.settings,anchorDay:day},calendar:{},overrides:[]})).map(lesson => escape(lesson.subject)), `Day ${day}`);
   }
   const half = pattern(calendarView({ document: doc, group: '3CS', calendarDate: '2026-10-13', cycleDay: 7 }));
   assert.ok(half.includes('12:20 PM'));
@@ -38,7 +41,7 @@ test('today adapts to dismissal, half-day bells, and non-campus arrangements', (
   const doc = fixture();
   const prep = studentView({ document: doc, group: '3CS', view: 'today', now: at('2026-10-13', '15:10') });
   assert.ok(prep.includes('Getting ready to leave'));
-  assert.equal((prep.match(/class="lesson-row\s+finished"/g) || []).length, doc.groups['3CS'][5].length);
+  assert.equal((prep.match(/class="lesson-row\s+finished"/g) || []).length, groupDisplayLessons(getLessons('2026-10-13','3CS',doc)).length);
   const after = studentView({ document: doc, group: '3CS', view: 'today', now: at('2026-10-14', '12:21') });
   assert.ok(after.includes('School’s out.'));
   assert.ok(after.includes('Replay today · Day 7'));

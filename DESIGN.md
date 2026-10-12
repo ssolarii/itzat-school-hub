@@ -37,4 +37,8 @@ Keep Today, Next school day and Week local to the schedule. The rail contains Sc
 
 Use Lucide icons with visible labels. Subject icons are 28 px, current-subject icons 34 px. Preserve keyboard focus and native controls. Full names are supplementary reveals; the code and room remain visible. Respect reduced motion; transitions follow user actions rather than automatic page entrances.
 
-Desktop design is the current deliverable. Existing narrow-screen fallback is provisional, and mobile is not part of this design acceptance.
+## V5.7 compact layout
+
+The approved V5.7 composition supersedes the provisional measurements above. Use a 168 px desktop rail, 80 px header, 110 px live strip, and 56 px timetable rows. Place the timetable beside ISA Updates. Adjacent matching periods share one row, retaining their individual timing and intervening breaks. Hide ordinary room labels by default; always show a changed substitute room. Expand subject names when the timetable has sufficient width.
+
+The landing page contains three horizontal role choices on desktop, without a progress bar or feature overview. Landing and workspace have separate physical URLs. At 760 px and below, use the optimized single-column schedule, 58 px rows, bottom navigation, and collapsed earlier lessons. Settings retains room visibility and view changes. Mobile web is included in V5.7; native app packaging remains future work.

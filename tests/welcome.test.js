@@ -7,8 +7,8 @@ import {loginView,renderTeacherRequests} from '../src/staff-views.js';
 
 test('welcome has a plain admin link and no school navigation',()=>{
   const html=welcomeView({});
-  assert.match(html,/<a href="#request-admin" data-request-admin>Request an admin role<\/a>/);
-  assert.ok(!html.includes('side-nav')); assert.match(html,/Get started/);
+  assert.match(html,/<a class="admin-request-link" href="#request-admin" data-request-admin>Request an admin role<\/a>/);
+  assert.ok(!html.includes('side-nav')); assert.equal((html.match(/data-welcome-role=/g)||[]).length,3);assert.ok(!html.includes('welcome-progress'));assert.ok(!html.includes('welcome-footer'));
 });
 test('roles are presented as three deliberate choices',()=>{
   const html=welcomeView({step:'role'});

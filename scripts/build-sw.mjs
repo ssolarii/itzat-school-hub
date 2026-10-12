@@ -9,7 +9,7 @@ async function filesIn(directory) {
 }
 const files = (await filesIn(dist)).filter(file => {
   const path = relative(dist, file).split(sep).join('/');
-  return path === 'index.html' || path === 'manifest.webmanifest' || /^(?:assets\/.*|[^/]+)\.(?:js|css|svg|png|jpg|jpeg|webp|ico|woff2?|ttf)$/i.test(path) && path !== 'sw.js';
+  return ['index.html','schedule.html'].includes(path) || path === 'manifest.webmanifest' || /^(?:assets\/.*|[^/]+)\.(?:js|css|svg|png|jpg|jpeg|webp|ico|woff2?|ttf)$/i.test(path) && path !== 'sw.js';
 }).sort();
 if (!files.some(file => relative(dist, file) === 'index.html')) throw new Error('Build the Vite app before generating the service worker');
 const hash = createHash('sha256');
@@ -19,6 +19,6 @@ hash.update(template);
 for (const file of files) { hash.update(relative(dist, file)); hash.update(await readFile(file)); }
 const buildId = hash.digest('hex').slice(0, 16);
 const assets = files.map(file => relative(dist, file).split(sep).join('/'));
-const html=await readFile(resolve(dist,'index.html'),'utf8');
-await writeFile(resolve(dist, 'sw.js'), template.replace('__BUILD_ID__', buildId).replace('__BUILD_ASSETS__', JSON.stringify(assets)).replace('__BUILD_SHELL__',()=>JSON.stringify(html)));
+const shells=Object.fromEntries(await Promise.all(['index.html','schedule.html'].map(async path=>[path,await readFile(resolve(dist,path),'utf8')])));
+await writeFile(resolve(dist, 'sw.js'), template.replace('__BUILD_ID__', buildId).replace('__BUILD_ASSETS__', JSON.stringify(assets)).replace('__BUILD_SHELLS__',()=>JSON.stringify(shells)));
 process.stdout.write(`Offline shell ${buildId}: ${assets.length} versioned assets.\n`);

@@ -1,18 +1,20 @@
 /* Filled with exact content-hashed asset paths by scripts/build-sw.mjs. */
 const BUILD_ID = '__BUILD_ID__';
 const BUILD_ASSETS = __BUILD_ASSETS__;
-const BUILD_SHELL_HTML = __BUILD_SHELL__;
+const BUILD_SHELLS = __BUILD_SHELLS__;
+const htmlPaths = Object.keys(BUILD_SHELLS);
 const scope = new URL(self.registration.scope);
 // Several GitHub Pages projects can share an origin. Keep their caches separate.
 const CACHE_PREFIX = `isa-shell-${encodeURIComponent(scope.pathname)}-`;
 const CACHE = `${CACHE_PREFIX}${BUILD_ID}`;
 const assetURLs = new Set(BUILD_ASSETS.map(path => new URL(path, scope).href));
 const shellURL = new URL('index.html', scope).href;
+const htmlURLs = new Map(htmlPaths.map(path=>[new URL(path,scope).href,path]));
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(async cache => {
-    await cache.addAll([...assetURLs].filter(url=>url!==shellURL).map(url=>new Request(url,{cache:'reload'})));
-    await cache.put(shellURL,new Response(BUILD_SHELL_HTML,{headers:{'Content-Type':'text/html; charset=utf-8'}}));
+    await cache.addAll([...assetURLs].filter(url=>!htmlURLs.has(url)).map(url=>new Request(url,{cache:'reload'})));
+    for(const [url,path] of htmlURLs)await cache.put(url,new Response(BUILD_SHELLS[path],{headers:{'Content-Type':'text/html; charset=utf-8'}}));
   }));
 });
 self.addEventListener('activate', event => {
@@ -34,8 +36,8 @@ self.addEventListener('fetch', event => {
     }));
     return;
   }
-  if (request.mode === 'navigate' && (url.pathname === scope.pathname || url.href === shellURL)) {
+  if (request.mode === 'navigate' && (url.pathname === scope.pathname || htmlURLs.has(url.href))) {
     // Match the HTML to this worker's hashed bundle; upgrades activate together.
-    event.respondWith(caches.open(CACHE).then(async cache => (await cache.match(shellURL)) || fetch(request)));
+    event.respondWith(caches.open(CACHE).then(async cache => (await cache.match(url.pathname===scope.pathname?shellURL:url.href)) || fetch(request)));
   }
 });
