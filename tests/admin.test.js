@@ -113,12 +113,14 @@ test('role rendering honors teacher scopes and delegated class permissions', () 
   assert.match(delegatedPage, /data-admin-kind="class-archive"[^>]*><input type="hidden" name="group" value="3CS"><fieldset[^>]*>/);
 });
 
-test('grant proposals reject unsupported teacher capabilities and malformed accounts', () => {
+test('grant proposals support delegated teacher permissions and email or UID accounts', () => {
   const doc = fixture(), values = { userId: '123e4567-e89b-12d3-a456-426614174000', role: 'teacher', groups: '3CS', capabilities: ['notices.submit'], active: true };
   assert.equal(proposal(doc, 'member', values).kind, 'member');
-  assert.throws(() => proposal(doc, 'member', { ...values, groups: '*' }), /specific classes/);
-  assert.throws(() => proposal(doc, 'member', { ...values, capabilities: ['notices.publish'] }), /specific classes/);
-  assert.throws(() => proposal(doc, 'member', { ...values, userId: 'not-a-uuid' }), /UUID/);
+  assert.throws(() => proposal(doc, 'member', { ...values, groups: '*' }), /specific class/);
+  assert.deepEqual(proposal(doc, 'member', { ...values, capabilities: ['schedules.manage','chat.moderate'] }).payload.capabilities, ['schedules.manage','chat.moderate']);
+  assert.equal(proposal(doc, 'member', { ...values, userId:'staff@example.invalid' }).payload.userId,'staff@example.invalid');
+  assert.throws(() => proposal(doc, 'member', { ...values, capabilities:['unsupported'] }), /supported capabilities/);
+  assert.throws(() => proposal(doc, 'member', { ...values, userId: 'not-a-uuid' }), /email or UID/);
 });
 
 test('admin public data is escaped in controls and announcement text', () => {

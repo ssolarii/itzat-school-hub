@@ -86,6 +86,14 @@ emoji-picker{width:100%;height:340px;--background:var(--paper);--border-color:va
 .chat-mention-picker>div { max-height:190px; overflow:auto; display:flex; flex-direction:column; }
 .chat-mention-picker [hidden] { display:none; }
 .chat-mention-picker input { width:100%; margin:5px 0; }
+.chat-space-button { position:relative; }
+.chat-notification-dot { position:absolute; top:3px; right:3px; width:9px; height:9px; border-radius:50%; background:#e94755; box-shadow:0 0 0 2px #422166; font-size:0; }
+.chat-notification-dot[hidden] { display:none; }
+.chat-message-scroll .chat-message { position:relative; }
+.chat-message-scroll .chat-message>div { padding-right:166px; }
+.chat-message-scroll .message-actions { position:absolute; top:0; right:0; margin:0; background:var(--paper); border:1px solid var(--line); border-radius:6px; gap:1px; }
+.chat-message-scroll .message-actions button { width:30px; min-height:30px; padding:5px; }
+@media(max-width:760px) { .chat-message-scroll .chat-message>div { padding-right:0; }.chat-message-scroll .message-actions { position:static; width:max-content; margin-top:6px; }.chat-message-scroll .message-actions button { width:38px;min-height:44px; } }
 
 .chat-unread-count { margin-left:auto;background:var(--purple);color:#fff;font-size:11px;min-width:19px;height:19px;border-radius:10px;display:grid;place-items:center;font-variant-numeric:tabular-nums;flex:none; }
 
