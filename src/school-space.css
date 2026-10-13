@@ -5,3 +5,6 @@
 :root[data-account-theme=dark]{color:var(--ink);background:var(--canvas);--warm:#352918;--surface-teacher:#3a321d;--ink-teacher:#ffe095;--surface-parent:#292a30;--ink-parent:#d9dbe3}:root[data-account-theme=dark] .app-shell{--accent-wash:#362747}:root[data-account-theme=dark] .button.primary{background:#6940a8;color:#fff}
 
 :root[data-account-theme=dark] .profile-primary,:root[data-account-theme=dark] .chat-send,:root[data-account-theme=dark] .chat-unread-count{background:#6940a8;color:#fff}
+
+.school-admin-panel .chat-panel-form label:has(> input[type=checkbox]){display:flex;align-items:center;gap:10px;line-height:1.4}
+.school-admin-panel .chat-panel-form input[type=checkbox]{width:18px;height:18px;min-height:18px;flex:none;margin:0;padding:0;accent-color:var(--purple)}
