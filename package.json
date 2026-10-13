@@ -1,1 +1,26 @@
-{"name":"itzat-school-hub","version":"1.0.0","private":true,"type":"module","scripts":{"dev":"vite --host 127.0.0.1","build":"vite build && node scripts/build-sw.mjs","preview":"vite preview --host 127.0.0.1","test":"node --test --test-isolation=none tests/*.test.js"},"dependencies":{"@fontsource/dm-sans":"^5.3.0","@fontsource/space-grotesk":"^5.3.0","@supabase/supabase-js":"^2.99.0","lucide":"^0.468.0"},"devDependencies":{"vite":"^7.0.0"}}
+{
+  "name": "itzat-school-hub",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build && node scripts/build-sw.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test --test-isolation=none tests/*.test.js",
+    "test:db": "node scripts/test-chat-db.mjs"
+  },
+  "dependencies": {
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0",
+    "@supabase/supabase-js": "^2.99.0",
+    "@tabler/icons": "^3.49.0",
+    "emoji-picker-element": "^1.29.1",
+    "emoji-picker-element-data": "^1.8.0",
+    "lucide": "^0.468.0"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "vite": "^7.0.0"
+  }
+}

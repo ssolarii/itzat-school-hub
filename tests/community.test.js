@@ -6,7 +6,7 @@ import {createCommunityController,safeGifURL,readSavedGifs} from '../src/communi
 
 const session={user:{id:'student-a',email_confirmed_at:'2026-10-11'}};
 const calls=[];
-function client(data={}){return {rpc:async(name,args)=>{calls.push({name,args});return {data:data[name]??[],error:null};},storage:{from:()=>({createSignedUrls:async paths=>({data:paths.map(path=>({path,signedUrl:`https://school.example/${path}`}))})})}};}
+function client(data={}){return {rpc:async(name,args)=>{calls.push({name,args});return {data:data[name]??(name==='community_admission_state'?{admitted:true}:[]),error:null};},storage:{from:()=>({createSignedUrls:async paths=>({data:paths.map(path=>({path,signedUrl:`https://school.example/${path}`}))})})}};}
 test('community adapter keeps vote, like and reviews separate with typed RPC parameters',async()=>{
   calls.length=0;const api=createCommunityApi(client());
   await api.votePost('p',true);await api.likePost('p',true);await api.reviewRoom('r',false);await api.setDecision('p','no','Reason');

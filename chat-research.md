@@ -22,3 +22,5 @@ School is an organizational space containing the user's permitted class channels
 [WebRTC peer connections](https://webrtc.org/getting-started/peer-connections) require signaling and commonly TURN relays. Voice calling remains a proposal until hosting, call acceptance, blocking and moderation are specified. Do not add an inert call button.
 
 Rate limits stay in PostgreSQL, so a client cannot bypass them. Bound messages, conversation creation, uploads, friend requests and notification reads independently. Existing private class and DM rules remain in force.
+
+The production revision uses [Tabler SVG icons](https://docs.tabler.io/icons/static-files/svg) for profile symbols and [emoji-picker-element](https://github.com/nolanlawson/emoji-picker-element) for the searchable native emoji picker. Emoji data is served locally and picker code is loaded when needed. Messaging uses [Supabase Postgres Changes](https://supabase.com/docs/guides/realtime/postgres-changes) behind the same room authorization policies as API reads.

@@ -11,9 +11,23 @@ export function createSchoolSpaceApi(client) {
     return data;
   };
   return {
+    admissionState: () => rpc('community_admission_state'),
+    requestAdmission: (name,note='') => rpc('community_request_admission',{p_name:name,p_note:note}),
+    listAdmissionRequests: () => rpc('community_admission_requests'),
+    reviewAdmission: (id,approve) => rpc('community_review_admission',{p_id:id,p_approve:approve}),
+    createInvite: () => rpc('community_create_invite'),
+    redeemInvite: token => rpc('community_redeem_invite',{p_token:token}),
+    listInvites: () => rpc('community_list_invites'),
+    revokeInvite: id => rpc('community_revoke_invite',{p_id:id}),
+    discover: () => rpc('community_discover'),
     getState: () => rpc('school_space_get_state'),
     savePreferences: (preferences) => rpc('school_space_preferences', { p_preferences: preferences }),
     saveProfile: (profile, preferences = {}) => rpc('school_space_save_profile', { p_profile: profile, p_preferences: preferences }),
+    updateServer: ({ name, description, iconKey='school', iconPath=null, joinPolicy=null }) => rpc('school_space_update_server', { p_name: name, p_description: description, p_icon_key:iconPath?null:iconKey, p_icon_path:iconPath, p_join_policy:joinPolicy }),
+    saveChannel: ({ id = null, name, description = '', category = 'Conversation', postingPolicy='members' }) => rpc('school_space_save_channel', { p_id: id, p_name: name, p_description: description, p_category: category, p_posting_policy:postingPolicy }),
+    setChannelArchived: (id, archived = true) => rpc('school_space_set_channel_archived', { p_id: id, p_archived: archived }),
+    createBadge: ({ name, description = '', iconKey = 'award', color = '#512393' }) => rpc('school_space_create_badge', { p_name: name, p_description: description, p_icon_key: iconKey, p_color: color }),
+    awardBadge: (userId, badgeId, active = true) => rpc('school_space_award_badge', { p_user: userId, p_badge: badgeId, p_active: active }),
     heartbeat: () => rpc('school_space_heartbeat'),
     listMembers: () => rpc('school_space_members'),
     assignModerator: (userId, permissions = [], active = true) => rpc('school_space_assign_moderator', {

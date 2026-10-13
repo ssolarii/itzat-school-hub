@@ -20,6 +20,8 @@ export function createCommunityApi(client) {
       p_kind: kind, p_title: title, p_participants: participants,
     }),
     reviewRoom: (id, approve) => rpc('community_review_room', { p_id: id, p_approve: approve }),
+    respondRoom: (id, accept) => rpc('community_respond_room', {p_id:id,p_accept:accept}),
+    leaveRoom: id => rpc('community_leave_room', {p_id:id}),
     messages: (roomId, before = null) => rpc('community_messages', { p_room: roomId, p_before: before }),
     sendMessage: ({ roomId, body = '', mediaPath = null, emojiId = null, gifUrl = null }) => rpc('community_send_message', {
       p_room: roomId, p_body: body, p_media_path: mediaPath, p_emoji: emojiId, p_gif_url: gifUrl,
@@ -51,7 +53,7 @@ export function createCommunityApi(client) {
       if (!types[file?.type] || !Number.isFinite(file.size) || file.size < 1 || file.size > 5 * 1024 * 1024) {
         throw new Error('Choose a JPG, PNG, WebP or GIF under 5 MB.');
       }
-      if (!['avatar', 'banner', 'emoji', 'chat'].includes(kind)) throw new Error('Choose a valid image use.');
+      if (!['avatar', 'banner', 'emoji', 'chat', 'server'].includes(kind)) throw new Error('Choose a valid image use.');
       const session = unwrap(await client.auth.getSession());
       if (!session?.session?.user?.id) throw new Error('Sign in before uploading an image.');
       const path = `${session.session.user.id}/${kind}/${crypto.randomUUID()}.${types[file.type]}`;

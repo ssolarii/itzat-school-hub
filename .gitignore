@@ -7,3 +7,4 @@ dist/
 site-source.zip
 .pnpm-store/
 .impeccable/
+!public/itzat-school-logo.jpg

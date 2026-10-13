@@ -1,0 +1,2 @@
+// IME composition, Shift+Enter and held Enter must never send by accident.
+export function sendOnEnter(event){if(event.key!=='Enter'||event.shiftKey||event.isComposing||event.keyCode===229||event.altKey||event.ctrlKey||event.metaKey)return false;const target=event.target;if(!target?.matches?.('[data-community-form="message"] [name="body"]'))return false;event.preventDefault();const form=target.form;if(event.repeat||!form||form.querySelector('[type="submit"]')?.disabled)return false;form.requestSubmit();return true;}

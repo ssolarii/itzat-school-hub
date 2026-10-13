@@ -1,3 +1,4 @@
+import {featuredBadge} from './chat-decorations.js';
 import {escape as e, icon} from './views.js';
 import {readableUsernameColor} from './profile-color.js';
 import {renderBio,renderStatus} from './profile-modal.js';
@@ -14,7 +15,7 @@ const message=(title,body)=>`<div class="community-empty"><h3>${e(title)}</h3><p
 const name=p=>p?.real_name||p?.realName||p?.name||'School member';
 const picture=p=>safeCommunityMedia(p?.avatar_url||p?.avatarUrl);
 function avatar(p){const url=picture(p);return url?`<img class="community-avatar" src="${e(url)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:`<span class="community-avatar" aria-hidden="true">${e(name(p).slice(0,1).toUpperCase())}</span>`;}
-function identity(p,emojis=[]){const nameColor=readableUsernameColor(p);return `<span class="community-identity"><strong ${nameColor?`style="color:${nameColor}"`:""}>${e(p?.display_name||p?.displayName||name(p))}</strong>${p?.display_name||p?.displayName?`<span>${e(name(p))}</span>`:''}</span>`;}
+function identity(p){const nameColor=readableUsernameColor(p);return `<span class="community-identity"><strong ${nameColor?`style="color:${nameColor}"`:''}>${e(p?.display_name||p?.displayName||name(p))}${featuredBadge(p)}</strong>${p?.display_name||p?.displayName?`<span>${e(name(p))}</span>`:''}</span>`;}
 const date=value=>{const d=new Date(value);return Number.isNaN(d.getTime())?'':d.toLocaleString('en-BZ',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});};
 const profileFor=(model,user)=>model.profiles?.find(p=>p.user_id===user||p.id===user)||model.peers?.find(p=>p.user_id===user||p.id===user)||{real_name:'School member'};
 function gate(title,body){return `<div class="community-gate">${icon('lock-keyhole')}<div><h3>${e(title)}</h3><p>${e(body)}</p>${action('sign-in','Sign in or create an account','','primary')}</div></div>`;}
