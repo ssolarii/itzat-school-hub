@@ -23,8 +23,12 @@ export function createCommunityApi(client) {
     respondRoom: (id, accept) => rpc('community_respond_room', {p_id:id,p_accept:accept}),
     leaveRoom: id => rpc('community_leave_room', {p_id:id}),
     messages: (roomId, before = null) => rpc('community_messages', { p_room: roomId, p_before: before }),
-    sendMessage: ({ roomId, body = '', mediaPath = null, emojiId = null, gifUrl = null }) => rpc('community_send_message', {
-      p_room: roomId, p_body: body, p_media_path: mediaPath, p_emoji: emojiId, p_gif_url: gifUrl,
+    mentionDirectory: roomId => rpc('community_mention_directory',{p_room:roomId}),
+    editMessage: (id,body) => rpc('community_edit_message',{p_id:id,p_body:body}),
+    deleteMessage: id => rpc('community_delete_message',{p_id:id}),
+    reactMessage: (id,emoji,active) => rpc('community_react_message',{p_id:id,p_emoji:emoji,p_active:active}),
+    sendMessage: ({ roomId, body = '', mediaPath = null, emojiId = null, gifUrl = null, replyTo = null }) => rpc('community_send_message', {
+      p_room: roomId, p_body: body, p_media_path: mediaPath, p_emoji: emojiId, p_gif_url: gifUrl, p_reply_to:replyTo,
     }),
     reportMessage: (messageId, reason) => rpc('community_report_message', { p_message: messageId, p_reason: reason }),
     listPosts: ({ scope = 'site', classGroup = null, pending = false } = {}) => rpc('community_list_posts', {

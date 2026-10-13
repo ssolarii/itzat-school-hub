@@ -11,7 +11,7 @@ const tabs = [
   ['classes', 'Classes', 'classes.manage'], ['settings', 'Bell times & cycle', 'calendar.manage'],
   ['permissions', 'Permissions', 'members.manage']
 ];
-const delegated = ['schedules.manage', 'classes.manage', 'subjects.manage', 'calendar.manage', 'substitutions.manage', 'notices.submit', 'notices.publish', 'banners.manage'];
+const delegated = ['schedules.manage', 'classes.manage', 'subjects.manage', 'calendar.manage', 'substitutions.manage', 'notices.submit', 'notices.publish', 'banners.manage', 'chat.moderate', 'chat.emojis', 'chat.kick'];
 const leading = member => !!member?.active && ['developer', 'principal'].includes(member.role);
 const permits = (member, capability) => !!member?.active && (capability === 'members.manage' ? member.role === 'developer' : leading(member) || member.capabilities?.includes(capability));
 const inScope = (member, group) => leading(member) || member?.groups?.includes('*') || member?.groups?.includes(group);
@@ -115,16 +115,19 @@ function settings(doc, enabled) {
   return form('settings', `<h3>Cycle anchor</h3><p class="subtle">The confirmed anchor is Tuesday, 13 October 2026, Day 6. Changing this recalculates dates across the school.</p><div class="form-grid" style="margin-top:23px">${field('Known school date', 'anchorDate', input('anchorDate', doc.settings?.anchorDate || '', 'date', 'required'))}${field('Cycle day on this date', 'anchorDay', select('anchorDay', Array.from({ length: 7 }, (_, i) => option(i + 1, `Day ${i + 1}`, doc.settings?.anchorDay)).join('')))}</div>${profiles}${submit()}`, enabled);
 }
 
-function permissions(doc, enabled) {
-  return form('member', `<h3>Account permissions</h3><p class="subtle">The account must already exist in Supabase Authentication. Developer accounts alone can grant access. You cannot change your own permissions.</p><div class="form-grid" style="margin-top:23px">
-    ${field('Existing account ID', 'userId', input('userId', '', 'text', 'required pattern="[0-9a-fA-F-]{36}"'), 'Use the account UUID, not its email address.')}
-    ${field('Role', 'role', select('role', option('teacher', 'Teacher', 'teacher') + option('principal', 'Principal / Vice Principal') + option('codeveloper', 'Admin / Codeveloper') + option('developer', 'Developer')))}
-    ${field('Class scope', 'groups', input('groups', '', 'text'), 'Comma-separated class codes. Use * only for schoolwide codevelopers. Teachers require specific classes.')}
-    ${field('Account status', 'active', select('active', option('true', 'Active', 'true') + option('false', 'Access paused')))}
-    </div><section class="section"><h3>Delegated capabilities</h3><p class="subtle">Teacher accounts may only submit notices for approval. Principal and Developer roles have full publishing rights.</p><div class="permission-list" style="margin-top:16px">${delegated.map(cap => `<label><span>${esc(cap.replace('.manage', ' management').replace('notices.submit', 'Submit notices for review').replace('notices.publish', 'Publish notices'))}</span><input type="checkbox" name="capabilities" value="${esc(cap)}"></label>`).join('')}</div></section>${submit('Review permission change')}`, enabled);
+const permissionLabels = {'schedules.manage':'Edit timetables','classes.manage':'Create and archive classes','subjects.manage':'Manage subjects','calendar.manage':'Edit holidays, bell times and cycle','substitutions.manage':'Set substitutes','notices.submit':'Submit announcements','notices.publish':'Publish announcements','banners.manage':'Set the school banner','chat.moderate':'Moderate schoolwide messages','chat.emojis':'Upload schoolwide emojis for review','chat.kick':'Remove members from schoolwide chat'};
+function permissions(doc, enabled, account = null) {
+  const current=account||{role:'codeveloper',groups:['*'],capabilities:[],active:true};
+  return form('member', `<h3>Account permissions</h3><p class="subtle">Find an existing account by email or UID. Only Developers can change access. Award badges do not grant permissions.</p><div class="form-grid" style="margin-top:23px">
+    ${field('Email or account UID', 'userId', input('userId', account?.user_id||'', 'text', 'required maxlength="320" autocomplete="off"'), account?.email||'The person must already have an account.')}
+    <div class="field"><button class="button secondary" type="button" data-member-lookup>Find account</button></div>
+    ${field('Role', 'role', select('role', ['codeveloper','developer','principal','teacher'].map(role=>option(role,({codeveloper:'Admin - selected permissions',developer:'Developer - full access',principal:'Principal / Vice Principal',teacher:'Teacher'})[role],current.role)).join('')))}
+    ${field('Class scope', 'groups', input('groups', (current.groups||[]).join(', ')), 'Use * for schoolwide access, or comma-separated class codes. Teachers need specific classes.')}
+    ${field('Access', 'active', select('active', option('true','Grant / keep access',String(current.active))+option('false','Revoke staff and moderator access',String(current.active))))}
+    </div><section class="section"><h3>Choose permissions</h3><p class="subtle">Admins receive only the checked permissions. Developer and Principal roles have full school publishing rights. Teachers receive the checked permissions within their assigned classes.</p><div class="permission-list" style="margin-top:16px">${delegated.map(cap=>`<label><span>${esc(permissionLabels[cap])}</span><input type="checkbox" name="capabilities" value="${esc(cap)}" ${current.capabilities?.includes(cap)?'checked':''}></label>`).join('')}</div></section>${submit('Review access change')}`, enabled);
 }
 
-export function renderAdmin({ document: doc, membership, tab = 'schedule', group = '3CS', day = 1, today }) {
+export function renderAdmin({ document: doc, membership, tab = 'schedule', group = '3CS', day = 1, today, permissionAccount = null }) {
   if (!membership?.active) return empty('Sign in with an approved staff account to access school administration.');
   const scopedGroups = groupNames(doc).filter(code => inScope(membership, code));
   if (!scopedGroups.includes(group)) group = scopedGroups[0] || groupNames(doc)[0];
@@ -134,7 +137,7 @@ export function renderAdmin({ document: doc, membership, tab = 'schedule', group
   if (!tabAllowed(tabs.find(item => item[0] === tab))) tab = tabs.find(tabAllowed)?.[0] || 'schedule';
   const enabled = tabAllowed(tabs.find(item => item[0] === tab));
   const chooseGroup = ['schedule', 'substitute'].includes(tab);
-  const renderers = { schedule: () => timetable(doc, group, day, enabled), substitute: () => substitute(doc, group, today, enabled), calendar: () => calendar(doc, today, enabled), notices: () => notices(doc, membership, group, enabled), banner: () => banner(doc, enabled), subjects: () => subjects(doc, enabled), classes: () => classes(doc, enabled, membership), settings: () => settings(doc, enabled), permissions: () => permissions(doc, enabled) };
+  const renderers = { schedule: () => timetable(doc, group, day, enabled), substitute: () => substitute(doc, group, today, enabled), calendar: () => calendar(doc, today, enabled), notices: () => notices(doc, membership, group, enabled), banner: () => banner(doc, enabled), subjects: () => subjects(doc, enabled), classes: () => classes(doc, enabled, membership), settings: () => settings(doc, enabled), permissions: () => permissions(doc, enabled, permissionAccount) };
   return `<div class="page-heading"><div><h2>School administration</h2><p>Review each change before it reaches students and families.</p></div><span class="badge">${esc({ developer: 'Developer', principal: 'Principal / Vice Principal', teacher: 'Teacher', codeveloper: 'Admin / Codeveloper' }[membership.role] || membership.role)}</span></div>
     <nav class="editor-tabs" aria-label="Administration areas">${tabs.map(item => `<button type="button" data-action="admin-tab" data-admin-tab="${item[0]}" data-tab="${item[0]}" class="${item[0] === tab ? 'active' : ''}"${tabAllowed(item) ? '' : ' disabled'}>${item[1]}</button>`).join('')}</nav>
     ${chooseGroup ? `<div class="toolbar"><div class="class-picker"><label for="admin-group-picker">Class</label><select id="admin-group-picker" data-action="admin-group" data-admin-group>${groupOptions(doc, group, membership)}</select></div>${tab === 'schedule' ? `<div class="class-picker"><label for="admin-day-picker">Cycle day</label><select id="admin-day-picker" data-action="admin-day" data-admin-day>${Array.from({ length: 7 }, (_, i) => option(i + 1, `Day ${i + 1}`, day)).join('')}</select></div>` : ''}</div>` : ''}
@@ -271,11 +274,11 @@ export function handleAdminSubmit(formElement, original) {
     }
     case 'member': {
       const userId = required(data, 'userId'), role = value('role'), capabilities = data.getAll('capabilities').map(String), groups = value('groups').split(',').map(item => item.trim()).filter(Boolean);
-      if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(userId)) throw new Error('Enter the existing account UUID.');
+      if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(userId) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userId)) throw new Error('Enter an existing account email or UID.');
       if (!['developer', 'principal', 'teacher', 'codeveloper'].includes(role)) throw new Error('Choose a valid staff role.');
       if (capabilities.some(cap => !delegated.includes(cap))) throw new Error('Choose supported capabilities.');
       if (groups.some(code => code !== '*' && !doc.groups[code])) throw new Error('Use existing class codes for scopes.');
-      if (role === 'teacher' && (capabilities.some(cap => cap !== 'notices.submit') || groups.includes('*'))) throw new Error('Teachers may submit notices for their specific classes only.');
+      if (role === 'teacher' && groups.includes('*')) throw new Error('Teachers require specific class scopes.');
       const payload = { userId, role, capabilities, groups: [...new Set(groups)], active: value('active') !== 'false' };
       return { document: original, kind: 'member', payload, summary: `Set account ${userId} to ${role}, ${payload.active ? 'active' : 'paused'}. Scope: ${groups.join(', ') || 'none'}.` };
     }

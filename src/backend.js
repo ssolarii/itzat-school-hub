@@ -73,9 +73,12 @@ export function createBackend({ url, key }) {
       if (!Number.isSafeInteger(expectedRevision) || expectedRevision < 0) throw new Error('Approving a notice requires the revision you last loaded.');
       return publication(await client.rpc('approve_school_notice', { p_id: id, p_expected_revision: expectedRevision }));
     },
+    async lookupAccount(identifier) {
+      return checked(await client.rpc('lookup_school_account', {p_identifier:identifier}), 'Account could not be found.');
+    },
     async setMember({ userId, role, capabilities = [], groups = [], active = true }) {
-      return checked(await client.rpc('set_school_member', {
-        p_user_id: userId, p_role: role, p_capabilities: capabilities, p_groups: groups, p_active: active,
+      return checked(await client.rpc('set_school_access', {
+        p_identifier: userId, p_role: role, p_capabilities: capabilities, p_groups: groups, p_active: active,
       }), 'Membership could not be changed.');
     },
     async listDrafts() {
