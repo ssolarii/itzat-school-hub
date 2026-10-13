@@ -1,0 +1,8 @@
+.chat-toast-region{position:fixed;z-index:120;right:24px;bottom:24px;display:grid;gap:10px;width:min(400px,calc(100vw - 32px));pointer-events:none}
+.chat-toast{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:16px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgb(0 0 0 / 22%);pointer-events:auto}
+.chat-toast p{flex:1 1 100%;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.chat-toast button{border:1px solid var(--line);background:var(--wash);color:var(--ink);padding:7px 10px;min-height:34px;font-size:13px}
+.chat-toast .chat-toast-dismiss{margin-left:auto;background:transparent;color:var(--muted)}
+.chat-toast-error{border-color:#bb6220}
+@media(prefers-reduced-motion:no-preference){.chat-toast{animation:chat-alert-in 160ms ease-out}@keyframes chat-alert-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}}
+@media(max-width:760px){.chat-toast-region{right:16px;bottom:16px}}

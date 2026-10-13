@@ -1,7 +1,8 @@
 import {renderChatAdmission} from './chat-access.js';
 import {createCommunityApi} from './community-api.js';
 import {renderCommunity,renderMessageList} from './community-views.js';
-import {renderChatShell} from './chat-shell.js';
+import {renderChatShell,renderChatSidebar} from './chat-shell.js';
+import {paintIcons} from './icons.js';
 import {createFriendsApi} from './friends-api.js';
 import {createChatNotifications} from './chat-notifications.js';
 import {createSchoolSpaceApi} from './school-space-api.js';
@@ -17,12 +18,13 @@ export function safeGifURL(value) {
 export function readSavedGifs(storage) {
   try { const data=JSON.parse(storage.getItem(GIF_KEY)||'[]'); return Array.isArray(data)?data.filter(g=>g&&(safeGifURL(g.url)||localGif(g.url))).slice(0,40).map(g=>({url:localGif(g.url)?g.url:safeGifURL(g.url),name:String(g.name||'Saved GIF').slice(0,60)})):[]; } catch { return []; }
 }
-export function createCommunityController({enabled=true,client,storage,getContext,onChange,onNavigate}) {
+export function createCommunityController({enabled=true,client,storage,getContext,onChange,onNavigate,onAlert=()=>{},onClearAlerts=()=>{}}) {
   const api=client?createCommunityApi(client):null;
   const friendsApi=client?createFriendsApi(client):null;
   const spaceApi=client?createSchoolSpaceApi(client):null;
   const previews=createProfilePreviewManager();
-  let generation=0,userId=null,section='qa',loading=false,accountTheme='system';
+  let generation=0,userId=null,section='qa',loading=false,accountTheme='system',messageRequest=null,lastMessageFetch=0,lastAlertError='',friendPollBusy=false,relationshipsReady=false;
+  let seenFriendStates=new Map(),seenInvites=new Set();
   const mediaCache=new Map();
   const blank=()=>({profile:null,profiles:[],peers:[],friends:[],friendRequests:[],blocks:[],conversations:[],activeConversationId:null,messages:[],qaScope:'site',proposals:[],announcements:[],reviewQueue:[],emojis:[],savedGifs:readSavedGifs(storage),joinRequests:[],error:'',loaded:false,groups:[],messageDraft:'',fromSchedule:typeof location!=='undefined'&&new URLSearchParams(location.search).get('from')==='schedule',chatSpace:'school',chatMain:'thread',friendTab:'all',unreadCounts:{}});
   let model=blank();
@@ -31,14 +33,14 @@ export function createCommunityController({enabled=true,client,storage,getContex
   function modalClose(){const decline=model.chatSpace==='campus'&&!model.spaceState?.profile?.space_onboarded;if(decline){model.chatSpace='school';model.activeConversationId=model.conversations.find(r=>r.kind==='class')?.id||null;model.messages=[];}previews.clear();model.profileMediaPreviews={};model.profileEditDraft=null;model.profileModalOpen=false;model.spaceOnboardingOpen=false;changed();if(decline)void load();}
   const context=()=>getContext();
   const pendingView=()=>'<main class="chat-guest"><a href="schedule.html#schedule">Back to Schedule Assistant</a><section><h1>Community features are coming soon.</h1><p>Chat, Q+A and account profiles are still being set up. Your schedule and school notices are available now.</p></section></main>';
-  const alerts=createChatNotifications({storage,api:friendsApi,getUser:()=>context().session?.user,isViewingRoom:id=>section==='chat'&&model.chatMain!=='friends'&&model.activeConversationId===id&&!!document.querySelector('.chat-main-thread'),onUnread:counts=>{model.unreadCounts=counts;if(typeof document!=='undefined')document.querySelectorAll('[data-room-unread]').forEach(el=>{const count=counts[el.dataset.roomUnread]||0;el.textContent=String(count);el.hidden=!count;});},onOpen:roomId=>{model.activeConversationId=roomId;storage.setItem?.(`school-chat-room:${context().session?.user.id}`,roomId);onNavigate('chat');if(section==='chat')void load();}});
+  const alerts=createChatNotifications({storage,api:friendsApi,getUser:()=>context().session?.user,isViewingRoom:id=>section==='chat'&&model.chatMain!=='friends'&&model.activeConversationId===id&&!!document.querySelector('.chat-main-thread'),onUnread:counts=>{model.unreadCounts=counts;if(typeof document!=='undefined')document.querySelectorAll('[data-room-unread]').forEach(el=>{const count=counts[el.dataset.roomUnread]||0;el.textContent=String(count);el.hidden=!count;});},onActivity:event=>{const token=generation;onAlert('New message in another conversation.',{key:'message:'+event.room_id,actionLabel:'Open chat',onAction:()=>{if(token!==generation)return;model.activeConversationId=event.room_id;model.chatMain='thread';model.chatSpace=model.conversations.find(r=>r.id===event.room_id)?.kind==='school'?'campus':model.conversations.find(r=>r.id===event.room_id)?.kind==='class'?'school':'dms';onNavigate('chat');changed();void pollMessages();}});},onOpen:roomId=>{model.activeConversationId=roomId;storage.setItem?.(`school-chat-room:${context().session?.user.id}`,roomId);onNavigate('chat');if(section==='chat')void load();}});
   const developer=()=>context().membership?.active&&context().membership.role==='developer';
   const leader=()=>context().membership?.active&&['developer','principal'].includes(context().membership.role);
   const verified=()=>!!context().session?.user.email_confirmed_at;
   const assertCurrent=token=>{if(token!==generation)throw Error('Your account changed. Open this page again before saving.');};
   function requireAccount(){if(!api||!context().online)throw Error('Connect to the internet before posting.');if(!context().session)throw Error('Sign in to use this feature.');if(!verified())throw Error('Confirm your email before posting.');if(!model.profile)throw Error('Save your account profile first.');}
-  function changed(){const modal=typeof document!=='undefined'&&document.querySelector('.profile-management-dialog');if(modal&&(model.profileModalOpen||model.spaceOnboardingOpen||model.chatSpace==='campus'&&!model.spaceState?.profile?.space_onboarded)){const save=modal.querySelector('.profile-primary');if(save&&modal.querySelector('form')?.dataset.sending!=='true')save.disabled=loading||!context().online;return;}onChange();}
-  function reset(){generation++;previews.clear();realtime.stop();applyTheme('light');userId=context().session?.user.id||null;model=blank();model.activeConversationId=userId?storage.getItem(`school-chat-room:${userId}`):null;loading=false;mediaCache.clear();alerts.reset();}
+  function changed(){if(section==='chat'){if(model.success){onAlert(model.success);model.success='';}if(model.error&&model.error!==lastAlertError){onAlert(model.error,{tone:'error'});lastAlertError=model.error;}if(!model.error)lastAlertError='';}const modal=typeof document!=='undefined'&&document.querySelector('.profile-management-dialog');if(modal&&(model.profileModalOpen||model.spaceOnboardingOpen||model.chatSpace==='campus'&&!model.spaceState?.profile?.space_onboarded)){const save=modal.querySelector('.profile-primary');if(save&&modal.querySelector('form')?.dataset.sending!=='true')save.disabled=loading||!context().online;return;}onChange();}
+  function reset(){generation++;onClearAlerts();messageRequest=null;lastMessageFetch=0;lastAlertError='';friendPollBusy=false;relationshipsReady=false;seenFriendStates=new Map();seenInvites=new Set();previews.clear();realtime.stop();applyTheme('light');userId=context().session?.user.id||null;model=blank();model.activeConversationId=userId?storage.getItem(`school-chat-room:${userId}`):null;loading=false;mediaCache.clear();alerts.reset();}
   async function signed(rows) {
     const token=generation;
     const paths=[...new Set(rows.flatMap(p=>[p.avatar_path,p.banner_path,p.media_path,p.gif_path]).filter(Boolean))];
@@ -57,7 +59,7 @@ export function createCommunityController({enabled=true,client,storage,getContex
     if(loading)return;
     loading=true;if(!quiet){model.loading=true;changed();}
     try {
-      const site=await api.listPosts({scope:'site'});
+      const site=section==='chat'?[]:await api.listPosts({scope:'site'});
       if(token!==generation)return;
       let spaceState=null;
       let own=null,profiles=[],rooms=[],emojis=[],classPosts=[],roomReviews=[],postReviews=[],emojiReviews=[],reports=[],userReports=[],classGroup=null,friendRows=[],blocks=[];
@@ -75,20 +77,21 @@ export function createCommunityController({enabled=true,client,storage,getContex
         classGroup=own?.class_group||null;
         const staff=context().membership;
         if(!classGroup&&staff?.active){const groups=staff.groups||[];classGroup=['developer','principal'].includes(staff.role)||groups.includes('*')||groups.includes(context().group)?context().group:groups[0]||null;}
-        if(classGroup)classPosts=await api.listPosts({scope:'class',classGroup});
-        if(developer()){[model.admissionRequests,model.invites]=await Promise.all([spaceApi.listAdmissionRequests(),spaceApi.listInvites()]);}
-        if(developer()){[postReviews,emojiReviews]=await Promise.all([api.listPendingPosts(),api.listPendingEmojis()]);reports=await signed(await api.listReports());userReports=await spaceApi.listUserReports();}
+        if(classGroup&&section!=='chat')classPosts=await api.listPosts({scope:'class',classGroup});
+        if(developer()&&(section!=='chat'||model.chatPanel==='chat-access')){[model.admissionRequests,model.invites]=await Promise.all([spaceApi.listAdmissionRequests(),spaceApi.listInvites()]);}
+        if(developer()&&(section!=='chat'||model.chatPanel==='moderation')){[postReviews,emojiReviews]=await Promise.all([api.listPendingPosts(),api.listPendingEmojis()]);reports=await signed(await api.listReports());userReports=await spaceApi.listUserReports();}
         try{spaceState=await spaceApi.getState();if(token!==generation)return;model.spaceSetupError='';if(spaceState?.server?.icon_path){const urls=await api.signMedia([spaceState.server.icon_path]);spaceState.server.icon_url=urls[spaceState.server.icon_path]||'';}if(own&&spaceState?.profile){own={...own,...spaceState.profile};applyTheme(spaceState.profile.theme);}if(spaceState?.members){spaceState.members=await signed(spaceState.members.map(p=>({...p,role:p.authority_role})));for(const member of spaceState.members){const found=profiles.findIndex(p=>p.user_id===member.user_id);if(found<0)profiles.push(member);else profiles[found]={...profiles[found],...member};}}}catch(error){model.spaceSetupError='Schoolwide chat is waiting for its database update.';}
         profiles=await signed(profiles||[]);
         if(own)own=(await signed([own]))[0];
         emojis=await signed(emojis||[]);
       }
-      const announcements=await api.listAnnouncements();
+      const announcements=site.filter(p=>p.kind==='announcement');
       if(token!==generation)return;
       const signedEmojiReviews=await signed(emojiReviews);
       if(token!==generation)return;
       const approvedRooms=rooms.filter(r=>r.status==='approved'&&!r.channel_archived&&(!r.my_consent||r.my_consent==='accepted'));
       model={...model,spaceState,profile:own,classGroup,profiles,peers:profiles.filter(p=>p.user_id!==userId),friends:friendRows.filter(f=>f.status==='accepted'),friendRequests:friendRows.filter(f=>f.status==='pending'),blocks,conversations:approvedRooms,emojis,proposals:[...site,...classPosts].filter(p=>p.kind!=='announcement'),announcements,reports,userReports,reviewQueue:[...postReviews.map(p=>({...p,reviewType:'post'})),...roomReviews.map(r=>({...r,reviewType:'room'})),...signedEmojiReviews.map(e=>({...e,reviewType:'emoji'}))],joinRequests:rooms.filter(r=>r.status==='pending'||r.can_respond),emojiReviews,error:'',loaded:true,groups:context().groups};
+      rememberRelationships(friendRows,rooms);
       if(model.chatSpace==='campus'){if(!approvedRooms.some(r=>r.id===model.activeConversationId&&r.kind==='school'))model.activeConversationId=approvedRooms.find(r=>r.kind==='school'&&r.school_channel==='general')?.id||approvedRooms.find(r=>r.kind==='school')?.id||null;}else if(model.chatSpace==='dms'){if(!approvedRooms.some(r=>r.id===model.activeConversationId&&['dm','group'].includes(r.kind)))model.activeConversationId=approvedRooms.find(r=>['dm','group'].includes(r.kind))?.id||null;}else if(!model.activeConversationId||!approvedRooms.some(r=>r.id===model.activeConversationId))model.activeConversationId=approvedRooms.find(r=>r.kind==='class'&&r.class_group===classGroup)?.id||approvedRooms.find(r=>r.kind==='class')?.id||approvedRooms[0]?.id||null;
       if(model.chatMain!=='friends'&&model.activeConversationId&&!(model.chatSpace==='campus'&&!model.activeConversationId))model.chatSpace=approvedRooms.find(r=>r.id===model.activeConversationId)?.kind==='school'?'campus':approvedRooms.find(r=>r.id===model.activeConversationId)?.kind==='class'?'school':'dms';
       if(verified()&&!own&&!model.profileModalOpen){model.profileModalOpen=true;model.profileEditTab='identity';model.profileEditDraft={user_id:userId,real_name:context().name||context().session?.user.user_metadata?.full_name||model.admission?.request?.name||'',audience:context().audience,class_group:context().group||context().groups[0],accent:'#512393'};}
@@ -106,8 +109,8 @@ export function createCommunityController({enabled=true,client,storage,getContex
     if(action==='create-chat-invite'){model.newInvite=await spaceApi.createInvite();model.invites=await spaceApi.listInvites();changed();return;}
     if(action==='revoke-chat-invite'){await spaceApi.revokeInvite(id);await load();return;}
     if(action==='review-chat-admission'){await spaceApi.reviewAdmission(id,value==='approve');await load();return;}
-    if(action==='respond-conversation'){await api.respondRoom(id,value==='accept');if(value==='accept'){model.activeConversationId=id;model.chatSpace='dms';model.chatMain='thread';}await load();return;}
-    if(action==='leave-conversation'){await api.leaveRoom(id);model.activeConversationId=null;model.messages=[];await load();return;}
+    if(action==='respond-conversation'){await api.respondRoom(id,value==='accept');if(value==='accept'){model.activeConversationId=id;model.chatSpace='dms';model.chatMain='thread';}model.success=value==='accept'?'Conversation request accepted.':'Conversation request declined.';await load();return;}
+    if(action==='leave-conversation'){await api.leaveRoom(id);model.activeConversationId=null;model.messages=[];model.success='You left the conversation.';await load();return;}
     if(action==='discovery-optin'){await spaceApi.savePreferences({discovery_opt_in:true});await load();model.discoveries=await signed(await spaceApi.discover());changed();return;}
     if(action==='back-schedule'){onNavigate('schedule');return;}
     if(action==='leave-school-onboarding'){modalClose();return;}
@@ -119,22 +122,22 @@ export function createCommunityController({enabled=true,client,storage,getContex
     if(action==='report-user'){model.reportUserId=id;model.profileUserId=null;changed();return;}if(action==='review-user-report'){await spaceApi.reviewUserReport(id,value);await load();return;}if(action==='school-server-settings'){if(model.spaceState?.authority?.role!=='Developer')throw Error('Developer access is required to change server settings.');model.chatPanel='school-server-settings';model.profileUserId=null;model.editingChannelId=null;changed();return;}
     if(action==='edit-school-channel'||action==='new-school-channel'){if(model.spaceState?.authority?.role!=='Developer')throw Error('Developer access is required to change channels.');model.chatPanel='school-server-settings';model.profileUserId=null;model.editingChannelId=action==='edit-school-channel'?id:null;model.newChannelCategory=action==='new-school-channel'?value||'Conversation':'Conversation';changed();return;}
     if(action==='archive-school-channel'){if(model.spaceState?.authority?.role!=='Developer')throw Error('Developer access is required to change channels.');await spaceApi.setChannelArchived(id,value!=='restore');model.success=value==='restore'?'Channel restored.':'Channel archived. You can restore it from server settings.';await load();return;}
-    if(action==='chat-space'&&value==='campus'){model.chatSpace='campus';model.chatMain='thread';model.chatPanel=null;model.profileUserId=null;model.activeConversationId=model.spaceState?.channels?.find(r=>!r.channel_archived&&r.school_channel==='general')?.id||model.spaceState?.channels?.find(r=>!r.channel_archived)?.id||null;model.messages=[];changed();await load();return;}
-    if(action==='chat-space'&&value==='dms'){model.chatSpace='dms';model.chatMain='thread';model.chatPanel=null;model.profileUserId=null;model.activeConversationId=model.conversations.find(r=>['dm','group'].includes(r.kind))?.id||null;model.messages=[];changed();if(model.activeConversationId)await load();return;}
-    if(action==='chat-space'){model.chatSpace=value;model.chatMain=value==='friends'?'friends':'thread';model.chatPanel=null;model.profileUserId=null;if(value==='school'){model.activeConversationId=model.conversations.find(r=>r.kind==='class'&&r.class_group===model.classGroup)?.id||model.conversations.find(r=>r.kind==='class')?.id||null;model.messages=[];changed();await load();}else changed();return;}
+    if(action==='chat-space'&&value==='campus'){model.chatSpace='campus';model.chatMain='thread';model.chatPanel=null;model.profileUserId=null;model.activeConversationId=model.spaceState?.channels?.find(r=>!r.channel_archived&&r.school_channel==='general')?.id||model.spaceState?.channels?.find(r=>!r.channel_archived)?.id||null;model.messages=[];changed();if(model.spaceState?.profile?.space_onboarded)await pollMessages();else await load();return;}
+    if(action==='chat-space'&&value==='dms'){model.chatSpace='dms';model.chatMain='thread';model.chatPanel=null;model.profileUserId=null;model.activeConversationId=model.conversations.find(r=>['dm','group'].includes(r.kind))?.id||null;model.messages=[];changed();if(model.activeConversationId)await pollMessages();return;}
+    if(action==='chat-space'){model.chatSpace=value;model.chatMain=value==='friends'?'friends':'thread';model.chatPanel=null;model.profileUserId=null;if(value==='school'){model.activeConversationId=model.conversations.find(r=>r.kind==='class'&&r.class_group===model.classGroup)?.id||model.conversations.find(r=>r.kind==='class')?.id||null;model.messages=[];changed();await pollMessages();}else changed();return;}
     if(action==='friends-view'){model.chatMain='friends';model.chatSpace='friends';changed();return;}
     if(action==='friend-tab'){if(value==='discovery'){model.discoveries=await signed(await spaceApi.discover());assertCurrent(token);}model.friendTab=value;model.chatMain='friends';model.chatSpace='friends';model.profileUserId=null;model.chatPanel=null;changed();return;}
-    if(action==='chat-panel'){model.chatPanel=value||null;model.profileUserId=null;model.reportMessageId=null;model.reportUserId=null;changed();return;}
+    if(action==='chat-panel'){model.chatPanel=value||null;model.profileUserId=null;model.reportMessageId=null;model.reportUserId=null;changed();if(['moderation','chat-access'].includes(value))await load({quiet:true});return;}
     if(action==='chat-sidebar'){model.chatSidebarOpen=!model.chatSidebarOpen;changed();return;}
     if(action==='open-profile'){model.profileUserId=id;model.chatPanel=null;changed();return;}
     if(action==='clear-emoji'){model.selectedEmojiId=null;changed();return;}
-    if(action==='request-notifications'){requireAccount();await alerts.toggle();changed();return;}
-    if(action==='open-friend-dm'){const room=model.conversations.find(r=>r.kind==='dm'&&r.participants?.includes(id));if(room){model.chatMain='thread';model.chatSpace='dms';model.activeConversationId=room.id;model.messages=[];alerts.markRead(room.id);changed();await load();}else{model.chatPanel='new-chat';model.newChatParticipants=[id];model.newChatKind='dm';model.newChatTitle=model.profiles.find(p=>p.user_id===id)?.display_name||'Direct message';changed();}return;}
+    if(action==='request-notifications'){requireAccount();const enabled=await alerts.toggle();model.success=enabled?'Desktop notifications enabled.':'Desktop notifications off.';changed();return;}
+    if(action==='open-friend-dm'){const room=model.conversations.find(r=>r.kind==='dm'&&r.participants?.includes(id));if(room){model.chatMain='thread';model.chatSpace='dms';model.activeConversationId=room.id;model.messages=[];alerts.markRead(room.id);changed();await pollMessages();}else{model.chatPanel='new-chat';model.newChatParticipants=[id];model.newChatKind='dm';model.newChatTitle=model.profiles.find(p=>p.user_id===id)?.display_name||'Direct message';changed();}return;}
     if(action==='section'){onNavigate(value);return;}
     if(action==='sign-in'||action==='login'){if(typeof location!=='undefined'&&location.pathname.endsWith('/chat.html')){model.chatSignInOpen=true;changed();return;}onNavigate('login');return;}
     if(action==='profile'||action==='edit-profile'){model.profileModalOpen=true;model.profileEditTab='identity';model.profileEditDraft={...model.profile};changed();return;}
     if(action==='scope'||action==='qa-scope'){model.qaScope=button.dataset.scope||value;changed();return;}
-    if(action==='select-conversation'||action==='conversation'||action==='open-conversation'){model.activeConversationId=id;model.chatMain='thread';model.chatSidebarOpen=false;model.messages=[];storage.setItem?.(`school-chat-room:${context().session?.user.id}`,id);alerts.markRead(id);changed();await load();return;}
+    if(action==='select-conversation'||action==='conversation'||action==='open-conversation'){const targetRoom=model.conversations.find(r=>r.id===id);model.chatSpace=targetRoom?.kind==='school'?'campus':targetRoom?.kind==='class'?'school':'dms';model.activeConversationId=id;model.chatMain='thread';model.chatSidebarOpen=false;model.messages=[];storage.setItem?.(`school-chat-room:${context().session?.user.id}`,id);alerts.markRead(id);changed();await pollMessages();return;}
     if(action==='select-proposal'||action==='proposal'||action==='open-proposal'){model.selectedProposalId=id;changed();return;}
     if(action==='refresh'){await load();return;}
     if(action==='insert-emoji'){model.selectedEmojiId=id;const input=document.querySelector('[data-community-form="message"] [name="body"]');if(input){const text=value||`:${button.dataset.name}:`;input.setRangeText(text,input.selectionStart,input.selectionEnd,'end');model.messageDraft=input.value;input.focus();}return;}
@@ -168,7 +171,7 @@ export function createCommunityController({enabled=true,client,storage,getContex
       else if(action==='report-message'){model.reportMessageId=id;changed();return;}
       else if(action==='load-older'){const roomId=model.activeConversationId;const older=await signed(await api.messages(roomId,model.messages[0]?.id));assertCurrent(token);if(roomId!==model.activeConversationId)return;model.messages=[...older,...model.messages];changed();return;}
       else return;
-      assertCurrent(token);if(action==='add-friend')model.success='Friend request sent.';await load();
+      assertCurrent(token);if(action==='accept-friend')seenFriendStates.set(id,'accepted');model.success=({'add-friend':'Friend request sent.','accept-friend':'Friend request accepted.','reject-friend':'Friend request declined.','remove-friend':'Friend removed.','block-user':'User blocked.','unblock-user':'User unblocked.','hide-message':'Message removed.','kick-school-member':'Member removed from schoolwide chat.'})[action]||'Changes saved.';await load();
     } finally {button.disabled=false;}
   }
   async function submit(form) {
@@ -199,7 +202,7 @@ export function createCommunityController({enabled=true,client,storage,getContex
       } else if(kind==='message'){
         const body=value('body'),attachment=values.get('attachment'),roomId=model.activeConversationId,emojiId=model.selectedEmojiId||null,gifUrl=model.selectedGif||null;if(!body&&!gifUrl&&!emojiId&&!attachment?.size)throw Error('Write a message or choose a GIF.');
         let mediaPath=null;if(attachment?.size){mediaPath=await api.uploadMedia(attachment,'chat');assertCurrent(token);}
-        if(roomId!==model.activeConversationId)throw Error('The conversation changed. Return to the original chat before sending this attachment.');await api.sendMessage({roomId,body,mediaPath,gifUrl,emojiId});assertCurrent(token);model.messageDraft='';model.selectedGif='';model.selectedEmojiId='';form.reset();
+        if(roomId!==model.activeConversationId)throw Error('The conversation changed. Return to the original chat before sending this attachment.');await api.sendMessage({roomId,body,mediaPath,gifUrl,emojiId});assertCurrent(token);model.messageDraft='';model.selectedGif='';model.selectedEmojiId='';form.reset();model.error='';await pollMessages();return;
       } else if(kind==='space-onboarding'){await spaceApi.savePreferences({cosmetic_roles:values.getAll('cosmetic_roles'),name_color:value('name_color'),space_onboarded:true});model.spaceOnboardingOpen=false;}
       else if(kind==='school-moderator'){await spaceApi.assignModerator(value('user_id'),values.getAll('permissions'),values.getAll('permissions').length>0);}
       else if(kind==='school-server'){if(model.spaceState?.authority?.role!=='Developer')throw Error('Developer access is required to change server details.');const file=values.get('server_icon');let iconPath=values.has('remove_server_icon')?null:model.spaceState?.server?.icon_path||null;if(file?.size){iconPath=await api.uploadMedia(file,'server');assertCurrent(token);}await spaceApi.updateServer({name:value('name').trim(),description:value('description').trim(),iconKey:value('icon_key')||'school',iconPath,joinPolicy:value('join_policy')||null});}
@@ -218,7 +221,21 @@ export function createCommunityController({enabled=true,client,storage,getContex
       await load();
     } finally{delete form.dataset.sending;buttons.forEach(b=>b.disabled=false);}
   }
-  async function pollMessages(){if(section!=='chat'||!context().session||!context().online||loading||!model.activeConversationId)return;const token=generation,roomId=model.activeConversationId;try{const messages=await signed(await api.messages(roomId));if(token!==generation||roomId!==model.activeConversationId)return;if(JSON.stringify(messages)!==JSON.stringify(model.messages)){model.messages=messages;const history=document.querySelector('[data-community-messages]');if(history){const atEnd=history.scrollHeight-history.scrollTop-history.clientHeight<100;history.innerHTML=renderMessageList({model,session:context().session,membership:context().membership,roomId});if(atEnd)history.scrollTop=history.scrollHeight;}else changed();}}catch(error){if(token===generation&&roomId===model.activeConversationId&&error.code==='42501'){model.messages=[];model.error=error.message;changed();}}}
+  async function pollMessages({fallback=false}={}){if(section!=='chat'||!context().session||!context().online||loading||!model.activeConversationId)return;if(fallback&&model.realtimeStatus==='live'&&Date.now()-lastMessageFetch<30000)return;const token=generation,roomId=model.activeConversationId,key=token+':'+roomId;if(messageRequest?.key===key){messageRequest.again=true;return;}const request={key,again:false};messageRequest=request;try{const messages=await signed(await api.messages(roomId));if(token!==generation||roomId!==model.activeConversationId)return;lastMessageFetch=Date.now();if(JSON.stringify(messages)!==JSON.stringify(model.messages)){model.messages=messages;const history=document.querySelector('[data-community-messages]');if(history){const atEnd=history.scrollHeight-history.scrollTop-history.clientHeight<100;history.innerHTML=renderMessageList({model,session:context().session,membership:context().membership,roomId});if(atEnd)history.scrollTop=history.scrollHeight;}else changed();}}catch(error){if(token===generation&&roomId===model.activeConversationId&&error.code==='42501'){model.messages=[];model.error=error.message;changed();}}finally{if(messageRequest===request)messageRequest=null;if(request.again&&token===generation&&roomId===model.activeConversationId)void pollMessages();}}
+  function rememberRelationships(friends,rooms){
+    if(!relationshipsReady){seenFriendStates=new Map(friends.map(f=>[f.id,f.status]));seenInvites=new Set(rooms.filter(r=>r.can_respond).map(r=>r.id));relationshipsReady=true;return;}
+    const token=generation;
+    const openRequests=()=>{if(token!==generation)return;model.chatSpace='friends';model.chatMain='friends';model.friendTab='pending';model.chatPanel=null;onNavigate('chat');changed();};
+    for(const friend of friends){const previous=seenFriendStates.get(friend.id);if(friend.status==='pending'&&friend.requested_by!==userId&&previous!=='pending')onAlert(`${friend.display_name||'A school member'} sent you a friend request.`,{key:'friend:'+friend.id,actionLabel:'View requests',onAction:openRequests});if(friend.status==='accepted'&&previous==='pending')onAlert('Friend request accepted.',{key:'accepted:'+friend.id});}
+    for(const room of rooms){if(room.can_respond&&!seenInvites.has(room.id))onAlert('You have a new conversation request.',{key:'invite:'+room.id,actionLabel:'View requests',onAction:()=>{if(token!==generation)return;model.chatSpace='dms';model.chatMain='thread';onNavigate('chat');changed();}});}
+    seenFriendStates=new Map(friends.map(f=>[f.id,f.status]));seenInvites=new Set(rooms.filter(r=>r.can_respond).map(r=>r.id));
+  }
+  async function pollRelationships(){
+    if(friendPollBusy||loading||!verified()||!model.loaded||typeof document!=='undefined'&&document.visibilityState!=='visible')return;
+    const token=generation;friendPollBusy=true;
+    try{const [friends,rooms]=await Promise.all([friendsApi.listFriends(),api.listRooms()]);if(token!==generation)return;rememberRelationships(friends,rooms);const before=JSON.stringify([model.friendRequests.map(f=>[f.id,f.status]),model.joinRequests.map(r=>[r.id,r.my_consent])]);const rows=await signed(friends.map(f=>({...f,user_id:f.other_id,sender_id:f.requested_by})));if(token!==generation)return;model.friends=rows.filter(f=>f.status==='accepted');model.friendRequests=rows.filter(f=>f.status==='pending');model.joinRequests=rooms.filter(r=>r.status==='pending'||r.can_respond);model.conversations=rooms.filter(r=>r.status==='approved'&&!r.channel_archived&&(!r.my_consent||r.my_consent==='accepted'));if(before!==JSON.stringify([model.friendRequests.map(f=>[f.id,f.status]),model.joinRequests.map(r=>[r.id,r.my_consent])])){if(model.chatMain==='friends')changed();else{const sidebar=typeof document!=='undefined'&&document.querySelector('.chat-sidebar');if(sidebar){sidebar.outerHTML=renderChatSidebar(model,context().session);paintIcons();}}}
+    }catch{}finally{if(token===generation)friendPollBusy=false;}
+  }
   async function pollPresence(){if(section!=='chat'||model.chatSpace!=='campus'||!context().online||!verified()||typeof document!=='undefined'&&document.visibilityState!=='visible')return;const token=generation;try{await spaceApi.heartbeat();const members=await signed(await spaceApi.listMembers());if(token!==generation)return;model.spaceState={...model.spaceState,members:members.map(p=>({...p,role:p.authority_role}))};const panel=document.querySelector('.campus-members');if(panel){if(token!==generation)return;panel.outerHTML=renderSchoolMembers(model);}}catch{}}
   return {
     get model(){return model;}, reset,load,action,submit,closeModal:modalClose,applyThemePreference(){applyTheme(accountTheme);},
@@ -228,7 +245,7 @@ export function createCommunityController({enabled=true,client,storage,getContex
     render(nextSection){section=nextSection;if(!enabled)return section==='chat'?pendingView():'<section class="section"><h2>Community features are coming soon.</h2><p>Chat, Q+A and profiles are still being set up. Your schedule and school notices are available now.</p></section>';model.groups=context().groups;model.defaultName=context().name;model.defaultAudience=context().audience;model.defaultGroup=context().group;Object.assign(model,alerts.state());const args={section,model,session:context().session,membership:context().membership,group:model.classGroup||context().group,busy:loading,online:context().online};realtime.watch(section==='chat'&&verified()?context().session?.user.id:null,section==='chat'?model.activeConversationId:null);return section==='chat'&&verified()&&model.admission&&!model.admission.admitted?renderChatAdmission(model):section==='chat'?renderChatShell(args):renderCommunity(args)+(model.profileModalOpen?renderProfileModal(args):'');},
     enter(nextSection){section=nextSection;void load();},
     input(target){if(target.closest('[data-community-form="profile"]')){if(target.name==='status_emoji'&&target.value){target.form.querySelector('[name="status_icon"]').value='';target.form.querySelector('[name="status_emoji_id"]').value='';}const modal=target.closest('.profile-management-dialog');if(modal)model.profileEditDraft=updateProfilePreview(modal,target.form,model);}if(target.matches('[data-community-form="message"] [name="body"]'))model.messageDraft=target.value;if(target.hasAttribute('data-chat-search')||target.hasAttribute('data-friend-search')){const kind=target.hasAttribute('data-chat-search')?'chat':'friend',value=target.value.toLowerCase();model[kind==='chat'?'chatSearch':'friendSearch']=target.value;document.querySelectorAll(`[data-search-kind="${kind}"]`).forEach(el=>el.hidden=!el.dataset.searchable.includes(value));}},
-    async pollNotifications(){if(!enabled)return;if(!context().session||!context().online)return;if(section==='chat'||alerts.enabled())await alerts.refresh();},
-    poll:pollMessages,
+    async pollNotifications(){if(!enabled)return;if(!context().session||!context().online)return;if(section==='chat'||alerts.enabled())await Promise.all([alerts.refresh(),section==='chat'?pollRelationships():Promise.resolve()]);},
+    poll:()=>pollMessages({fallback:true}),
   };
 }
