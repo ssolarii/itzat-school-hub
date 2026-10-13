@@ -71,5 +71,5 @@ export function teacherView(doc,today,teacher) {
     }).filter(Boolean);
     lessons=rows.length?rows.join(''):empty('No teaching lessons listed today','No lessons are assigned to your teaching profile for this cycle day. Ask school administration if something is missing.','presentation');
   }
-  return `<div class="page-heading"><div><h2>Your teaching day</h2><p>${dateLabel(today)}${r.cycleDay?' · Day '+r.cycleDay:''}</p></div></div>${lessons}<section class="section"><h3>ISA Updates</h3>${notices(doc)}</section>`;
+  return `<div class="page-heading"><div><h2>Your teaching day</h2><p>In development</p><p>${dateLabel(today)}${r.cycleDay?' · Day '+r.cycleDay:''}</p></div></div>${lessons}<section class="section"><h3>ISA Updates</h3>${notices(doc)}</section>`;
 }
