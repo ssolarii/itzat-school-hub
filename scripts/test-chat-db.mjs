@@ -88,6 +88,9 @@ console.log('Mocked storage schema: real Supabase upload policy semantics requir
 for (const path of ['supabase/migrations/202610120007_chat_identity_and_channels.sql','supabase/migrations/202610120008_production_chat.sql','supabase/tests/production-chat.sql']) {
  console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where,detail:e.detail})); process.exit(1); } console.log('PASS',path);
 }
+for (const path of ['supabase/migrations/202610130009_chat_controls.sql','supabase/tests/chat-controls.sql']) {
+ console.log('Executing',path); await db.exec(await fs.readFile(path,'utf8')); console.log('PASS',path);
+}
 await db.close();
 
 
