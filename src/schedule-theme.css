@@ -1,0 +1,80 @@
+/* Filled accents and reading accents are separate: a rail purple is too dark
+   for text on a dark canvas. Class identity changes both sets together. */
+.app-shell {
+  --accent-text: var(--accent);
+  --accent-wash: var(--class-wash, #ebe3fc);
+  --accent-hover: color-mix(in srgb, var(--accent), #000 18%);
+  --control-line: #a895bd;
+  --schedule-gap: 16px;
+  color: var(--ink);
+}
+.app-shell .button.secondary, .app-shell button.secondary,
+.app-shell .day-tag, .app-shell .badge, .app-shell summary,
+.app-shell .subject-code svg, .app-shell .notice-icon,
+.app-shell .empty > svg, .app-shell .editor-tabs button.active {
+  color: var(--accent-text);
+}
+.app-shell .button { border-color: var(--control-line); }
+.app-shell .button.primary, .app-shell button.primary,
+.app-shell .view-tabs button.active {
+  background: var(--accent); color: var(--on-accent); border-color: var(--accent);
+}
+.app-shell .button.primary:hover, .app-shell button.primary:hover {
+  background: var(--accent-hover); border-color: var(--accent-hover);
+}
+.app-shell .view-tabs button:not(.active) {
+  background: var(--accent-wash); color: var(--ink);
+}
+.app-shell .view-tabs button:hover:not(.active),
+.app-shell .button:hover:not(.primary):not(.danger) {
+  background: var(--accent-wash); color: var(--accent-text);
+}
+.app-shell .live-strip, .app-shell .live-strip .subject-code,
+.app-shell .live-strip .subject-code svg { color: var(--on-accent); }
+.app-shell input:not([type=checkbox]):not([type=radio]),
+.app-shell select, .app-shell textarea { border-color: var(--control-line); }
+.app-shell input::placeholder, .app-shell textarea::placeholder { color: var(--muted); opacity: 1; }
+.app-shell .schedule-toolbar, .app-shell .page-heading,
+.app-shell .live-strip, .app-shell .agenda { margin-bottom: var(--schedule-gap); }
+.app-shell .section-heading { margin-bottom: 12px; }
+.app-shell .page-heading h2 { margin-bottom: 8px; }
+.app-shell .schedule-secondary .section-heading h3 { margin: 0; }
+.app-shell .schedule-secondary .empty { padding-block: 16px; }
+.app-shell .lesson-row .subject-code { flex-wrap: wrap; row-gap: 4px; }
+.app-shell .lesson-row .subject-code > span { overflow-wrap: anywhere; }
+.app-shell .lesson-row .subject-code { display: flex; width: fit-content; }
+.app-shell .lesson-break { margin-left: 0; font-size: 12px; }
+.app-shell .period-count { font-size: 12px; }
+.app-shell .period-count { margin-left: 0; }
+:root[data-account-theme=dark] .app-shell {
+  --accent-text: var(--class-dark-text, #d5baff);
+  --accent-wash: var(--class-dark-wash, #362747);
+  --control-line: #89769b;
+}
+:root[data-account-theme=dark] .app-shell[data-audience=teacher] {
+  --canvas: #211e16; --rail: #3a321d; --on-rail: #ffe095;
+  --accent: #73590e; --accent-text: #ffe095; --accent-wash: #3a321d;
+}
+:root[data-account-theme=dark] .app-shell[data-audience=parent] {
+  --canvas: #1e2026; --rail: #292a30; --on-rail: #eceef4;
+  --ink: #f1f2f7; --muted: #c5c9d4; --line: #454955;
+  --accent: #4c5463; --accent-text: #d9dbe3; --accent-wash: #30343d;
+}
+:root[data-account-theme=dark] .app-shell[data-audience=admin] {
+  --rail: #362747; --on-rail: #e3d4ff;
+}
+:root[data-account-theme=dark] .app-shell[data-audience=teacher] .topbar { background: var(--paper); }
+:root[data-account-theme=dark] .app-shell .warning,
+:root[data-account-theme=dark] .app-shell .flair { color: #ffd49b; }
+:root[data-account-theme=dark] .app-shell .toast { background: #362747; color: var(--ink); }
+:root[data-account-theme=dark] .app-shell input:disabled,
+:root[data-account-theme=dark] .app-shell select:disabled,
+:root[data-account-theme=dark] .app-shell textarea:disabled { background: var(--canvas); }
+.welcome-shell {
+  --ink: #23103f; --muted: #6a5b7d; --paper: #fff;
+  --canvas: #f7f4fd; --wash: #ebe3fc; color-scheme: light;
+}
+@media (max-width:760px) {
+  .app-shell .schedule-toolbar .view-tabs { margin-bottom: 0; }
+  .app-shell .lesson-row .period-count { margin-left: 0; }
+}
