@@ -56,6 +56,11 @@ test('controller clears all private state across account changes and never saves
   await controller.load();assert.equal(controller.model.messages[0].body,'Private message');
   ctx={...ctx,session:null};controller.reset();assert.equal(controller.model.messages.length,0);assert.equal(controller.model.profiles.length,0);assert.equal(controller.model.profile,null);assert.deepEqual(writes,[]);
 });
+test('finishing a conversation load rerenders the composer with Send enabled',async()=>{
+ let controller,html='';const apiClient=client({community_get_profile:{user_id:'student-a',class_group:'3CS'},community_list_rooms:[{id:'r',kind:'class',status:'approved',class_group:'3CS'}]});
+ controller=createCommunityController({client:apiClient,storage:{getItem:()=>null},getContext:()=>({session,audience:'student',group:'3CS',groups:['3CS'],online:true}),onChange:()=>{html=controller.render('chat');},onNavigate:()=>{}});
+ await controller.load();assert.ok(html.includes('aria-label="Send message"'));assert.ok(!html.includes('aria-label="Send message" disabled'));assert.ok(!html.includes('Loading conversations…'));
+});
 test('pending conversations never get an active composer',async()=>{
   const controller=createCommunityController({client:client({community_get_profile:{user_id:'student-a',class_group:'3CS'},community_list_rooms:[{id:'pending',kind:'dm',status:'pending'}]}),storage:{getItem:()=>null},getContext:()=>({session,online:true,groups:['3CS'],audience:'student'}),onChange:()=>{},onNavigate:()=>{}});
   await controller.load();assert.equal(controller.model.activeConversationId,null);assert.equal(controller.model.joinRequests.length,1);assert.equal(controller.model.conversations.length,0);
