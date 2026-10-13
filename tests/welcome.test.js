@@ -34,7 +34,7 @@ test('account prompts distinguish approval, optional access and private communit
   const teacher=welcomeView({step:'account',role:'teacher',name:'A'});
   assert.match(teacher,/invite-only/);assert.match(teacher,/Vice Principal/);assert.ok(!teacher.includes('Continue without'));
   const student=welcomeView({step:'account',role:'student',name:'A'});
-  assert.match(student,/recommend creating a student account/);assert.match(student,/class polls require a verified account/);assert.match(student,/Continue without an account/);
+  assert.match(student,/recommend creating a student account/);assert.match(student,/Sign in to use Chat and class polls/);assert.match(student,/Continue without an account/);
   const parent=welcomeView({step:'account',role:'parent',name:'A'});
   assert.match(parent,/Create an account \(optional\)/);assert.match(parent,/Open my parent overview/);
 });
