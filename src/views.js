@@ -1,3 +1,4 @@
+import {teacherTimetableIntake} from './teacher-timetable.js';
 import {dateKey,addDays,resolveDate,getLessons,getDayStatus,nextSchoolDate,getWeek} from './schedule.js';
 import {groupDisplayLessons} from './display-lessons.js';
 
@@ -32,8 +33,9 @@ export function studentView({document:doc,group,view,showRooms=false,now=new Dat
   const title=view==='week'?'Your school week':view==='next'?'Next school day':view==='today'&&s.status==='weekend'?'It’s the weekend.':view==='today'&&s.status==='holiday'?(s.label||'School holiday'):view==='today'&&s.status==='after'?'School’s out.':'Today’s classes';
   return `<div class="student-schedule"><div class="schedule-toolbar"><nav class="view-tabs" aria-label="Schedule view">${[['today','Today'],['next','Next school day'],['week','Week']].map(([v,label])=>`<button data-view="${v}" class="${view===v?'active':''}" aria-pressed="${view===v}">${label}</button>`).join('')}</nav><label class="rooms-toggle" for="rooms-toggle"><input type="checkbox" id="rooms-toggle" data-show-rooms ${showRooms?'checked':''}>Show rooms</label></div><div class="schedule-layout"><div class="schedule-primary"><div class="page-heading"><div><h2>${escape(title)}</h2><p>${view==='week'?`Week of ${dateLabel(getWeek(displayed,doc)[0].date)}`:`${dateLabel(displayed)}${isClosed&&view==='today'?' · Back '+(r.type==='regular'?'on campus':'to schoolwork'):''}`}</p></div>${view!=='week'?`<span class="day-tag">${r.cycleDay?'Day '+r.cycleDay:'Cycle paused'}</span>`:''}</div>${view==='week'?weekView(displayed,group,doc):`${view==='today'&&['before','lesson','transition','lunch','dismissal-prep'].includes(s.status)&&s.isCampusDay?live(s,doc):''}<div class="section-heading"><h3>${displayed===today?'Today’s schedule':'Next school day'} · ${escape(group)}</h3><span class="subtle">${!r.isCampusDay?({async:'Asynchronous',event:'School event',holiday:'Holiday',weekend:'Weekend'}[r.type]||'No campus classes'):r.bellProfile==='half'?'Half day':r.bellProfile==='quick'?'Quick exit':'Regular day'}</span></div>${agenda(displayed,group,doc,displayed===today?s:null)}${view==='today'&&s.status==='after'?`<details class="today-replay"><summary>Replay today · Day ${s.cycleDay}</summary>${agenda(today,group,doc,s)}</details>`:''}`}</div><section class="schedule-secondary"><div class="section-heading"><h3>ISA Updates</h3><button class="button" data-route="updates">All updates ${icon('arrow-right')}</button></div>${notices(doc,group)}</section></div></div>`;
 }
-export function calendarView({document:doc,group,calendarDate,cycleDay}) {
+export function calendarView({document:doc,group,calendarDate,cycleDay,teacher=false}) {
   const r = resolveDate(calendarDate,doc);
+  if(teacher)return `<div class="page-heading"><div><h2>School calendar</h2><p>School dates and changes to the school day.</p></div></div><div class="field"><label for="calendar-date">Choose a date</label><input id="calendar-date" type="date" value="${escape(calendarDate)}" data-calendar-date></div><section class="section"><h3>${dateLabel(calendarDate)}</h3><p>${escape(r.label||r.type)}${r.cycleDay?' · Day '+r.cycleDay:''}</p></section>${eventList(doc,calendarDate)}`;
   let patternDate = calendarDate;
   while ([0,6].includes(new Date(patternDate+'T12:00:00Z').getUTCDay())) patternDate=addDays(patternDate,1);
   const selectedDay = Math.max(1,Math.min(7,Number(cycleDay)||1));
@@ -51,7 +53,7 @@ export function parentView(doc,group,today,interests=['events','dismissal','holi
   }
   return `<div class="page-heading"><div><h2>School updates</h2><p>School notices and upcoming dates for ${escape(group)}.</p></div></div><h3>ISA Updates</h3>${notices(doc,group)}<section class="section"><div class="section-heading"><h3>Your upcoming dates</h3><button class="button" data-route="settings">Edit interests</button></div><p class="subtle" style="margin-bottom:16px">Early dismissal reminders cover the next three weeks. You’ll also see school closures in the next seven days.</p>${eventList({...doc,calendar},today)}</section><details><summary>View ${escape(group)}’s next school day</summary>${agenda(nextSchoolDate(today,doc),group,doc)}</details>`;
 }
-export function teacherView(doc,today,teacher) {
+export function teacherView(doc,today,teacher,timetableUpload=null) {
   const r = resolveDate(today,doc), allAssignments = doc.teacherAssignments || [];
   const assignments = allAssignments.filter(a=>a.teacher===teacher&&a.day===r.cycleDay).sort((a,b)=>a.session-b.session||a.group.localeCompare(b.group));
   let lessons;
@@ -71,5 +73,5 @@ export function teacherView(doc,today,teacher) {
     }).filter(Boolean);
     lessons=rows.length?rows.join(''):empty('No teaching lessons listed today','No lessons are assigned to your teaching profile for this cycle day. Ask school administration if something is missing.','presentation');
   }
-  return `<div class="page-heading"><div><h2>Your teaching day</h2><p>In development</p><p>${dateLabel(today)}${r.cycleDay?' · Day '+r.cycleDay:''}</p></div></div>${lessons}<section class="section"><h3>ISA Updates</h3>${notices(doc)}</section>`;
+  return `<div class="page-heading"><div><h2>Your teaching day</h2><p>In development</p><p>${dateLabel(today)}${r.cycleDay?' · Day '+r.cycleDay:''}</p></div></div>${teacherTimetableIntake(timetableUpload)}${lessons}<section class="section"><h3>ISA Updates</h3>${notices(doc,'school')}</section>`;
 }

@@ -89,6 +89,26 @@ export function createBackend({ url, key }) {
       return checked(await client.from('school_members').select('user_id,role,capabilities,groups,active,updated_at')
         .order('updated_at', { ascending: false }), 'Memberships could not be loaded.') || [];
     },
+    async configureIsaSync(course,token) {return checked(await client.rpc('configure_isa_sync',{p_course:course,p_token:token}),'ISA Updates connection could not be saved.');},
+    async getTeacherTimetable() {
+      const session=checked(await client.auth.getSession());if(!session?.session)return null;
+      const row=checked(await client.from('teacher_timetable_uploads').select('*').eq('teacher_id',session.session.user.id).maybeSingle(),'Timetable status could not be loaded.');
+      if(row){const result=await client.storage.from('teacher-timetables').createSignedUrl(row.image_path,240);if(!result.error)row.image_url=result.data.signedUrl;}return row;
+    },
+    async listTeacherTimetables() {
+      const rows=checked(await client.from('teacher_timetable_uploads').select('*').order('uploaded_at',{ascending:false}),'Teacher uploads could not be loaded.')||[];
+      if(!rows.length)return rows;
+      const signed=checked(await client.storage.from('teacher-timetables').createSignedUrls(rows.map(r=>r.image_path),240),'Teacher images could not be opened.');
+      const urls=Object.fromEntries(signed.filter(r=>r.signedUrl).map(r=>[r.path,r.signedUrl]));return rows.map(r=>({...r,image_url:urls[r.image_path]}));
+    },
+    async uploadTeacherTimetable(file) {
+      const extensions={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};
+      if(!extensions[file?.type]||file.size<1||file.size>10*1024*1024)throw Error('Choose a JPG, PNG or WebP under 10 MB.');
+      const session=checked(await client.auth.getSession());if(!session?.session)throw Error('Sign in before uploading.');
+      const path=session.session.user.id+'/'+crypto.randomUUID()+'.'+extensions[file.type];
+      checked(await client.storage.from('teacher-timetables').upload(path,file,{upsert:false,contentType:file.type}),'Image upload failed.');
+      return checked(await client.rpc('submit_teacher_timetable',{p_path:path}),'Timetable could not be submitted.');
+    },
     async requestTeacherAccess({ name, groups, note = '' }) {
       return checked(await client.rpc('request_teacher_access', {
         p_name: name, p_groups: groups, p_note: note,
