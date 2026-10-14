@@ -359,3 +359,13 @@ summary { cursor: pointer; min-height: 40px; padding: 10px 0; color: var(--accen
 .teacher-assignment-scroll table {min-width:780px;width:100%;}
 .teacher-assignment-scroll select {width:100%;min-width:90px;}
 .teacher-digitize {margin-top:16px;}
+
+.notice-body {white-space:pre-wrap;overflow-wrap:anywhere;}
+.notice-attachments {display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;}
+.notice-attachment {display:flex;align-items:center;gap:12px;width:min(100%,340px);padding:12px;border:1px solid var(--line);border-radius:8px;color:var(--ink);text-decoration:none;background:var(--paper);}
+.notice-attachment img {width:90px;height:74px;object-fit:contain;border-radius:4px;background:var(--canvas);}
+.notice-attachment span {min-width:0;overflow-wrap:anywhere;flex:1;}
+.notice-attachment small {display:block;color:var(--muted);margin-top:6px;}
+.notice-attachment:hover {border-color:var(--accent-text,var(--purple));}
+.notice-source {margin-top:16px;}
+.notice-source a {display:inline-flex;text-decoration:none;}

@@ -96,3 +96,5 @@ setInterval(()=>{if(!landingPage)void community.pollNotifications();},6000);
 
 setInterval(async()=>{if(!landingPage){await community.pollPresence();paintIcons();}},30000);
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>community.applyThemePreference());
+
+root.addEventListener('error',event=>{if(event.target.matches?.('img[data-notice-preview]'))event.target.hidden=true;},true);

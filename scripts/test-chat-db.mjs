@@ -95,6 +95,9 @@ await db.exec("create function storage.foldername(name text) returns text[] lang
 for (const path of ['supabase/migrations/202610130012_teacher_timetables.sql','supabase/migrations/202610130015_teacher_approval_messages.sql','supabase/migrations/202610130016_teacher_digitization_status.sql','supabase/tests/teacher-intake.sql']) {
  console.log('Executing',path); await db.exec(await fs.readFile(path,'utf8')); console.log('PASS',path);
 }
+for (const path of ['supabase/migrations/202610130013_isa_updates_sync.sql','supabase/migrations/202610130014_isa_auto_publish.sql','supabase/migrations/202610130017_isa_attachments.sql']) {
+ console.log('Executing',path); await db.exec(await fs.readFile(path,'utf8')); console.log('PASS',path);
+}
 await db.close();
 
 

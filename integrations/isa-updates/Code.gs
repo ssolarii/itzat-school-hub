@@ -16,9 +16,18 @@ function findISAUpdatesCourse() {
 function isaPost_(post) {
   const text=String(post.text||'').trim(),link=String(post.alternateLink||'');
   if(link&&!/^https:\/\/classroom\.google\.com\//.test(link))throw new Error('Unexpected Classroom link.');
-  const body=(text||'An announcement with attachments was shared in Classroom.')+(link?'\n\nOriginal Classroom post: '+link:'');
+  const body=text||'An announcement with attachments was shared in Classroom.';
+  const attachments=(post.materials||[]).map(material=>{
+    const file=material.driveFile&&material.driveFile.driveFile;
+    const item=file||material.link||material.youtubeVideo||material.form;
+    if(!item)return null;
+    const url=String(item.alternateLink||item.url||item.formUrl||'');
+    if(!/^https:\/\//i.test(url))return null;
+    const imageUrl=String(item.thumbnailUrl||'');
+    return {title:String(item.title||'Attachment').slice(0,200),url:url,imageUrl:/^https:\/\//i.test(imageUrl)?imageUrl:'',kind:file?'file':material.youtubeVideo?'video':'link'};
+  }).filter(Boolean).slice(0,20);
   if(body.length>10000)throw new Error('A Classroom post exceeds the notice limit; review it manually before continuing.');
-  return {id:String(post.id),updated_at:post.updateTime||post.creationTime,title:(text.split('\n').find(line=>line.trim())||'ISA Updates').slice(0,160),body:body};
+  return {id:String(post.id),updated_at:post.updateTime||post.creationTime,title:(text.split('\n').find(line=>line.trim())||'ISA Updates').slice(0,160),body:body,classroomUrl:link,attachments:attachments};
 }
 function isaRead_(config,cutoff) {
   let pageToken,finished=false,pages=0;const items=[];
@@ -29,6 +38,11 @@ function isaRead_(config,cutoff) {
     if(pages>=50&&pageToken&&!finished)throw new Error('Too many pages. Reduce the initial lookback or import older posts separately.');
   } while(pageToken&&!finished);
   return items;
+}
+function refreshISAUpdatesAttachments() {
+  const config=isaConfig_(),items=isaRead_(config,Date.now()-30*86400000);let imported=0;
+  for(let offset=0;offset<items.length;offset+=50){const result=isaSend_(config,items.slice(offset,offset+50));imported+=Number(result.imported||0);}
+  console.log(JSON.stringify({postsSeen:items.length,postsImported:imported}));
 }
 function previewISAUpdates() {
   const config=isaConfig_(),items=isaRead_(config,Date.now()-30*86400000);

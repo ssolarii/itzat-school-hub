@@ -2,7 +2,7 @@
 
 ISA Updates course: **780277588874** ([Classroom](https://classroom.google.com/u/1/c/NzgwMjc3NTg4ODc0)).
 
-Automatically publishes announcements from this course into the public ISA Updates feed when the Developer enables automatic publishing. Approval-draft mode remains available. It does not import comments or roster identities, or copy Drive files. Attachments stay behind the original Classroom post link and its existing Google permissions.
+Automatically publishes announcements from this course into the public ISA Updates feed when the Developer enables automatic publishing. Approval-draft mode remains available. Imports attachment titles, HTTPS links and Google-provided thumbnails. It does not import comments or roster identities, copy Drive files, or change their sharing permissions. Each notice has a Link to Classroom button; unavailable image previews fall back to the attachment link.
 
 ## Setup
 
@@ -20,6 +20,7 @@ Automatically publishes announcements from this course into the public ISA Updat
 - Script lock prevents overlapping runs; transient HTTP failures retry with backoff.
 - Pagination and a five-minute overlap catch edited announcements. The cursor advances only after every batch succeeds; a partial retry does not create duplicates.
 - Unchanged or older revisions are ignored. An edited pending draft is updated. Automatic mode replaces the same notice ID on source edits. Draft mode requires fresh approval before replacing a published notice.
+- After migration 017, run `refreshISAUpdatesAttachments` once to backfill the last 30 days. Source content hashes allow enrichment without duplicating posts. Thumbnail URL rotation alone does not create another public timetable revision.
 - Source deletion does not automatically remove a public notice in this first version. Remove outdated notices through the school admin review flow.
 - Posts over 10,000 characters stop the run for manual review instead of silently truncating content.
 - Google triggers use the installing account's permissions. Losing Classroom access stops the sync without advancing the cursor.
