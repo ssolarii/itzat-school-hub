@@ -22,3 +22,16 @@ test('new incoming friend requests produce one actionable toast and never repeat
  await controller.pollNotifications();assert.equal(alerts.length,1);assert.match(alerts[0].message,/Alex sent you a friend request/);assert.equal(alerts[0].options.actionLabel,'View requests');
  await controller.pollNotifications();assert.equal(alerts.length,1);
 });
+
+test('new student accounts open the welcome channel on first chat entry',async()=>{
+ const userId='speed-user',welcome={id:'welcome-room',kind:'school',school_channel:'welcome',status:'approved'};
+ const own={user_id:userId,real_name:'User',class_group:'3CS'};
+ const saved=new Map([['school-chat-first-entry:'+userId,'welcome']]);
+ const storage={getItem:key=>saved.get(key)||null,setItem:(key,value)=>saved.set(key,value)};
+ const client={storage:{},rpc:async name=>({data:({community_admission_state:{admitted:true},community_get_profile:own,community_profiles_directory:[own],community_list_rooms:[{id:'class-room',kind:'class',class_group:'3CS',status:'approved'},welcome],community_list_friends:[],school_space_get_state:{profile:{...own,space_onboarded:false,cosmetic_roles:[]},authority:{role:'Student'},channels:[welcome],server:{}},community_activity:{cursor:0,events:[]},community_messages:[]})[name]||[],error:null})};
+ const controller=createCommunityController({client,storage,getContext:()=>({session,audience:'student',group:'3CS',groups:['3CS'],online:true}),onChange:()=>{},onNavigate:()=>{}});
+ controller.render('chat');await controller.load();
+ assert.equal(controller.model.chatSpace,'campus');
+ assert.equal(controller.model.activeConversationId,'welcome-room');
+ assert.equal(saved.get('school-chat-first-entry:'+userId),'');
+});

@@ -98,6 +98,9 @@ for (const path of ['supabase/migrations/202610130012_teacher_timetables.sql','s
 for (const path of ['supabase/migrations/202610130013_isa_updates_sync.sql','supabase/migrations/202610130014_isa_auto_publish.sql','supabase/migrations/202610130017_isa_attachments.sql']) {
  console.log('Executing',path); await db.exec(await fs.readFile(path,'utf8')); console.log('PASS',path);
 }
+for (const path of ['supabase/migrations/202610130018_auto_join_schoolwide.sql','supabase/tests/auto-schoolwide.sql']) {
+ console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where,detail:e.detail})); process.exit(1); } console.log('PASS',path);
+}
 await db.close();
 
 
