@@ -9,6 +9,8 @@ create table school_private.isa_imports (
  notice_id uuid not null default gen_random_uuid(), draft_id uuid references public.school_notice_drafts(id),
  imported_at timestamptz not null default now(), primary key(course_id,post_id)
 );
+alter table school_private.isa_sync_config enable row level security;
+alter table school_private.isa_imports enable row level security;
 revoke all on school_private.isa_sync_config,school_private.isa_imports from public,anon,authenticated;
 create function public.configure_isa_sync(p_course text,p_token text) returns void language plpgsql security definer set search_path='' as $$
 begin

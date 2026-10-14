@@ -1,4 +1,4 @@
-/** ISA Updates -> private Supabase notice drafts. Never place a service-role key here. */
+/** ISA Updates -> Supabase ISA Updates (publication mode is Developer-controlled). Never place a service-role key here. */
 function isaConfig_() {
   const p=PropertiesService.getScriptProperties();
   const config={courseId:p.getProperty('ISA_COURSE_ID'),url:p.getProperty('SUPABASE_URL'),key:p.getProperty('SUPABASE_PUBLISHABLE_KEY'),token:p.getProperty('ISA_SYNC_TOKEN')};
@@ -33,7 +33,7 @@ function isaRead_(config,cutoff) {
 function previewISAUpdates() {
   const config=isaConfig_(),items=isaRead_(config,Date.now()-30*86400000);
   // Preview never logs post text, tokens, account identities or attachments.
-  console.log(JSON.stringify({courseId:config.courseId,posts:items.length,willPublishPublicly:false}));return items.length;
+  console.log(JSON.stringify({courseId:config.courseId,posts:items.length,previewOnly:true}));return items.length;
 }
 function isaSend_(config,items) {
   for(let attempt=0;attempt<4;attempt++) {
@@ -53,7 +53,7 @@ function syncISAUpdates() {
     const items=isaRead_(config,cutoff);let imported=0;
     for(let offset=0;offset<items.length;offset+=50){const result=isaSend_(config,items.slice(offset,offset+50));imported+=Number(result.imported||0);}
     properties.setProperty(cursorKey,new Date(started).toISOString());
-    console.log(JSON.stringify({postsSeen:items.length,draftsImported:imported,lastSuccess:new Date(started).toISOString()}));
+    console.log(JSON.stringify({postsSeen:items.length,postsImported:imported,lastSuccess:new Date(started).toISOString()}));
   } finally {lock.releaseLock();}
 }
 function installISASyncTrigger() {

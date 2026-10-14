@@ -89,7 +89,7 @@ export function createBackend({ url, key }) {
       return checked(await client.from('school_members').select('user_id,role,capabilities,groups,active,updated_at')
         .order('updated_at', { ascending: false }), 'Memberships could not be loaded.') || [];
     },
-    async configureIsaSync(course,token) {return checked(await client.rpc('configure_isa_sync',{p_course:course,p_token:token}),'ISA Updates connection could not be saved.');},
+    async configureIsaSync(course,token,autoPublish) {return checked(await client.rpc('configure_isa_sync',{p_course:course,p_token:token,p_auto_publish:autoPublish}),'ISA Updates connection could not be saved.');},
     async getTeacherTimetable() {
       const session=checked(await client.auth.getSession());if(!session?.session)return null;
       const row=checked(await client.from('teacher_timetable_uploads').select('*').eq('teacher_id',session.session.user.id).maybeSingle(),'Timetable status could not be loaded.');
