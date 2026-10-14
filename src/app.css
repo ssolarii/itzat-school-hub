@@ -280,7 +280,9 @@ summary { cursor: pointer; min-height: 40px; padding: 10px 0; color: var(--accen
 .staff-scope {border:0;margin:20px 0;padding:0;}
 .staff-scope legend {font-weight:700;margin-bottom:12px;}
 .staff-scope .permission-list {display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-.staff-scope label {display:flex;justify-content:space-between;align-items:center;background:#f0ebf8;padding:12px;border-radius:8px;}
+.staff-scope label {display:flex;justify-content:space-between;align-items:center;background:var(--paper);color:var(--ink);padding:12px;border-radius:8px;}
+.staff-scope label:has(input:checked) {background:var(--accent-wash,var(--wash));border:1px solid var(--accent-text,var(--purple));}
+.staff-scope label:focus-within {outline:2px solid var(--accent-text,var(--purple));outline-offset:2px;}
 .staff-request-review {padding:24px 0;border-bottom:1px solid #ddd4e8;}
 
 /* Welcome: a spacious school introduction, then one decision at a time. */
@@ -352,3 +354,8 @@ summary { cursor: pointer; min-height: 40px; padding: 10px 0; color: var(--accen
   .welcome-preview { padding:28px; }
   .welcome-preview-row { padding-block:16px; }
 }
+
+.teacher-assignment-scroll {overflow-x:auto;margin:16px 0;}
+.teacher-assignment-scroll table {min-width:780px;width:100%;}
+.teacher-assignment-scroll select {width:100%;min-width:90px;}
+.teacher-digitize {margin-top:16px;}

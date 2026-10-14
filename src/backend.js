@@ -101,6 +101,7 @@ export function createBackend({ url, key }) {
       const signed=checked(await client.storage.from('teacher-timetables').createSignedUrls(rows.map(r=>r.image_path),240),'Teacher images could not be opened.');
       const urls=Object.fromEntries(signed.filter(r=>r.signedUrl).map(r=>[r.path,r.signedUrl]));return rows.map(r=>({...r,image_url:urls[r.image_path]}));
     },
+    async completeTeacherTimetable(upload,revision) {return checked(await client.rpc('complete_teacher_timetable',{p_teacher:upload.teacher_id,p_path:upload.image_path,p_revision:revision}),'Lessons were published, but the image status could not be updated.');},
     async uploadTeacherTimetable(file) {
       const extensions={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};
       if(!extensions[file?.type]||file.size<1||file.size>10*1024*1024)throw Error('Choose a JPG, PNG or WebP under 10 MB.');
@@ -114,15 +115,16 @@ export function createBackend({ url, key }) {
         p_name: name, p_groups: groups, p_note: note,
       }), 'Teacher access could not be requested.');
     },
-    async reviewTeacherAccess({ id, approve, groups = [] }) {
+    async setTeacherApprovalMessage(id,message) {return checked(await client.rpc('set_teacher_approval_message',{p_id:id,p_message:message}),'Approval message could not be saved.');},
+    async reviewTeacherAccess({ id, approve, groups = [], message = '' }) {
       return checked(await client.rpc('review_teacher_access', {
-        p_id: id, p_approve: approve, p_groups: groups,
+        p_id: id, p_approve: approve, p_groups: groups, p_message: message,
       }), 'Teacher request could not be reviewed.');
     },
     async listTeacherRequests({ leadership = false } = {}) {
       if(leadership) return checked(await client.rpc('list_teacher_requests_for_review'), 'Verified applicant identities could not be loaded.') || [];
       return checked(await client.from('school_teacher_requests')
-        .select('id,user_id,name,requested_groups,note,status,approved_groups,created_at,updated_at,reviewed_at')
+        .select('id,user_id,name,requested_groups,note,status,approved_groups,created_at,updated_at,reviewed_at,approval_message')
         .order('created_at', { ascending: false }), 'Teacher requests could not be loaded.') || [];
     },
   };

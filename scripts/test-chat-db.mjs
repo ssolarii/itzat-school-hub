@@ -91,6 +91,10 @@ for (const path of ['supabase/migrations/202610120007_chat_identity_and_channels
 for (const path of ['supabase/migrations/202610130009_chat_controls.sql','supabase/tests/chat-controls.sql']) {
  console.log('Executing',path); await db.exec(await fs.readFile(path,'utf8')); console.log('PASS',path);
 }
+await db.exec("create function storage.foldername(name text) returns text[] language sql immutable as $$ select (string_to_array(name,'/'))[1:array_length(string_to_array(name,'/'),1)-1] $$;");
+for (const path of ['supabase/migrations/202610130012_teacher_timetables.sql','supabase/migrations/202610130015_teacher_approval_messages.sql','supabase/migrations/202610130016_teacher_digitization_status.sql','supabase/tests/teacher-intake.sql']) {
+ console.log('Executing',path); await db.exec(await fs.readFile(path,'utf8')); console.log('PASS',path);
+}
 await db.close();
 
 

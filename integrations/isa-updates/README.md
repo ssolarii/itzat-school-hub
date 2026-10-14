@@ -23,6 +23,6 @@ Automatically publishes announcements from this course into the public ISA Updat
 - Source deletion does not automatically remove a public notice in this first version. Remove outdated notices through the school admin review flow.
 - Posts over 10,000 characters stop the run for manual review instead of silently truncating content.
 - Google triggers use the installing account's permissions. Losing Classroom access stops the sync without advancing the cursor.
-- Not activated yet: Google authorization, token configuration and trigger setup are still required.
+- Activated under the school Google account on 13 October 2026. The first run imported 14 posts; a second run imported no duplicates. One `syncISAUpdates` trigger runs every ten minutes. Tokens remain outside the repository.
 
 References: [Classroom announcements API](https://developers.google.com/workspace/classroom/reference/rest/v1/courses.announcements/list), [advanced Classroom service](https://developers.google.com/apps-script/advanced/classroom), [Script Properties](https://developers.google.com/apps-script/guides/properties), [installable triggers](https://developers.google.com/apps-script/guides/triggers/installable).

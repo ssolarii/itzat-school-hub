@@ -53,7 +53,7 @@ export function parentView(doc,group,today,interests=['events','dismissal','holi
   }
   return `<div class="page-heading"><div><h2>School updates</h2><p>School notices and upcoming dates for ${escape(group)}.</p></div></div><h3>ISA Updates</h3>${notices(doc,group)}<section class="section"><div class="section-heading"><h3>Your upcoming dates</h3><button class="button" data-route="settings">Edit interests</button></div><p class="subtle" style="margin-bottom:16px">Early dismissal reminders cover the next three weeks. You’ll also see school closures in the next seven days.</p>${eventList({...doc,calendar},today)}</section><details><summary>View ${escape(group)}’s next school day</summary>${agenda(nextSchoolDate(today,doc),group,doc)}</details>`;
 }
-export function teacherView(doc,today,teacher,timetableUpload=null) {
+export function teacherView(doc,today,teacher,timetableUpload=null,approvalMessage='') {
   const r = resolveDate(today,doc), allAssignments = doc.teacherAssignments || [];
   const assignments = allAssignments.filter(a=>a.teacher===teacher&&a.day===r.cycleDay).sort((a,b)=>a.session-b.session||a.group.localeCompare(b.group));
   let lessons;
@@ -73,5 +73,5 @@ export function teacherView(doc,today,teacher,timetableUpload=null) {
     }).filter(Boolean);
     lessons=rows.length?rows.join(''):empty('No teaching lessons listed today','No lessons are assigned to your teaching profile for this cycle day. Ask school administration if something is missing.','presentation');
   }
-  return `<div class="page-heading"><div><h2>Your teaching day</h2><p>In development</p><p>${dateLabel(today)}${r.cycleDay?' · Day '+r.cycleDay:''}</p></div></div>${teacherTimetableIntake(timetableUpload)}${lessons}<section class="section"><h3>ISA Updates</h3>${notices(doc,'school')}</section>`;
+  return `<div class="page-heading"><div><h2>Your teaching day</h2><p>In development</p><p>${dateLabel(today)}${r.cycleDay?' · Day '+r.cycleDay:''}</p></div></div>${approvalMessage?`<section class="section teacher-approval-message"><h3>Message from school leadership</h3><p style="white-space:pre-wrap">${escape(approvalMessage)}</p></section>`:''}${teacherTimetableIntake(timetableUpload)}${lessons}<section class="section"><h3>ISA Updates</h3>${notices(doc,'school')}</section>`;
 }
