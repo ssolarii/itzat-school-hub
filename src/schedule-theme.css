@@ -74,6 +74,11 @@
   --ink: #23103f; --muted: #6a5b7d; --paper: #fff;
   --canvas: #f7f4fd; --wash: #ebe3fc; color-scheme: light;
 }
+:root[data-account-theme=dark] .welcome-shell {
+  --ink: #f7f1ff; --muted: #c7bad6; --paper: #251d31;
+  --canvas: #1d1728; --wash: #362747; --welcome-accent: #cbb1f5; --welcome-wash: #362747;
+  background: var(--canvas); color: var(--ink); color-scheme: dark;
+}
 @media (max-width:760px) {
   .app-shell .schedule-toolbar .view-tabs { margin-bottom: 0; }
   .app-shell .lesson-row .period-count { margin-left: 0; }

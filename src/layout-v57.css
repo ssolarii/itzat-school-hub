@@ -28,6 +28,8 @@ input, textarea { caret-color: var(--accent, var(--purple)); }
 .topbar { padding: 16px 24px; min-height: 80px; gap: 16px; }
 .topbar h1 { font-size: 26px; }
 .top-actions { gap: 10px; }
+.top-actions .utility-icon { width:42px; min-height:42px; padding:0; display:inline-flex; align-items:center; justify-content:center; }
+.top-actions .utility-icon svg { width:18px; height:18px; }
 .class-picker select { min-height: 42px; font-size: 17px; }
 .content { max-width: 1700px; padding: 20px 24px 24px; }
 .content > .footer { margin-top: 18px; }
@@ -263,7 +265,6 @@ input, textarea { caret-color: var(--accent, var(--purple)); }
 .welcome-shell {padding:28px clamp(24px,4vw,64px);color:var(--ink);}
 .welcome-scene {width:100%;max-width:1080px;margin:36px 0 24px;}
 .welcome-scene[data-step=returning] {margin-top:32px;}
-:root[data-account-theme=dark] .welcome-shell {background:var(--canvas);--welcome-accent:#cbb1f5;--welcome-wash:#362747;}
 :root[data-account-theme=dark] .welcome-shell .gate-brand {color:var(--purple);}
 :root[data-account-theme=dark] .welcome-shell .button.primary {background:#6940a8;color:#fff;}
 :root[data-account-theme=dark] .welcome-shell .button.secondary {background:var(--welcome-wash);color:var(--ink);}
