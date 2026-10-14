@@ -46,8 +46,11 @@ export function insertComposerText(editor,text,model){
   return syncComposer(editor,model);
 }
 export function bindComposer(root,onInput){
+  function insertPlain(editor,text){editor.focus();const selection=editor.ownerDocument.getSelection();if(selection?.rangeCount&&editor.contains(selection.anchorNode)){const range=selection.getRangeAt(0);range.deleteContents();const node=editor.ownerDocument.createTextNode(text);range.insertNode(node);range.setStartAfter(node);range.collapse(true);selection.removeAllRanges();selection.addRange(range);}else editor.append(text);onInput(editor);}
   root.addEventListener('pointerdown',()=>{const editor=root.querySelector('[data-emoji-composer]');if(editor)editor.dataset.caretOffset=String(composerCaret(editor));});
   root.addEventListener('compositionstart',event=>{if(event.target.matches('[data-emoji-composer]'))event.target.dataset.composing='true';});
   root.addEventListener('compositionend',event=>{if(event.target.matches('[data-emoji-composer]')){delete event.target.dataset.composing;onInput(event.target);}});
-  root.addEventListener('paste',event=>{const editor=event.target.closest('[data-emoji-composer]');if(!editor)return;event.preventDefault();const text=event.clipboardData?.getData('text/plain')||'';editor.focus();const selection=editor.ownerDocument.getSelection();if(selection?.rangeCount&&editor.contains(selection.anchorNode)){const range=selection.getRangeAt(0);range.deleteContents();const node=editor.ownerDocument.createTextNode(text);range.insertNode(node);range.setStartAfter(node);range.collapse(true);selection.removeAllRanges();selection.addRange(range);}else editor.append(text);onInput(editor);});
+  root.addEventListener('paste',event=>{const editor=event.target.closest('[data-emoji-composer]');if(!editor)return;event.preventDefault();insertPlain(editor,event.clipboardData?.getData('text/plain')||'');});
+  root.addEventListener('keydown',event=>{if(event.key==='Enter'&&event.shiftKey&&!event.isComposing&&event.target.matches('[data-emoji-composer]')){event.preventDefault();insertPlain(event.target,'\n');}});
+  root.addEventListener('drop',event=>{if(event.target.closest('[data-emoji-composer]'))event.preventDefault();});
 }
