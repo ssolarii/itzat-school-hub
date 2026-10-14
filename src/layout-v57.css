@@ -246,3 +246,14 @@ input, textarea { caret-color: var(--accent, var(--purple)); }
   .lesson-row .period-count { margin-left:8px; }
   .lesson-row .lesson-break { margin-left:0; }
 }
+
+/* Keep account controls within reach while the workspace scrolls. */
+@media (min-width: 901px) {
+  .app-shell > .sidebar {position:sticky;top:0;height:100dvh;align-self:start;overflow:hidden;}
+  .sidebar > .brand {flex-shrink:0;}
+  .sidebar > .side-nav {min-height:0;overflow-y:auto;flex:1;}
+  .sidebar > .sidebar-bottom {flex-shrink:0;margin-top:auto;}
+}
+.notice-list {max-height:min(65dvh,680px);overflow-y:auto;overscroll-behavior-y:contain;padding-right:8px;scrollbar-gutter:stable;}
+.schedule-secondary .notice-list {max-height:min(55dvh,540px);}
+.notice-list:focus-visible {outline:2px solid var(--accent-text,var(--purple));outline-offset:4px;}
