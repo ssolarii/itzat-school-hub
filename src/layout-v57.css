@@ -258,3 +258,12 @@ input, textarea { caret-color: var(--accent, var(--purple)); }
 .notice-list {max-height:min(65dvh,680px);overflow-y:auto;overscroll-behavior-y:contain;padding-right:8px;scrollbar-gutter:stable;}
 .schedule-secondary .notice-list {max-height:min(55dvh,540px);}
 .notice-list:focus-visible {outline:2px solid var(--accent-text,var(--purple));outline-offset:4px;}
+
+/* Align the returning welcome with its brand instead of indenting it. */
+.welcome-shell {padding:28px clamp(24px,4vw,64px);color:var(--ink);}
+.welcome-scene {width:100%;max-width:1080px;margin:36px 0 24px;}
+.welcome-scene[data-step=returning] {margin-top:32px;}
+:root[data-account-theme=dark] .welcome-shell {background:var(--canvas);--welcome-accent:#cbb1f5;--welcome-wash:#362747;}
+:root[data-account-theme=dark] .welcome-shell .gate-brand {color:var(--purple);}
+:root[data-account-theme=dark] .welcome-shell .button.primary {background:#6940a8;color:#fff;}
+:root[data-account-theme=dark] .welcome-shell .button.secondary {background:var(--welcome-wash);color:var(--ink);}
