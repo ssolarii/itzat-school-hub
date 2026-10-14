@@ -13,7 +13,7 @@ Automatically publishes announcements from this course into the public ISA Updat
 5. Set Script Properties: `ISA_COURSE_ID`, `SUPABASE_URL` (`https://rssshitgdspbqjtqxvmr.supabase.co`), `SUPABASE_PUBLISHABLE_KEY` (the public browser key), and `ISA_SYNC_TOKEN` (the same token). Never use a service-role or secret Supabase key.
 6. Run `previewISAUpdates` to check the post count without transferring announcement text. The initial lookback is 30 days.
 7. Run `syncISAUpdates` once, then check **ISA Updates** on the public site. In draft mode, check the announcement approval queue.
-8. Run `installISASyncTrigger` after verifying the import. It installs one five-minute trigger. `stopISASyncTrigger` removes only this handler's triggers. A Developer can disable the import endpoint with `disable_isa_sync()`.
+8. Run `installISASyncTrigger` after verifying the import. It installs one ten-minute trigger. `stopISASyncTrigger` removes only this handler's triggers. A Developer can disable the import endpoint with `disable_isa_sync()`.
 
 ## Behavior
 

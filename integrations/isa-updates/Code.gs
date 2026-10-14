@@ -59,6 +59,6 @@ function syncISAUpdates() {
 function installISASyncTrigger() {
   isaConfig_();
   ScriptApp.getProjectTriggers().filter(t=>t.getHandlerFunction()==='syncISAUpdates').forEach(t=>ScriptApp.deleteTrigger(t));
-  ScriptApp.newTrigger('syncISAUpdates').timeBased().everyMinutes(5).create();
+  ScriptApp.newTrigger('syncISAUpdates').timeBased().everyMinutes(10).create();
 }
 function stopISASyncTrigger() {ScriptApp.getProjectTriggers().filter(t=>t.getHandlerFunction()==='syncISAUpdates').forEach(t=>ScriptApp.deleteTrigger(t));}
