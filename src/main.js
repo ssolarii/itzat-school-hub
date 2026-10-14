@@ -3,6 +3,9 @@ import {teacherAssignmentEditor,teacherAssignmentProposal} from './teacher-timet
 import {createChatToasts} from './chat-toasts.js';
 import './chat-toasts.css';
 import {sendOnEnter} from './chat-input.js';
+import {bindComposer,setComposerCaret} from './emoji-composer.js';
+import {positionEmojiPopover} from './emoji-popover.js';
+import './emoji-ui.css';
 import {captureChatScroll,restoreChatScroll} from './chat-scroll.js';
 import './fonts.css';
 import './app.css';
@@ -38,8 +41,9 @@ const cookieOptions={secure:location.protocol==='https:',basePath:baseURL.pathna
 const root=document.getElementById('app');
 const chatToasts=createChatToasts();
 root.addEventListener('keydown',sendOnEnter);
+bindComposer(root,target=>community.input(target));
 let chatPickersBound=false;
-function setupChatPickers(){if(chatPickersBound||!root.querySelector('emoji-picker,.chat-icon-picker'))return;chatPickersBound=true;import('./chat-pickers.js').then(({bindChatPickers})=>bindChatPickers(root,target=>community.input(target),(id,emoji)=>community.react(id,emoji).catch(error=>notice(error.message,true)))).catch(()=>{chatPickersBound=false;});}
+function setupChatPickers(){if(chatPickersBound||!root.querySelector('emoji-picker,.chat-icon-picker'))return;chatPickersBound=true;import('./chat-pickers.js').then(({bindChatPickers})=>bindChatPickers(root,target=>community.input(target),(id,emoji)=>community.react(id,emoji).catch(error=>notice(error.message,true)),()=>community.model)).catch(()=>{chatPickersBound=false;});}
 const safeStorage={getItem:k=>{try{return localStorage.getItem(k)}catch{return null}},setItem:(k,v)=>{try{localStorage.setItem(k,v);return true}catch{return false}}};
 let backend=null,configurationError='';
 try {backend=createBackend({url:import.meta.env.VITE_SUPABASE_URL||schoolConfig.url,key:import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY||schoolConfig.publishableKey});}catch(e){configurationError=e.message;}
@@ -64,7 +68,7 @@ const communityRoutes=['chat','qa','profile'];
 const community=createCommunityController({enabled:schoolConfig.communityEnabled===true,client:backend?.client,storage:safeStorage,getContext:()=>({session,membership,audience,group,groups:activeGroups(),name:profile?.name,online:!!backend&&navigator.onLine}),onChange:()=>{if(communityRoutes.includes(route)&&!landingPage&&(!onboarding()||chatPage))render();},onNavigate:target=>goto(target),onAlert:(message,options)=>chatToasts.show(message,options),onClearAlerts:()=>chatToasts.clear()});
 const mobileQuery=window.matchMedia('(max-width: 760px)');
 const tutorials=createTutorials({storage:safeStorage,root:()=>root,getContext:()=>({audience,onboarding:onboarding()})});
-const paint=()=>{if(mobileQuery.matches)root.querySelectorAll('details.earlier-lessons').forEach(d=>d.removeAttribute('open'));paintIcons();setupChatPickers();const modal=root.querySelector('.profile-management-dialog');if(modal&&!modal.matches(':modal')){modal.removeAttribute('open');modal.showModal();modal.addEventListener('cancel',e=>{e.preventDefault();if(community.model.profileModalOpen||community.model.spaceOnboardingOpen||community.model.chatSpace==='campus'&&(!community.model.spaceState?.profile?.space_onboarded||!community.model.spaceState?.profile?.cosmetic_roles?.length))community.closeModal();},{once:true});}if(!root.querySelector('.profile-management-dialog')&&(!landingPage&&(authBooted||!backend)))tutorials.check(communityRoutes.includes(route)&&schoolConfig.communityEnabled!==true?'unavailable':route);};
+const paint=()=>{if(mobileQuery.matches)root.querySelectorAll('details.earlier-lessons').forEach(d=>d.removeAttribute('open'));paintIcons();setupChatPickers();positionEmojiPopover(root,community.model,()=>{const message=community.model.emojiPicker==='message',offset=community.model.composerCaret;community.action({dataset:{communityAction:'cancel-emoji-picker'}}).then(()=>{const editor=root.querySelector('[data-emoji-composer]');if(message&&editor){editor.focus();setComposerCaret(editor,offset);}});});const modal=root.querySelector('.profile-management-dialog');if(modal&&!modal.matches(':modal')){modal.removeAttribute('open');modal.showModal();modal.addEventListener('cancel',e=>{e.preventDefault();if(community.model.profileModalOpen||community.model.spaceOnboardingOpen||community.model.chatSpace==='campus'&&(!community.model.spaceState?.profile?.space_onboarded||!community.model.spaceState?.profile?.cosmetic_roles?.length))community.closeModal();},{once:true});}if(!root.querySelector('.profile-management-dialog')&&(!landingPage&&(authBooted||!backend)))tutorials.check(communityRoutes.includes(route)&&schoolConfig.communityEnabled!==true?'unavailable':route);};
 mobileQuery.addEventListener('change',()=>root.querySelectorAll('details.earlier-lessons').forEach(d=>d.open=!mobileQuery.matches));
 const canPublishNotices=()=>membership?.active&&(['developer','principal'].includes(membership.role)||membership.capabilities?.includes('notices.publish'));
 const classPalette=()=>{const palettes=[['#512393','#ebe3fc','#d5baff','#362747'],['#632985','#f0e3f6','#e0bef2','#3b2845'],['#3d337f','#e9e6fa','#cfc7ff','#302b48'],['#6c2b69','#f2e3ef','#ecc0e7','#422a40']];return palettes[[...group].reduce((sum,c)=>sum+c.charCodeAt(0),0)%palettes.length]};

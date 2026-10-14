@@ -29,7 +29,8 @@ for (const path of [
 ]) {
  console.log('Executing',path);
  try { await db.exec(await fs.readFile(path,'utf8')); }
- catch(error) { console.error(JSON.stringify({message:error.message,code:error.code,position:error.position,where:error.where,detail:error.detail},null,2)); await db.close(); process.exit(1); }
+ catch(error) { console.error(JSON.stringify({message:error.message,code:error.code,position:error.position,where:error.where,detail:error.detail},null,2)); for (const path of ['supabase/migrations/202610130010_staff_access_and_badges.sql','supabase/migrations/202610130011_message_interactions.sql','supabase/migrations/202610140019_emoji_reactions_founder.sql','supabase/tests/emoji-reactions.sql']) { console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where})); process.exit(1); } console.log('PASS',path); }
+await db.close(); process.exit(1); }
  console.log('PASS',path);
 }
 console.log('Community PostgreSQL migration and rollback security fixtures passed.');
@@ -92,6 +93,8 @@ for (const path of ['supabase/migrations/202610130009_chat_controls.sql','supaba
  console.log('Executing',path); await db.exec(await fs.readFile(path,'utf8')); console.log('PASS',path);
 }
 await db.exec("create function storage.foldername(name text) returns text[] language sql immutable as $$ select (string_to_array(name,'/'))[1:array_length(string_to_array(name,'/'),1)-1] $$;");
+await db.exec("insert into auth.users(id,email,email_confirmed_at) values('0c190000-0000-4000-8000-000000000002','developer-fixture@example.invalid',now()); insert into public.school_members(user_id,role,groups) values('0c190000-0000-4000-8000-000000000002','developer','{*}');");
+for (const path of ['supabase/migrations/202610130010_staff_access_and_badges.sql','supabase/migrations/202610130011_message_interactions.sql']) { console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where})); process.exit(1); } console.log('PASS',path); }
 for (const path of ['supabase/migrations/202610130012_teacher_timetables.sql','supabase/migrations/202610130015_teacher_approval_messages.sql','supabase/migrations/202610130016_teacher_digitization_status.sql','supabase/tests/teacher-intake.sql']) {
  console.log('Executing',path); await db.exec(await fs.readFile(path,'utf8')); console.log('PASS',path);
 }
@@ -101,6 +104,7 @@ for (const path of ['supabase/migrations/202610130013_isa_updates_sync.sql','sup
 for (const path of ['supabase/migrations/202610130018_auto_join_schoolwide.sql','supabase/tests/auto-schoolwide.sql']) {
  console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where,detail:e.detail})); process.exit(1); } console.log('PASS',path);
 }
+for (const path of ['supabase/migrations/202610140019_emoji_reactions_founder.sql','supabase/tests/emoji-reactions.sql']) { console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where})); process.exit(1); } console.log('PASS',path); }
 await db.close();
 
 

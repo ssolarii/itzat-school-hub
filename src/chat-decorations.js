@@ -1,7 +1,11 @@
 import {CHAT_ICONS} from './chat-icon-catalog.js';
 import {escape as e} from './views.js';
 export const chatSymbol = key => CHAT_ICONS[key] || CHAT_ICONS.award;
+export const ORIGINAL_FOUNDER_BADGE='0f019000-0000-4000-8000-000000000001';
+export const isOriginalFounder=p=>(p?.badges||[]).some(b=>b.id===ORIGINAL_FOUNDER_BADGE);
+export const founderAvatarClass=p=>isOriginalFounder(p)?' founder-avatar':'';
+export const founderDecoration=p=>isOriginalFounder(p)?`<span class="founder-crest" title="Original Founder" aria-label="Original Founder profile decoration">${chatSymbol('crown')}</span>`:'';
 export function iconPicker(name,value='award',label='Icon',empty=false){return `<fieldset class="chat-icon-picker"><legend>${e(label)}</legend><input type="hidden" name="${e(name)}" value="${e(value||'')}"><input type="search" data-icon-search aria-label="Search ${e(label.toLowerCase())}" placeholder="Search icons"><div class="chat-icon-options">${empty?`<button type="button" data-symbol-choice="" data-field="${e(name)}" aria-label="No icon" aria-pressed="${!value}">None</button>`:''}${Object.keys(CHAT_ICONS).map(key=>`<button type="button" data-symbol-choice="${key}" data-field="${e(name)}" data-symbol-name="${key}" title="${key.replaceAll('-',' ')}" aria-label="${key.replaceAll('-',' ')}" aria-pressed="${value===key}">${chatSymbol(key)}</button>`).join('')}</div></fieldset>`;}
 export function featuredBadge(p){const badge=p?.badges?.find(b=>b.id===p.featured_badge_id);return badge?`<span class="chat-featured-badge" title="${e(badge.name)}" aria-label="${e(badge.name)}">${chatSymbol(badge.icon_key)}</span>`:'';}
-export function profileBadges(p){return (p?.badges||[]).map(b=>`<span class="profile-award-chip" style="--award-color:${/^#[0-9a-f]{6}$/i.test(b.color)?b.color:'#512393'}" title="${e(b.description||b.name)}">${chatSymbol(b.icon_key)}<span>${e(b.name)}</span></span>`).join('');}
+export function profileBadges(p){return (p?.badges||[]).map(b=>`<span class="profile-award-chip ${b.id===ORIGINAL_FOUNDER_BADGE?'founder-award':''}" style="--award-color:${/^#[0-9a-f]{6}$/i.test(b.color)?b.color:'#512393'}" title="${e(b.description||b.name)}">${chatSymbol(b.icon_key)}<span>${e(b.name)}</span></span>`).join('');}
 export function profileInterests(p){return `<div class="profile-cosmetic-tags">${(p.cosmetic_roles||[]).map(role=>`<span>${e(String(role).replaceAll('-',' '))}</span>`).join('')}${p.personal_tag?`<span>${e(p.personal_tag)}</span>`:''}</div>`;}
