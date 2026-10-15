@@ -1,5 +1,6 @@
 import {noticeContent} from './notice-attachments.js';
-import {teacherTimetableIntake} from './teacher-timetable.js';
+import {teacherTimetableIntake,digitizedTeacherSchedulePreview} from './teacher-timetable.js';
+import {digitizedTeacherLessons} from './teacher-schedule.js';
 import {dateKey,addDays,resolveDate,getLessons,getDayStatus,nextSchoolDate,getWeek} from './schedule.js';
 import {groupDisplayLessons} from './display-lessons.js';
 
@@ -56,11 +57,15 @@ export function parentView(doc,group,today,interests=['events','dismissal','holi
 }
 export function teacherView(doc,today,teacher,timetableUpload=null,approvalMessage='') {
   const r = resolveDate(today,doc), allAssignments = doc.teacherAssignments || [];
+  const digitized=digitizedTeacherLessons(timetableUpload,today,doc);
   const assignments = allAssignments.filter(a=>a.teacher===teacher&&a.day===r.cycleDay).sort((a,b)=>a.session-b.session||a.group.localeCompare(b.group));
   let lessons;
   if (!r.isCampusDay) {
     lessons = agenda(today,'',doc);
-    if (!allAssignments.length) lessons += `<p class="subtle" style="margin-top:15px">Teacher lesson assignments have not been published yet.</p>`;
+    if (!allAssignments.length&&!digitized) lessons += `<p class="subtle" style="margin-top:15px">Teacher lesson assignments have not been published yet.</p>`;
+  } else if (digitized) {
+    const teacherDoc={...doc,subjects:{...doc.subjects,PLC:{name:'PLC / staff planning',icon:'users-round'}}};
+    lessons=digitized.length?digitized.map(lesson=>`<section style="margin-bottom:20px"><h3>${escape(lesson.groups.length?lesson.groups.join(', '):lesson.subject==='PLC'?'Staff planning':'Combined groups')}</h3>${lessonRow(lesson,teacherDoc)}</section>`).join(''):empty('No teaching lessons listed today','No lessons are listed in your digitized timetable for this cycle day.','presentation');
   } else if (!allAssignments.length) {
     lessons = empty('Lessons haven’t been assigned yet','The teacher-to-lesson list is awaiting your school’s teacher assignments. Your timetable will appear here once it is published.','presentation');
   } else {
@@ -74,5 +79,5 @@ export function teacherView(doc,today,teacher,timetableUpload=null,approvalMessa
     }).filter(Boolean);
     lessons=rows.length?rows.join(''):empty('No teaching lessons listed today','No lessons are assigned to your teaching profile for this cycle day. Ask school administration if something is missing.','presentation');
   }
-  return `<div class="page-heading"><div><h2>Your teaching day</h2><p>In development</p><p>${dateLabel(today)}${r.cycleDay?' · Day '+r.cycleDay:''}</p></div></div>${approvalMessage?`<section class="section teacher-approval-message"><h3>Message from school leadership</h3><p style="white-space:pre-wrap">${escape(approvalMessage)}</p></section>`:''}${teacherTimetableIntake(timetableUpload)}${lessons}<section class="section"><h3>ISA Updates</h3>${notices(doc,'school')}</section>`;
+  return `<div class="page-heading"><div><h2>Your teaching day</h2><p>In development</p><p>${dateLabel(today)}${r.cycleDay?' · Day '+r.cycleDay:''}</p></div></div>${approvalMessage?`<section class="section teacher-approval-message"><h3>Message from school leadership</h3><p style="white-space:pre-wrap">${escape(approvalMessage)}</p></section>`:''}${teacherTimetableIntake(timetableUpload)}${digitizedTeacherSchedulePreview(timetableUpload,doc)}${lessons}<section class="section"><h3>ISA Updates</h3>${notices(doc,'school')}</section>`;
 }
