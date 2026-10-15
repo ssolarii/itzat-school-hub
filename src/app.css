@@ -397,6 +397,7 @@ summary { cursor: pointer; min-height: 40px; padding: 10px 0; color: var(--accen
 .announcement-preview {background:var(--paper);color:var(--ink);padding:20px;border:1px solid var(--line);border-radius:8px;}
 .announcement-preview h3 {margin:12px 0;}
 .announcement-preview-body {white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;}
+#review-dialog {--accent:#512393;--accent-wash:var(--wash);--on-accent:#fff;}
 #review-dialog[open] {display:flex;flex-direction:column;max-height:calc(100dvh - 48px);overflow:hidden;}
 #review-dialog .dialog-head {flex:none;}
 #review-content {min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-right:6px;}
