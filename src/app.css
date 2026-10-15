@@ -369,3 +369,8 @@ summary { cursor: pointer; min-height: 40px; padding: 10px 0; color: var(--accen
 .notice-attachment:hover {border-color:var(--accent-text,var(--purple));}
 .notice-source {margin-top:16px;}
 .notice-source a {display:inline-flex;text-decoration:none;}
+.teacher-schedule-preview table {min-width:0;border-collapse:collapse;font-size:14px;text-align:left;}
+.teacher-schedule-preview th,.teacher-schedule-preview td {padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+.teacher-schedule-preview th:first-child,.teacher-schedule-preview td:nth-child(2),.teacher-schedule-preview td:last-child {white-space:nowrap;}
+.teacher-schedule-preview thead {background:var(--accent-wash);}
+.teacher-schedule-preview small {display:block;margin-top:4px;color:var(--text-muted,inherit);}
