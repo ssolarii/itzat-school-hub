@@ -388,3 +388,17 @@ summary { cursor: pointer; min-height: 40px; padding: 10px 0; color: var(--accen
 .teacher-checkout-list p {margin:4px 0;}
 .teacher-unavailable {display:flex;align-items:center;gap:6px;color:var(--ink);font-size:13px;margin:6px 0 0;}
 .teacher-unavailable svg {width:16px;height:16px;flex:none;}
+.review-facts {display:grid;gap:16px;margin:20px 0;}
+.review-facts dt {font-size:13px;color:var(--muted);margin-bottom:4px;}
+.review-facts dd {margin:0;overflow-wrap:anywhere;}
+.review-change {padding:14px 0;border-bottom:1px solid var(--line);}
+.review-change h3 {font-size:15px;margin-bottom:6px;}
+.review-change p {white-space:pre-wrap;overflow-wrap:anywhere;}
+.announcement-preview {background:var(--paper);color:var(--ink);padding:20px;border:1px solid var(--line);border-radius:8px;}
+.announcement-preview h3 {margin:12px 0;}
+.announcement-preview-body {white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;}
+#review-dialog[open] {display:flex;flex-direction:column;max-height:calc(100dvh - 48px);overflow:hidden;}
+#review-dialog .dialog-head {flex:none;}
+#review-content {min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-right:6px;}
+#review-error {flex:none;max-height:120px;overflow-y:auto;}
+#review-dialog .dialog-actions {flex:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);}
