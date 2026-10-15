@@ -16,7 +16,7 @@ export function groupDisplayLessons(lessons, slots = []) {
       const previous = rows.at(-1);
       const adjacent = previous && previous.session + previous.span === row.session;
       const crossesLunch = previous && previous.session + previous.span - 1 === 4;
-      const matching = previous && ['subject', 'room', 'teacher', 'note'].every(key => (previous[key] ?? '') === (row[key] ?? ''));
+      const matching = previous && ['subject', 'room', 'teacher', 'note','teacherUnavailable'].every(key => (previous[key] ?? '') === (row[key] ?? ''));
       if (adjacent && !crossesLunch && matching && !previous.substitution && !row.substitution) {
         previous.span += row.span;
         previous.end = row.end;

@@ -84,7 +84,9 @@ export function getLessons(date, group, document) {
       if (lesson.subject === 'PLC') continue;
       const override = (document.overrides || []).filter(o => o.date === date && o.group === group && Number(o.session) === slot).at(-1);
       const original = { subject: lesson.subject, room: lesson.room ?? null, teacher: lesson.teacher ?? null };
+      const teacherUnavailable=!(override?.teacher&&override.teacher!==lesson.teacher)&&(document.teacherCheckouts||[]).some(checkout=>checkout.date===date&&checkout.class_group===group&&checkout.subject===lesson.subject&&(!checkout.cycle_day||checkout.cycle_day===resolved.cycleDay)&&checkout.session===slot);
       expanded.push({ ...lesson, ...override, session: slot, span: 1, room: override && Object.hasOwn(override, 'room') ? override.room : lesson.room ?? null,
+        ...(teacherUnavailable?{teacherUnavailable:true}:{}),
         teacher: override?.teacher ?? lesson.teacher ?? null, note: override?.note || lesson.note || '', substitution: !!override,
         original: override ? original : null, start: slots[slot - 1].start, end: slots[slot - 1].end, _base: baseIndex, _override: override });
     }
@@ -93,7 +95,7 @@ export function getLessons(date, group, document) {
   const merged = [];
   for (const lesson of expanded) {
     const previous = merged.at(-1);
-    if (previous && !lesson._override && !previous._override && previous._base === lesson._base && previous.session + previous.span === lesson.session) {
+    if (previous && !lesson._override && !previous._override && previous.teacherUnavailable===lesson.teacherUnavailable && previous._base === lesson._base && previous.session + previous.span === lesson.session) {
       previous.span++; previous.end = lesson.end;
     } else merged.push({ ...lesson });
   }

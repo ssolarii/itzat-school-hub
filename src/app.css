@@ -374,3 +374,17 @@ summary { cursor: pointer; min-height: 40px; padding: 10px 0; color: var(--accen
 .teacher-schedule-preview th:first-child,.teacher-schedule-preview td:nth-child(2),.teacher-schedule-preview td:last-child {white-space:nowrap;}
 .teacher-schedule-preview thead {background:var(--accent-wash);}
 .teacher-schedule-preview small {display:block;margin-top:4px;color:var(--text-muted,inherit);}
+.teaching-links {border:0;padding:0;margin:20px 0;min-width:0;}
+.teaching-links legend,.teacher-availability legend {font-weight:600;}
+.teaching-links details,.teacher-link-editor {border-bottom:1px solid var(--line);padding:12px 0;}
+.teaching-links summary,.teacher-link-editor>summary,.teacher-availability summary {cursor:pointer;line-height:1.5;}
+.teaching-class-options {display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.teaching-class-options label {display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;cursor:pointer;}
+.teaching-class-options label:has(:checked) {background:var(--accent-wash,var(--wash));border-color:var(--accent-text,var(--purple));}
+.teaching-class-options input {width:18px;height:18px;margin:0;accent-color:var(--accent,var(--purple));}
+.teacher-availability form {max-width:660px;margin:20px 0;}
+.teacher-availability fieldset {border:0;padding:0;min-width:0;}
+.teacher-checkout-list article {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);}
+.teacher-checkout-list p {margin:4px 0;}
+.teacher-unavailable {display:flex;align-items:center;gap:6px;color:var(--ink);font-size:13px;margin:6px 0 0;}
+.teacher-unavailable svg {width:16px;height:16px;flex:none;}

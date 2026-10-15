@@ -110,21 +110,32 @@ export function createBackend({ url, key }) {
       checked(await client.storage.from('teacher-timetables').upload(path,file,{upsert:false,contentType:file.type}),'Image upload failed.');
       return checked(await client.rpc('submit_teacher_timetable',{p_path:path}),'Timetable could not be submitted.');
     },
-    async requestTeacherAccess({ name, groups, note = '' }) {
+    async getTeacherProfiles() {return checked(await client.rpc('get_teacher_profiles'),'Teacher subjects could not be loaded.')||[];},
+    async listTeacherCheckouts(from) {return checked(await client.from('teacher_checkouts').select('id,teacher_id,date,sessions,cancelled_at').gte('date',from).is('cancelled_at',null).order('date'),'Teacher check-outs could not be loaded.')||[];},
+    async checkoutTeacher(date,sessions) {return checked(await client.rpc('checkout_teacher',{p_date:date,p_sessions:sessions}),'Check-out could not be saved.');},
+    async cancelTeacherCheckout(id) {return checked(await client.rpc('cancel_teacher_checkout',{p_id:id}),'Check-out could not be cancelled.');},
+    async setTeacherSubjectLinks(teacher,links) {return checked(await client.rpc('set_teacher_subject_links',{p_teacher:teacher,p_links:links}),'Teaching links could not be saved.');},
+    async getTeacherUnavailability(from,to) {return checked(await client.rpc('get_teacher_unavailability',{p_from:from,p_to:to}),'Teacher availability could not be loaded.')||[];},
+    async requestTeacherAccess({ name, groups, note = '', teaching }) {
       return checked(await client.rpc('request_teacher_access', {
-        p_name: name, p_groups: groups, p_note: note,
+        p_name: name, p_groups: groups, p_note: note,...(teaching?{p_teaching:teaching}:{}),
       }), 'Teacher access could not be requested.');
     },
     async setTeacherApprovalMessage(id,message) {return checked(await client.rpc('set_teacher_approval_message',{p_id:id,p_message:message}),'Approval message could not be saved.');},
-    async reviewTeacherAccess({ id, approve, groups = [], message = '' }) {
+    async reviewTeacherAccess({ id, approve, groups = [], message = '', teaching }) {
       return checked(await client.rpc('review_teacher_access', {
-        p_id: id, p_approve: approve, p_groups: groups, p_message: message,
+        p_id: id, p_approve: approve, p_groups: groups, p_message: message,...(teaching?{p_teaching:teaching}:{}),
       }), 'Teacher request could not be reviewed.');
     },
     async listTeacherRequests({ leadership = false } = {}) {
-      if(leadership) return checked(await client.rpc('list_teacher_requests_for_review'), 'Verified applicant identities could not be loaded.') || [];
+      if(leadership) {
+        const requests=checked(await client.rpc('list_teacher_requests_for_review'), 'Verified applicant identities could not be loaded.')||[];
+        const teaching=await client.from('school_teacher_requests').select('id,requested_teaching');
+        if(teaching.error&&teaching.error.code!=='42703')checked(teaching,'Teaching requests could not be loaded.');
+        return requests.map(request=>({...request,requested_teaching:teaching.data?.find(row=>row.id===request.id)?.requested_teaching||[]}));
+      }
       return checked(await client.from('school_teacher_requests')
-        .select('id,user_id,name,requested_groups,note,status,approved_groups,created_at,updated_at,reviewed_at,approval_message')
+        .select('id,user_id,name,requested_groups,note,status,approved_groups,created_at,updated_at,reviewed_at,approval_message,requested_teaching')
         .order('created_at', { ascending: false }), 'Teacher requests could not be loaded.') || [];
     },
   };

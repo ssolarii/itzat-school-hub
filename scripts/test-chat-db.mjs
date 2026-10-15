@@ -30,7 +30,7 @@ for (const path of [
  console.log('Executing',path);
  try { await db.exec(await fs.readFile(path,'utf8')); }
  catch(error) { console.error(JSON.stringify({message:error.message,code:error.code,position:error.position,where:error.where,detail:error.detail},null,2)); for (const path of ['supabase/migrations/202610130010_staff_access_and_badges.sql','supabase/migrations/202610130011_message_interactions.sql','supabase/migrations/202610140019_emoji_reactions_founder.sql','supabase/tests/emoji-reactions.sql']) { console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where})); process.exit(1); } console.log('PASS',path); }
-for (const path of ['supabase/migrations/202610140020_private_digitized_teacher_schedule.sql','supabase/tests/private-teacher-schedule.sql']) { console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where})); process.exit(1); } console.log('PASS',path); }
+for (const path of ['supabase/migrations/202610140020_private_digitized_teacher_schedule.sql','supabase/tests/private-teacher-schedule.sql','supabase/migrations/202610140021_teacher_subjects_and_checkouts.sql']) { console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where})); process.exit(1); } console.log('PASS',path); }
 await db.close(); process.exit(1); }
  console.log('PASS',path);
 }
@@ -106,7 +106,7 @@ for (const path of ['supabase/migrations/202610130018_auto_join_schoolwide.sql',
  console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where,detail:e.detail})); process.exit(1); } console.log('PASS',path);
 }
 for (const path of ['supabase/migrations/202610140019_emoji_reactions_founder.sql','supabase/tests/emoji-reactions.sql']) { console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where})); process.exit(1); } console.log('PASS',path); }
-for (const path of ['supabase/migrations/202610140020_private_digitized_teacher_schedule.sql','supabase/tests/private-teacher-schedule.sql']) { console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where})); process.exit(1); } console.log('PASS',path); }
+for (const path of ['supabase/migrations/202610140020_private_digitized_teacher_schedule.sql','supabase/tests/private-teacher-schedule.sql','supabase/migrations/202610140021_teacher_subjects_and_checkouts.sql']) { console.log('Executing',path); try { await db.exec(await fs.readFile(path,'utf8')); } catch(e) { console.error(JSON.stringify({message:e.message,code:e.code,where:e.where})); process.exit(1); } console.log('PASS',path); }
 await db.close();
 
 

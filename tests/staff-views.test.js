@@ -31,7 +31,7 @@ test('request and pending views require an authenticated session', () => {
   const html = loginView({ ...args, mode: 'request', session });
   assert.ok(html.includes('id="teacher-request"'));
   assert.ok(html.includes('name="displayName"'));
-  assert.ok(html.includes('name="groups" value="3CS"'));
+  assert.ok(html.includes('name="teaching" value="[&quot;QR&quot;,&quot;3CS&quot;]"'));
   assert.ok(html.includes('name="note"'));
   assert.ok(!html.includes('name="password"'));
   const pending = loginView({ ...args, mode: 'pending', session });
@@ -52,11 +52,11 @@ test('approved, rejected, and disconnected account states are honest', () => {
 });
 
 test('teacher request review exposes named decisions and approved class scopes only for pending records', () => {
-  const requests = [{ id: 'request-1', user_id: 'teacher-id', display_name: 'Teacher', groups: ['3CS'], note: 'I teach LA.', status: 'pending' }];
+  const requests = [{ id: 'request-1', user_id: 'teacher-id', display_name: 'Teacher', groups: ['3CS'], requested_teaching:[{subject:'LA',group:'3CS'}], note: 'I teach LA.', status: 'pending' }];
   const html = renderTeacherRequests(requests, doc);
   assert.ok(html.includes('data-staff-review="request-1"'));
   assert.ok(html.includes('name="requestId" value="request-1"'));
-  assert.ok(html.includes('name="groups" value="3CS" checked'));
+  assert.ok(html.includes('name="teaching" value="[&quot;LA&quot;,&quot;3CS&quot;]" checked'));
   assert.ok(html.includes('name="decision" value="approve"'));
   assert.ok(html.includes('name="decision" value="reject"'));
   assert.ok(!html.includes('name="reviewNote"'));
