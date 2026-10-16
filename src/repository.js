@@ -107,9 +107,9 @@ export function createRepository({ seed, backend = null, storage = browserStorag
     async load() {
       if (!backend) return clone(state);
       try {
-        const published = await backend.loadPublished();
+        const published = await backend.loadPublished({ knownRevision: state.revision });
         if (published) adopt(validateSnapshot(published));
-        else state = { ...state, offline: false, error: null };
+        else state = { ...state, source: state.revision > 0 ? 'remote' : state.source, offline: false, error: null };
       } catch (error) { state = { ...state, offline: true, error: message(error) }; }
       return clone(state);
     },

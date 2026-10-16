@@ -51,9 +51,9 @@ export function createBackend({ url, key }) {
 
   return {
     client,
-    async loadPublished() {
+    async loadPublished({ knownRevision = 0 } = {}) {
       const row = checked(await client.from('school_versions')
-        .select('revision,document,published_at').order('revision', { ascending: false }).limit(1).maybeSingle(),
+        .select('revision,document,published_at').gt('revision', knownRevision).order('revision', { ascending: false }).limit(1).maybeSingle(),
       'The latest school schedule could not be loaded.');
       return row ? { ...row, revision: Number(row.revision), publishedAt: row.published_at } : null;
     },
