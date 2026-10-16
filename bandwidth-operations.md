@@ -26,7 +26,7 @@ Storage traffic is the priority. Request counts alone do not measure bytes.
   Unchanged visits receive an empty result rather than the complete document.
 - Theme sync reads the user's own profile instead of the server/member state.
 - Public teacher availability refreshes every five minutes in visible school
-  schedule/calendar views, over today through the next 45 days.
+  schedule/calendar views, keeping the existing full calendar date coverage.
 - New chat uploads use a five-minute browser cache lifetime instead of zero.
   This does not retrofit headers on existing files or make the bucket public.
 - When eventually re-enabled, fallback chat polling is every 30 seconds,

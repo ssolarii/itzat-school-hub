@@ -71,7 +71,7 @@ const availabilityPanel=(isLeadership=false)=>teacherAvailabilityPanel({profiles
 async function refreshAvailability(){
  if(!backend||chatPage||landingPage||availabilityBusy)return;
  availabilityBusy=true;
- try{publicTeacherCheckouts=await backend.getTeacherUnavailability(today(),addDays(today(),45));availabilityError='';}
+ try{publicTeacherCheckouts=await backend.getTeacherUnavailability(addDays(today(),-31),addDays(today(),366));availabilityError='';}
  catch(error){availabilityError='Live teacher availability is unavailable. Refresh to try again.';}
  finally{availabilityBusy=false;}
 }
