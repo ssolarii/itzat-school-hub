@@ -61,7 +61,9 @@ export function createCommunityApi(client) {
       const session = unwrap(await client.auth.getSession());
       if (!session?.session?.user?.id) throw new Error('Sign in before uploading an image.');
       const path = `${session.session.user.id}/${kind}/${crypto.randomUUID()}.${types[file.type]}`;
-      unwrap(await client.storage.from('community-media').upload(path, file, { upsert: false, contentType: file.type, cacheControl: '0' }));
+      // Immutable paths may be reused by the browser within the five-minute
+      // signed-URL lifetime. The bucket and its access rules remain private.
+      unwrap(await client.storage.from('community-media').upload(path, file, { upsert: false, contentType: file.type, cacheControl: '300' }));
       return path;
     },
     async signMedia(paths = []) {
