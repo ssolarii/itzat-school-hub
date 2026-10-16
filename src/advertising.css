@@ -1,0 +1,10 @@
+.ad-mode-options{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;}
+.ad-mode-options .button[aria-pressed=true]{border:2px solid var(--accent,#512393);background:var(--wash);color:var(--ink);}
+.desktop-ad-area{display:grid;gap:48px;margin:32px auto 0;max-width:100%;}
+.desktop-ad{width:728px;max-width:100%;margin:auto;border-top:1px solid var(--line);padding-top:16px;}
+.desktop-ad-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;color:var(--muted);font-size:12px;}
+.ad-close{border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:8px 12px;min-height:36px;}
+.ad-disable-dialog{max-width:480px;background:var(--paper);color:var(--ink);}
+.ad-disable-dialog p{line-height:1.6;margin:16px 0;}
+.ad-disable-dialog .button.secondary{color:var(--ink);}
+@media(max-width:1099px),(hover:none),(pointer:coarse){.desktop-ad-area{display:none!important;}}

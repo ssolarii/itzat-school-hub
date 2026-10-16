@@ -2,5 +2,10 @@
   "url": "https://rssshitgdspbqjtqxvmr.supabase.co",
   "publishableKey": "sb_publishable_SPrVmDtxuzL3ZUs2WbTbkg_vcPdlZD5",
   "communityEnabled": true,
-  "chatPaused": true
+  "chatPaused": true,
+  "ads": {
+    "publisher": "ca-pub-4086740862036998",
+    "slot": "1491668269",
+    "ready": false
+  }
 }
