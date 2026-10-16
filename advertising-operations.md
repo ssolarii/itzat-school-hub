@@ -3,6 +3,17 @@
 Publisher: `ca-pub-4086740862036998`.
 Manual ad unit: **Schedule Assistant desktop banner**, `1491668269`, 728×90.
 
+## Setup status: 16 October 2026
+
+- Published the exact AdSense-provided `ads.txt` line at
+  `https://ssolarii.github.io/ads.txt`, in the host repository
+  `ssolarii/ssolarii.github.io` (commit `b53edbb`).
+- Google confirmed site ownership. Its status is **Getting ready** with
+  **Review requested**. This is not approval to serve ads yet.
+- Google's European-regulations consent editor opened as a blank/loading
+  frame. Consent messages and age-treatment configuration are not complete.
+  Keep `ads.ready` false; finish these controls before enabling live ads.
+
 The account's school-directory Auto ads exclusion was saved for
 `ssolarii.github.io/itzat-school-hub/` and all pages below it. This avoids
 automatic mobile, anchor, vignette and other overlay placements on the school
